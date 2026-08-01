@@ -1,0 +1,471 @@
+---
+title: "Configure Email Notification"
+date: 2026-08-01
+weight: 4
+chapter: false
+pre: " <b> 5.6.4 </b> "
+---
+
+{{% notice info %}}
+In this section, you will create and confirm an email subscription for the Amazon SNS topic. After the subscription is confirmed, door-open events detected by the Smart Home system will be delivered to the registered email address.
+{{% /notice %}}
+
+# Overview
+
+The Amazon SNS topic created in the previous section can receive notifications from AWS IoT Rules Engine.
+
+However, Amazon SNS does not deliver messages until at least one subscription has been created and confirmed.
+
+In this workshop, an email address is registered as the notification endpoint.
+
+The complete notification workflow is:
+
+```text
+Door sensor detects an open state
+                ↓
+ESP32-S3 publishes telemetry
+                ↓
+AWS IoT Door Alert Rule matches
+                ↓
+Amazon SNS receives the message
+                ↓
+Confirmed email subscription
+                ↓
+Subscriber receives the alert
+```
+
+---
+
+# Objectives
+
+After completing this section, you will be able to:
+
+- Create an Amazon SNS email subscription.
+- Confirm the subscription through email.
+- Verify the subscription status.
+- Publish a test notification.
+- Trigger an email alert through AWS IoT Rules Engine.
+- Troubleshoot common SNS email delivery issues.
+
+---
+
+# Estimated Time
+
+**Approximately 5–10 minutes**
+
+---
+
+# Step 1 – Open the SNS Topic
+
+Open the AWS Management Console and navigate to:
+
+```text
+Amazon SNS
+→ Topics
+→ SmartHomeDoorAlert
+```
+
+The topic details page displays:
+
+- Topic ARN.
+- Topic type.
+- Access policy.
+- Existing subscriptions.
+- Message publishing options.
+
+---
+
+# Step 2 – Create a Subscription
+
+On the topic details page, choose:
+
+```text
+Create subscription
+```
+
+Configure the subscription as follows:
+
+| Setting | Value |
+|---|---|
+| Topic ARN | ARN of `SmartHomeDoorAlert` |
+| Protocol | Email |
+| Endpoint | Recipient email address |
+
+Example endpoint:
+
+```text
+recipient@example.com
+```
+
+Choose:
+
+```text
+Create subscription
+```
+
+After creation, the subscription status will initially appear as:
+
+```text
+Pending confirmation
+```
+
+{{% notice warning %}}
+Use an email address that you can access immediately. Amazon SNS will not deliver notifications until the subscription is confirmed.
+{{% /notice %}}
+
+---
+
+# Step 3 – Confirm the Subscription
+
+Open the inbox of the configured email address.
+
+Look for an email from Amazon SNS with a subject similar to:
+
+```text
+AWS Notification - Subscription Confirmation
+```
+
+Open the message and choose:
+
+```text
+Confirm subscription
+```
+
+A browser page will confirm that the subscription has been activated.
+
+---
+
+# Step 4 – Verify the Subscription Status
+
+Return to:
+
+```text
+Amazon SNS
+→ Topics
+→ SmartHomeDoorAlert
+→ Subscriptions
+```
+
+The status should now display:
+
+```text
+Confirmed
+```
+
+The subscription list should contain:
+
+| Field | Expected value |
+|---|---|
+| Protocol | Email |
+| Endpoint | Registered email address |
+| Status | Confirmed |
+
+{{% notice note %}}
+If the status remains `Pending confirmation`, Amazon SNS will not deliver alert messages to the email endpoint.
+{{% /notice %}}
+
+---
+
+# Step 5 – Publish a Direct Test Message
+
+Before testing the complete IoT workflow, publish a message directly from Amazon SNS.
+
+On the topic details page, choose:
+
+```text
+Publish message
+```
+
+Enter a subject:
+
+```text
+Smart Home Door Alert Test
+```
+
+Enter a message:
+
+```text
+The Smart Home door notification system is working correctly.
+```
+
+Choose:
+
+```text
+Publish message
+```
+
+Check the subscriber inbox.
+
+The test email should arrive within a short period.
+
+---
+
+# Step 6 – Trigger the Alert using AWS IoT MQTT Test Client
+
+Open:
+
+```text
+AWS IoT Core
+→ Test
+→ MQTT test client
+```
+
+Publish the following message to:
+
+```text
+smarthome/esp32-home-01/telemetry
+```
+
+Payload:
+
+```json
+{
+  "device_id": "esp32-home-01",
+  "timestamp": 1784900000,
+  "dht_valid": true,
+  "temperature": 29.4,
+  "humidity": 71,
+  "light": 870,
+  "door_open": true,
+  "relay_on": false
+}
+```
+
+The message satisfies the Door Alert Rule condition:
+
+```sql
+WHERE door_open = true
+```
+
+AWS IoT Rules Engine publishes the selected message to Amazon SNS.
+
+Amazon SNS then delivers the message to the confirmed email subscription.
+
+---
+
+# Step 7 – Trigger the Alert from ESP32-S3
+
+Connect the door sensor to the ESP32-S3 and run the firmware.
+
+When the door is opened, the telemetry payload contains:
+
+```json
+{
+  "door_open": true
+}
+```
+
+The complete flow is:
+
+```text
+Door opens
+    ↓
+ESP32-S3 detects HIGH state
+    ↓
+Telemetry is published
+    ↓
+AWS IoT Door Alert Rule matches
+    ↓
+Amazon SNS publishes notification
+    ↓
+Email arrives
+```
+
+---
+
+# Step 8 – Verify the Email Notification
+
+Open the email received from Amazon SNS.
+
+The message may contain the telemetry payload generated by the ESP32-S3.
+
+Example:
+
+```json
+{
+  "device_id": "esp32-home-01",
+  "timestamp": 1784900000,
+  "dht_valid": true,
+  "temperature": 29.4,
+  "humidity": 71,
+  "light": 870,
+  "door_open": true,
+  "relay_on": false
+}
+```
+
+![Door-open email notification](/images/workshop/5.6.4/sns-email-notification.png)
+
+The notification confirms that the complete Smart Home alert workflow operates successfully.
+
+{{% notice warning %}}
+Before publishing screenshots, hide the recipient email address, AWS account ID, message ID, and any other sensitive information.
+{{% /notice %}}
+
+---
+
+# Avoiding Repeated Door Alerts
+
+The ESP32-S3 publishes telemetry periodically.
+
+If the door remains open, every message may contain:
+
+```json
+{
+  "door_open": true
+}
+```
+
+As a result, the Door Alert Rule may send repeated notifications.
+
+For a production system, alerts should preferably be generated only when the state changes:
+
+```text
+CLOSED → OPEN
+```
+
+Possible improvements include:
+
+- Detecting the state transition in ESP32 firmware.
+- Publishing a separate door event topic.
+- Adding event-processing logic with AWS Lambda.
+- Using Device Shadow state comparison.
+- Applying a cooldown period after sending an alert.
+
+For the current workshop, repeated messages are acceptable because the purpose is to demonstrate the SNS notification workflow.
+
+---
+
+# Email Delivery Considerations
+
+Email delivery can be affected by:
+
+- Spam or junk filtering.
+- Corporate email security rules.
+- Incorrect email address.
+- Unconfirmed subscription.
+- Duplicate subscriptions.
+- Delays from the email provider.
+
+When testing, check:
+
+```text
+Inbox
+Spam
+Junk
+Promotions
+Quarantine
+```
+
+---
+
+# Monitoring SNS Delivery
+
+Amazon SNS publishes delivery metrics to Amazon CloudWatch.
+
+Useful metrics include:
+
+| Metric | Meaning |
+|---|---|
+| NumberOfMessagesPublished | Number of messages published to the topic. |
+| NumberOfNotificationsDelivered | Number of successful deliveries. |
+| NumberOfNotificationsFailed | Number of failed deliveries. |
+| NumberOfNotificationsFilteredOut | Number of messages removed by filter policies. |
+
+If the rule is triggered but no email arrives, compare the published and delivered message counts.
+
+---
+
+# Troubleshooting
+
+## Subscription remains pending
+
+Verify:
+
+- The confirmation email was received.
+- The confirmation link was opened.
+- The correct email address was entered.
+- The confirmation email is not in Spam or Junk.
+
+If necessary, delete the pending subscription and create a new one.
+
+---
+
+## Direct SNS test works but IoT alert does not
+
+Verify:
+
+- Door Alert Rule is enabled.
+- The SQL condition is correct.
+- The IoT Rule action points to the correct SNS topic.
+- The IAM role allows `sns:Publish`.
+- The payload contains Boolean `true`, not string `"true"`.
+
+Correct:
+
+```json
+{
+  "door_open": true
+}
+```
+
+Incorrect:
+
+```json
+{
+  "door_open": "true"
+}
+```
+
+---
+
+## IoT Rule is triggered repeatedly
+
+This occurs when telemetry continues to report that the door is open.
+
+Consider implementing state-change detection or a cooldown mechanism.
+
+---
+
+## No confirmation email is received
+
+Possible causes:
+
+- Incorrect endpoint email.
+- Email provider filtering.
+- Organization blocks automated subscription messages.
+- The subscription was created in the wrong SNS topic.
+
+Try using another accessible email address during testing.
+
+---
+
+# Security and Privacy
+
+Follow these practices:
+
+- Do not expose subscriber email addresses publicly.
+- Restrict `sns:Publish` to the exact SNS topic ARN.
+- Remove test subscriptions that are no longer used.
+- Avoid including confidential information in SNS messages.
+- Review SNS topic access policies.
+- Mask sensitive information in screenshots.
+
+---
+
+# Expected Result
+
+After completing this section:
+
+- An email subscription has been created.
+- The subscription status is `Confirmed`.
+- Direct SNS test messages are delivered successfully.
+- Door-open telemetry triggers the AWS IoT Rule.
+- Amazon SNS sends the alert to the subscriber.
+- The complete event-driven notification workflow is operational.
+
+{{% notice tip %}}
+The Smart Home cloud integration is now complete. The next chapter verifies the entire system through end-to-end functional and failure testing.
+{{% /notice %}}
+
+**Next:** [5.7 System Testing](../../5.7-testing/)
