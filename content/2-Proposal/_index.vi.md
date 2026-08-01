@@ -1,108 +1,230 @@
 ---
-title: "Bản đề xuất"
-date: 2024-01-01
+title: "Đề xuất"
+date: 2026-07-31
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
+# Hệ thống Smart Home IoT trên AWS
 
-# IoT Weather Platform for Lab Research  
-## Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực  
+## Hệ thống giám sát nhà thông minh an toàn sử dụng công nghệ IoT và các dịch vụ AWS Cloud
 
-### 1. Tóm tắt điều hành  
-IoT Weather Platform được thiết kế dành cho nhóm *ITea Lab* tại TP. Hồ Chí Minh nhằm nâng cao khả năng thu thập và phân tích dữ liệu thời tiết. Nền tảng hỗ trợ tối đa 5 trạm thời tiết, có khả năng mở rộng lên 10–15 trạm, sử dụng thiết bị biên Raspberry Pi kết hợp cảm biến ESP32 để truyền dữ liệu qua MQTT. Nền tảng tận dụng các dịch vụ AWS Serverless để cung cấp giám sát thời gian thực, phân tích dự đoán và tiết kiệm chi phí, với quyền truy cập giới hạn cho 5 thành viên phòng lab thông qua Amazon Cognito.  
+---
 
-### 2. Tuyên bố vấn đề  
-*Vấn đề hiện tại*  
-Các trạm thời tiết hiện tại yêu cầu thu thập dữ liệu thủ công, khó quản lý khi có nhiều trạm. Không có hệ thống tập trung cho dữ liệu hoặc phân tích thời gian thực, và các nền tảng bên thứ ba thường tốn kém và quá phức tạp.  
+# 1. Tóm tắt đề xuất
 
-*Giải pháp*  
-Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, Amazon S3 để lưu trữ (bao gồm data lake), và AWS Glue Crawlers cùng các tác vụ ETL để trích xuất, chuyển đổi, tải dữ liệu từ S3 data lake sang một S3 bucket khác để phân tích. AWS Amplify với Next.js cung cấp giao diện web, và Amazon Cognito đảm bảo quyền truy cập an toàn. Tương tự như Thingsboard và CoreIoT, người dùng có thể đăng ký thiết bị mới và quản lý kết nối, nhưng nền tảng này hoạt động ở quy mô nhỏ hơn và phục vụ mục đích sử dụng nội bộ. Các tính năng chính bao gồm bảng điều khiển thời gian thực, phân tích xu hướng và chi phí vận hành thấp.  
+Dự án này đề xuất xây dựng một hệ thống Smart Home IoT sử dụng bo mạch phát triển ESP32-S3 kết hợp với các dịch vụ điện toán đám mây của Amazon Web Services (AWS).
 
-*Lợi ích và hoàn vốn đầu tư (ROI)*  
-Giải pháp tạo nền tảng cơ bản để các thành viên phòng lab phát triển một nền tảng IoT lớn hơn, đồng thời cung cấp nguồn dữ liệu cho những người nghiên cứu AI phục vụ huấn luyện mô hình hoặc phân tích. Nền tảng giảm bớt báo cáo thủ công cho từng trạm thông qua hệ thống tập trung, đơn giản hóa quản lý và bảo trì, đồng thời cải thiện độ tin cậy dữ liệu. Chi phí hàng tháng ước tính 0,66 USD (theo AWS Pricing Calculator), tổng cộng 7,92 USD cho 12 tháng. Tất cả thiết bị IoT đã được trang bị từ hệ thống trạm thời tiết hiện tại, không phát sinh chi phí phát triển thêm. Thời gian hoàn vốn 6–12 tháng nhờ tiết kiệm đáng kể thời gian thao tác thủ công.  
+Hệ thống liên tục giám sát các điều kiện môi trường bao gồm nhiệt độ, độ ẩm, cường độ ánh sáng và trạng thái cửa. Dữ liệu từ các cảm biến được truyền an toàn đến AWS IoT Core thông qua giao thức MQTT over TLS 1.2 với cơ chế xác thực bằng chứng chỉ X.509.
 
-### 3. Kiến trúc giải pháp  
-Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.  
+AWS IoT Rules Engine xử lý các dữ liệu telemetry nhận được và chuyển chúng đến Amazon DynamoDB để lưu trữ. Khi hệ thống phát hiện cửa được mở, Amazon SNS sẽ tự động gửi email thông báo đến người dùng.
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+Kiến trúc được đề xuất là một giải pháp IoT gọn nhẹ, an toàn và có khả năng mở rộng, phù hợp cho các ứng dụng nhà thông minh và mục đích học tập.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+---
 
-*Dịch vụ AWS sử dụng*  
-- *AWS IoT Core*: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.  
-- *AWS Lambda*: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).  
-- *Amazon API Gateway*: Giao tiếp với ứng dụng web.  
-- *Amazon S3*: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).  
-- *AWS Glue*: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.  
-- *AWS Amplify*: Lưu trữ giao diện web Next.js.  
-- *Amazon Cognito*: Quản lý quyền truy cập cho người dùng phòng lab.  
+# 2. Phát biểu bài toán
 
-*Thiết kế thành phần*  
-- *Thiết bị biên*: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.  
-- *Tiếp nhận dữ liệu*: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.  
-- *Lưu trữ dữ liệu*: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.  
-- *Xử lý dữ liệu*: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.  
-- *Giao diện web*: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.  
-- *Quản lý người dùng*: Amazon Cognito giới hạn 5 tài khoản hoạt động.  
+## Những thách thức hiện tại
 
-### 4. Triển khai kỹ thuật  
-*Các giai đoạn triển khai*  
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:  
-1. *Nghiên cứu và vẽ kiến trúc*: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).  
-2. *Tính toán chi phí và kiểm tra tính khả thi*: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).  
-3. *Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp*: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).  
-4. *Phát triển, kiểm thử, triển khai*: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).  
+Các hệ thống giám sát nhà ở truyền thống thường phụ thuộc vào các thiết bị cục bộ và không có cơ chế quản lý tập trung.
 
-*Yêu cầu kỹ thuật*  
-- *Trạm thời tiết biên*: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.  
-- *Nền tảng thời tiết*: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.  
+Các hệ thống này thường thiếu:
 
-### 5. Lộ trình & Mốc triển khai  
-- *Trước thực tập (Tháng 0)*: 1 tháng lên kế hoạch và đánh giá trạm cũ.  
-- *Thực tập (Tháng 1–3)*:  
-    - Tháng 1: Học AWS và nâng cấp phần cứng.  
-    - Tháng 2: Thiết kế và điều chỉnh kiến trúc.  
-    - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.  
-- *Sau triển khai*: Nghiên cứu thêm trong vòng 1 năm.  
+- Khả năng giám sát từ xa theo thời gian thực.
+- Cơ chế xác thực thiết bị an toàn.
+- Hệ thống lưu trữ telemetry tập trung.
+- Cơ chế thông báo sự kiện tự động.
+- Khả năng mở rộng dựa trên nền tảng đám mây.
 
-### 6. Ước tính ngân sách  
-Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
-Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf).  
+Khi số lượng thiết bị kết nối ngày càng tăng, việc quản lý dữ liệu cảm biến và theo dõi trạng thái hệ thống trở nên khó khăn hơn.
 
-*Chi phí hạ tầng*  
-- AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).  
-- S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).  
-- Truyền dữ liệu: 0,02 USD/tháng (1 GB vào, 1 GB ra).  
-- AWS Amplify: 0,35 USD/tháng (256 MB, request 500 ms).  
-- Amazon API Gateway: 0,01 USD/tháng (2.000 request).  
-- AWS Glue ETL Jobs: 0,02 USD/tháng (2 DPU).  
-- AWS Glue Crawlers: 0,07 USD/tháng (1 crawler).  
-- MQTT (IoT Core): 0,08 USD/tháng (5 thiết bị, 45.000 tin nhắn).  
+---
 
-*Tổng*: 0,7 USD/tháng, 8,40 USD/12 tháng  
-- *Phần cứng*: 265 USD một lần (Raspberry Pi 5 và cảm biến).  
+## Giải pháp đề xuất
 
-### 7. Đánh giá rủi ro  
-*Ma trận rủi ro*  
-- Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.  
-- Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.  
-- Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.  
+Hệ thống Smart Home IoT được đề xuất sử dụng các dịch vụ được quản lý của AWS nhằm cung cấp khả năng giao tiếp bảo mật, lưu trữ dữ liệu tập trung và giám sát theo thời gian thực.
 
-*Chiến lược giảm thiểu*  
-- Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.  
-- Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.  
-- Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.  
+ESP32-S3 thu thập dữ liệu từ nhiều cảm biến và gửi các thông điệp telemetry đến AWS IoT Core thông qua giao thức MQTT over TLS.
 
-*Kế hoạch dự phòng*  
-- Quay lại thu thập thủ công nếu AWS gặp sự cố.  
-- Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.  
+AWS IoT Rules Engine tự động chuyển dữ liệu telemetry đến Amazon DynamoDB để lưu trữ lâu dài.
 
-### 8. Kết quả kỳ vọng  
-*Cải tiến kỹ thuật*: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.  
-*Giá trị dài hạn*: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.
+Khi cảm biến cửa phát hiện sự kiện mở cửa, một AWS IoT Rule khác sẽ gửi thông báo đến Amazon SNS, sau đó Amazon SNS sẽ lập tức gửi email cảnh báo đến những người đăng ký nhận thông báo.
+
+Hệ thống cũng hỗ trợ điều khiển relay từ xa thông qua các MQTT command topic.
+
+---
+
+# Lợi ích
+
+Giải pháp được đề xuất mang lại các lợi ích sau:
+
+- Giao tiếp bảo mật thông qua MQTT over TLS 1.2.
+- Xác thực thiết bị bằng chứng chỉ X.509.
+- Lưu trữ telemetry tập trung.
+- Gửi email thông báo tự động.
+- Chi phí vận hành thấp.
+- Kiến trúc đơn giản sử dụng hoàn toàn các dịch vụ được quản lý của AWS.
+- Dễ dàng mở rộng để tích hợp thêm các thiết bị Smart Home trong tương lai.
+
+---
+
+# 3. Kiến trúc giải pháp
+
+Hệ thống Smart Home IoT bao gồm một thiết bị ESP32-S3 kết nối với nhiều cảm biến môi trường và các dịch vụ AWS Cloud.
+
+ESP32-S3 định kỳ thu thập dữ liệu telemetry và gửi các thông điệp JSON đến AWS IoT Core.
+
+AWS IoT Core xác thực thiết bị bằng chứng chỉ X.509 và AWS IoT Policy trước khi chuyển tiếp dữ liệu đến AWS IoT Rules Engine.
+
+AWS IoT Rules Engine lưu dữ liệu telemetry vào Amazon DynamoDB và gửi cảnh báo mở cửa thông qua Amazon SNS.
+
+Kiến trúc đề xuất được minh họa trong hình dưới đây.
+
+![Kiến trúc hệ thống Smart Home IoT](/images/workshop/5.2/architec.jpg)
+
+*Hình: Kiến trúc đề xuất của hệ thống Smart Home IoT trên AWS.*
+
+---
+
+# Các dịch vụ AWS sử dụng
+
+- AWS IoT Core
+- AWS IoT Rules Engine
+- Amazon DynamoDB
+- Amazon Simple Notification Service (Amazon SNS)
+- AWS Identity and Access Management (AWS IAM)
+- Amazon CloudWatch
+
+---
+
+# Thành phần phần cứng
+
+- Bo mạch phát triển ESP32-S3
+- Cảm biến nhiệt độ và độ ẩm DHT11
+- Cảm biến ánh sáng LDR
+- Cảm biến cửa từ
+- Module Relay
+
+---
+
+# 4. Triển khai kỹ thuật
+
+## Các giai đoạn triển khai
+
+Dự án được chia thành bốn giai đoạn triển khai.
+
+### Giai đoạn 1
+
+Phân tích yêu cầu và thiết kế kiến trúc hệ thống.
+
+### Giai đoạn 2
+
+Cấu hình AWS IoT Core, bao gồm tạo Thing, chứng chỉ X.509, IoT Policy và kiểm thử MQTT.
+
+### Giai đoạn 3
+
+Phát triển firmware cho ESP32-S3, bao gồm kết nối Wi-Fi, giao tiếp MQTT over TLS, tạo telemetry và điều khiển relay.
+
+### Giai đoạn 4
+
+Tích hợp với Cloud, kiểm thử hệ thống, xác nhận hoạt động và hoàn thiện tài liệu.
+
+---
+
+# Yêu cầu kỹ thuật
+
+### Phần mềm
+
+- Visual Studio Code
+- PlatformIO
+- AWS Management Console
+
+### Dịch vụ AWS
+
+- AWS IoT Core
+- Amazon DynamoDB
+- Amazon SNS
+- AWS IAM
+
+### Ngôn ngữ lập trình
+
+- C++
+- Arduino Framework
+
+### Giao thức truyền thông
+
+- MQTT over TLS 1.2
+
+---
+
+# 5. Tiến độ thực hiện
+
+| Tuần | Nội dung thực hiện |
+|---|---|
+| Tuần 1 | Phân tích yêu cầu và nghiên cứu AWS |
+| Tuần 2 | Cấu hình AWS IoT Core và môi trường phát triển |
+| Tuần 3 | Phát triển firmware và cấu hình các dịch vụ Cloud |
+| Tuần 4 | Tích hợp ESP32-S3 với AWS IoT Core |
+| Tuần 5 | Tối ưu kiến trúc hệ thống và firmware |
+| Tuần 6 | Kiểm thử toàn bộ hệ thống |
+| Tuần 7 | Hoàn thiện tài liệu và chuẩn bị báo cáo cuối kỳ |
+
+---
+
+# 6. Dự toán chi phí
+
+Dự án sử dụng các dịch vụ thuộc AWS Free Tier bất cứ khi nào có thể.
+
+Chi phí vận hành dự kiến rất thấp vì:
+
+- Lượng thông điệp AWS IoT Core ở mức nhỏ.
+- Amazon DynamoDB chỉ lưu trữ dữ liệu telemetry có dung lượng nhỏ.
+- Amazon SNS chỉ gửi thông báo khi có sự kiện.
+- Amazon CloudWatch chỉ được sử dụng cho mục đích giám sát và ghi log.
+
+Chi phí phần cứng bao gồm:
+
+- Bo mạch phát triển ESP32-S3
+- Cảm biến DHT11
+- Cảm biến LDR
+- Cảm biến cửa từ
+- Module Relay
+
+---
+
+# 7. Đánh giá rủi ro
+
+## Các rủi ro tiềm ẩn
+
+- Mất kết nối Wi-Fi.
+- Gián đoạn giao tiếp MQTT.
+- Cảm biến hoạt động không chính xác.
+- Cấu hình AWS sai.
+- Email thông báo bị chậm.
+
+---
+
+## Biện pháp giảm thiểu
+
+- Triển khai cơ chế tự động kết nối lại Wi-Fi.
+- Triển khai cơ chế tự động kết nối lại MQTT.
+- Kiểm tra tính hợp lệ của dữ liệu cảm biến.
+- Áp dụng nguyên tắc phân quyền tối thiểu (Least Privilege) trong AWS IAM.
+- Kiểm thử AWS IoT Rules trước khi triển khai.
+
+---
+
+# 8. Kết quả mong đợi
+
+Hệ thống Smart Home IoT sau khi hoàn thành sẽ cung cấp:
+
+- Giao tiếp bảo mật giữa ESP32-S3 và AWS IoT Core.
+- Giám sát các điều kiện môi trường theo thời gian thực.
+- Điều khiển relay từ xa thông qua MQTT.
+- Gửi email cảnh báo tự động khi phát hiện cửa mở.
+- Lưu trữ telemetry tập trung trên Amazon DynamoDB.
+- Kiến trúc có khả năng mở rộng cho các thiết bị Smart Home trong tương lai.
+
+Dự án cũng cung cấp một ví dụ thực tế về việc tích hợp hệ thống nhúng với các dịch vụ AWS Cloud để xây dựng các ứng dụng Internet of Things (IoT).

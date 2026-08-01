@@ -1,59 +1,40 @@
 ---
-title: "Worklog Tuần 2"
-date: 2024-01-01
-weight: 1
+title: "Nhật ký công việc Tuần 2"
+date: 2026-07-31
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
+# Nhật ký công việc Tuần 2
 
-### Mục tiêu tuần 2:
+## Mục tiêu của tuần
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+Mục tiêu của tuần này là chuẩn bị môi trường phát triển nhúng và thiết lập kết nối ban đầu giữa bo mạch ESP32-S3 và AWS IoT Core.
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+## Công việc đã thực hiện
 
+| Ngày | Công việc |
+|---|---|
+| Thứ Hai | Cài đặt PlatformIO, cấu hình môi trường phát triển cho ESP32-S3 và kiểm tra kết nối với bo mạch. |
+| Thứ Ba | Tạo dự án PlatformIO và cấu hình các thư viện cần thiết cho dự án. |
+| Thứ Tư | Triển khai chức năng kết nối Wi-Fi và kiểm tra khả năng truy cập Internet của ESP32-S3. |
+| Thứ Năm | Cấu hình đồng bộ thời gian bằng Network Time Protocol (NTP) để phục vụ việc xác thực chứng chỉ TLS. |
+| Thứ Sáu | Thêm Root CA Certificate, Device Certificate và Private Key vào dự án firmware để chuẩn bị cho việc giao tiếp MQTT over TLS với AWS IoT Core. |
 
-### Kết quả đạt được tuần 2:
+---
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+## Kết quả đạt được
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+Môi trường phát triển nhúng đã được chuẩn bị hoàn chỉnh. ESP32-S3 có thể kết nối thành công với mạng Wi-Fi, đồng bộ thời gian hệ thống bằng NTP và sẵn sàng thiết lập kết nối MQTT bảo mật với AWS IoT Core.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+---
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+## Kiến thức và kỹ năng đạt được
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+- PlatformIO
+- Phát triển ứng dụng trên ESP32-S3
+- Lập trình kết nối Wi-Fi
+- Network Time Protocol (NTP)
+- Quản lý chứng chỉ TLS
+- Thiết lập môi trường phát triển hệ thống nhúng

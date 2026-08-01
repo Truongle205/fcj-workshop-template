@@ -1,6 +1,6 @@
 ---
 title: "Create and Attach AWS IoT Policy"
-date: 2026-08-01
+date: 2026-07-31
 weight: 3
 chapter: false
 pre: " <b> 5.4.3 </b> "

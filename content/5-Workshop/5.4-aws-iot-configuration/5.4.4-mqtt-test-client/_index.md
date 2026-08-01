@@ -1,6 +1,6 @@
 ---
 title: "Verify MQTT Communication"
-date: 2026-08-01
+date: 2026-07-31
 weight: 4
 chapter: false
 pre: " <b> 5.4.4 </b> "

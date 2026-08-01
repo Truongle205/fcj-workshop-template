@@ -1,59 +1,41 @@
 ---
-title: "Worklog Tuần 7"
-date: 2024-01-01
-weight: 1
+title: "Nhật ký công việc Tuần 7"
+date: 2026-07-31
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
+# Nhật ký công việc Tuần 7
 
-### Mục tiêu tuần 7:
+## Mục tiêu của tuần
 
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+Mục tiêu của tuần cuối cùng là hoàn thiện firmware nhúng, sắp xếp các tài nguyên của dự án và chuẩn bị tài liệu kỹ thuật cho hệ thống Smart Home IoT đã hoàn thành.
 
-### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+## Công việc đã thực hiện
 
+| Ngày | Công việc |
+|---|---|
+| Thứ Hai | Rà soát firmware trên ESP32-S3 và thực hiện dọn dẹp, tối ưu mã nguồn lần cuối. |
+| Thứ Ba | Kiểm tra toàn bộ kết nối phần cứng và tiến hành kiểm thử chức năng cuối cùng của hệ thống Smart Home. |
+| Thứ Tư | Thu thập ảnh chụp màn hình và các kết quả kiểm thử để phục vụ cho tài liệu workshop. |
+| Thứ Năm | Sắp xếp mã nguồn dự án, các tệp cấu hình và tài nguyên phục vụ quá trình phát triển. |
+| Thứ Sáu | Hoàn thiện tài liệu hệ thống nhúng và hỗ trợ chuẩn bị nội dung trình bày cho dự án cuối kỳ. |
 
-### Kết quả đạt được tuần 7:
+---
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+## Kết quả đạt được
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
+Firmware nhúng và hệ thống phần cứng đã được hoàn thiện thành công. Toàn bộ kết quả kiểm thử, mã nguồn và tài nguyên của dự án đã được sắp xếp đầy đủ, đồng thời tài liệu kỹ thuật cũng được hoàn thiện để phục vụ cho việc nghiệm thu và báo cáo dự án.
 
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
+---
 
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
+## Kiến thức và kỹ năng đạt được
 
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+- Rà soát và tối ưu firmware
+- Viết tài liệu hệ thống nhúng
+- Kiểm định và xác nhận hệ thống
+- Viết báo cáo kỹ thuật
+- Kỹ năng trình bày dự án
+- Kỹ năng làm việc nhóm
+```

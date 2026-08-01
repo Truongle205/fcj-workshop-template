@@ -1,6 +1,6 @@
 ---
 title: "Architecture"
-date: 2026-08-01
+date: 2026-07-31
 weight: 2
 chapter: false
 pre: " <b> 5.2 </b> "
@@ -23,7 +23,7 @@ The architecture consists of two major environments:
 
 The following architecture diagram illustrates the complete workflow implemented throughout this workshop.
 
-![Architecture](/images/workshop/5.2/smart-home-architecture.png)
+![Architecture](/images/workshop/5.2/architec.jpg)
 
 ---
 

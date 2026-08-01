@@ -1,38 +1,41 @@
 ---
-title: "Nhật ký công việc"
-date: 2024-01-01
-weight: 1
+title: "Nhật ký công việc Tuần 7"
+date: 2026-07-31
+weight: 7
 chapter: false
-pre: " <b> 1. </b> "
+pre: " <b> 1.7. </b> "
 ---
 
+# Nhật ký công việc Tuần 7
 
+## Mục tiêu của tuần
 
-**Trong trang này** bạn sẽ cần giới thiệu worklog của bạn **như thế nào**? Bạn hoàn thành chương trình trong vòng **bao nhiêu tuần**? Bạn **đã làm gì** trong các tuần đó?
+Mục tiêu của tuần cuối cùng là hoàn thiện firmware nhúng, sắp xếp các tài nguyên của dự án và chuẩn bị tài liệu kỹ thuật cho hệ thống Smart Home IoT đã hoàn thành.
 
+## Công việc đã thực hiện
 
-Thông thường và cũng là tiêu chuẩn, một worklog được thực hiện trong khoảng 3 tháng (trong suốt thời gian thực tập) với nội dung các tuần như sau:
+| Ngày | Công việc |
+|---|---|
+| Thứ Hai | Rà soát firmware trên ESP32-S3 và thực hiện dọn dẹp, tối ưu mã nguồn lần cuối. |
+| Thứ Ba | Kiểm tra toàn bộ kết nối phần cứng và tiến hành kiểm thử chức năng cuối cùng của hệ thống Smart Home. |
+| Thứ Tư | Thu thập ảnh chụp màn hình và các kết quả kiểm thử để phục vụ cho tài liệu workshop. |
+| Thứ Năm | Sắp xếp mã nguồn dự án, các tệp cấu hình và tài nguyên phục vụ quá trình phát triển. |
+| Thứ Sáu | Hoàn thiện tài liệu hệ thống nhúng và hỗ trợ chuẩn bị nội dung trình bày cho dự án cuối kỳ. |
 
-**Tuần 1:** [Làm quen với AWS và các dịch vụ cơ bản trong AWS](1.1-week1/)
+---
 
-**Tuần 2:** [Làm công việc A...](1.2-week2/)
+## Kết quả đạt được
 
-**Tuần 3:** [Làm công việc B...](1.3-week3/)
+Firmware nhúng và hệ thống phần cứng đã được hoàn thiện thành công. Toàn bộ kết quả kiểm thử, mã nguồn và tài nguyên của dự án đã được sắp xếp đầy đủ, đồng thời tài liệu kỹ thuật cũng được hoàn thiện để phục vụ cho việc nghiệm thu và báo cáo dự án.
 
-**Tuần 4:** [Làm công việc C...](1.4-week4/)
+---
 
-**Tuần 5:** [Làm công việc D...](1.5-week5/)
+## Kiến thức và kỹ năng đạt được
 
-**Tuần 6:** [Làm công việc E...](1.6-week6/)
-
-**Tuần 7:** [Làm công việc G...](1.7-week7/)
-
-**Tuần 8:** [Làm công việc H...](1.8-week8/)
-
-**Tuần 9:** [Làm công việc I...](1.9-week9/)
-
-**Tuần 10:** [Làm công việc L...](1.10-week10/)
-
-**Tuần 11:** [Làm công việc M...](1.11-week11/)
-
-**Tuần 12:** [Làm công việc N...](1.12-week12/)
+- Rà soát và tối ưu firmware
+- Viết tài liệu hệ thống nhúng
+- Kiểm định và xác nhận hệ thống
+- Viết báo cáo kỹ thuật
+- Kỹ năng trình bày dự án
+- Kỹ năng làm việc nhóm
+```

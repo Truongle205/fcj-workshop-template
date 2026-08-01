@@ -1,6 +1,6 @@
 ---
 title: "Create AWS IoT Rules"
-date: 2026-08-01
+date: 2026-07-31
 weight: 1
 chapter: false
 pre: " <b> 5.6.1 </b> "

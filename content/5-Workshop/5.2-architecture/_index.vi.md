@@ -1,6 +1,6 @@
 ---
 title: "Kiến trúc hệ thống"
-date: 2026-08-01
+date: 2026-07-31
 weight: 2
 chapter: false
 pre: " <b> 5.2 </b> "
@@ -23,9 +23,9 @@ Toàn bộ hệ thống được chia thành hai môi trường chính:
 
 Sơ đồ dưới đây minh họa toàn bộ kiến trúc được triển khai trong workshop.
 
-![Kiến trúc Smart Home IoT](/images/workshop/5.2/smart-home-architecture.png)
+![Kiến trúc Smart Home IoT](/images/workshop/5.2/architec.jpg)
 
----
+*Hình: Kiến trúc đề xuất của hệ thống Smart Home IoT.*
 
 # Tổng quan kiến trúc
 

@@ -1,6 +1,6 @@
 ---
 title: "Chia sẻ, đóng góp ý kiến"
-date: 2024-08-31
+date: 2026-07-31
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "

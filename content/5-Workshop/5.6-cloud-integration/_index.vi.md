@@ -1,6 +1,6 @@
 ---
 title: "Tích hợp dịch vụ Cloud"
-date: 2026-08-01
+date: 2026-07-31
 weight: 6
 chapter: false
 pre: " <b> 5.6 </b> "

@@ -1,6 +1,6 @@
 ---
 title: "Tạo Device Certificate"
-date: 2026-08-01
+date: 2026-07-31
 weight: 2
 chapter: false
 pre: " <b> 5.4.2 </b> "

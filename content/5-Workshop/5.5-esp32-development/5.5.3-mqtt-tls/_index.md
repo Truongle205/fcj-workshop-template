@@ -1,6 +1,6 @@
 ---
 title: "Connect to AWS IoT Core using MQTT over TLS"
-date: 2026-08-01
+date: 2026-07-31
 weight: 3
 chapter: false
 pre: " <b> 5.5.3 </b> "

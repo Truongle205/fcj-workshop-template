@@ -1,6 +1,6 @@
 ---
 title: "Store Telemetry in Amazon DynamoDB"
-date: 2026-08-01
+date: 2026-07-31
 weight: 2
 chapter: false
 pre: " <b> 5.6.2 </b> "

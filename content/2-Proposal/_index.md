@@ -1,115 +1,230 @@
 ---
 title: "Proposal"
-date: 2024-01-01
+date: 2026-07-31
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
+# Smart Home IoT System on AWS
 
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+## A Secure IoT-Based Home Monitoring System Using AWS Cloud Services
 
-### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+---
 
-### 2. Problem Statement
-### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+# 1. Executive Summary
 
-### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+This project proposes the development of a Smart Home IoT system using an ESP32-S3 development board integrated with AWS cloud services.
 
-### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+The system continuously monitors environmental conditions, including temperature, humidity, ambient light intensity, and door status. Sensor data are securely transmitted to AWS IoT Core using MQTT over TLS 1.2 with X.509 certificate authentication.
 
-### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
+AWS IoT Rules Engine processes incoming telemetry data and routes them to Amazon DynamoDB for storage. When the system detects that the door has been opened, Amazon SNS automatically sends an email notification to the user.
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+The proposed architecture demonstrates a lightweight, secure, and scalable IoT solution suitable for home automation and educational purposes.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+---
 
-### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
+# 2. Problem Statement
 
-### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+## Current Challenges
 
-### 4. Technical Implementation
-**Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
+Traditional home monitoring systems often rely on local devices without centralized management.
 
-**Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+These systems usually lack:
 
-### 5. Timeline & Milestones
-**Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+- Real-time remote monitoring.
+- Secure device authentication.
+- Centralized telemetry storage.
+- Automatic event notifications.
+- Cloud-based scalability.
 
-### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
+As the number of connected devices increases, managing sensor data and monitoring system status becomes increasingly difficult.
 
-### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
+---
 
-Total: $0.7/month, $8.40/12 months
+## Proposed Solution
 
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+The proposed Smart Home IoT system utilizes AWS managed services to provide secure communication, centralized data storage, and real-time monitoring.
 
-### 7. Risk Assessment
-#### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
+The ESP32-S3 collects sensor readings from multiple devices and publishes telemetry messages to AWS IoT Core through MQTT over TLS.
 
-#### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
+AWS IoT Rules Engine automatically routes incoming telemetry to Amazon DynamoDB for long-term storage.
 
-#### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+Whenever the door sensor detects an open event, another IoT Rule publishes a notification to Amazon SNS, which immediately sends an email alert to registered subscribers.
 
-### 8. Expected Outcomes
-#### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
-#### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+The system also supports remote relay control through MQTT command topics.
+
+---
+
+# Benefits
+
+The proposed solution provides:
+
+- Secure communication using MQTT over TLS 1.2.
+- Device authentication using X.509 certificates.
+- Centralized telemetry storage.
+- Automatic email notifications.
+- Low operational cost.
+- Simple architecture with fully managed AWS services.
+- Easy scalability for future Smart Home devices.
+
+---
+
+# 3. Solution Architecture
+
+The Smart Home IoT system consists of an ESP32-S3 device connected to several environmental sensors and AWS cloud services.
+
+The ESP32-S3 periodically collects telemetry data and publishes JSON messages to AWS IoT Core.
+
+AWS IoT Core authenticates the device using an X.509 certificate and AWS IoT Policy before forwarding messages to AWS IoT Rules Engine.
+
+The Rules Engine stores telemetry in Amazon DynamoDB and sends door-open alerts through Amazon SNS.
+
+The proposed architecture is illustrated below.
+
+![Smart Home IoT Architecture](/images/workshop/5.2/architec.jpg)
+
+*Figure: Proposed architecture of the Smart Home IoT system on AWS.*
+
+---
+
+# AWS Services Used
+
+- AWS IoT Core
+- AWS IoT Rules Engine
+- Amazon DynamoDB
+- Amazon Simple Notification Service (Amazon SNS)
+- AWS Identity and Access Management (AWS IAM)
+- Amazon CloudWatch
+
+---
+
+# Hardware Components
+
+- ESP32-S3 Development Board
+- DHT11 Temperature and Humidity Sensor
+- LDR Light Sensor
+- Magnetic Door Sensor
+- Relay Module
+
+---
+
+# 4. Technical Implementation
+
+## Implementation Phases
+
+The project is divided into four implementation phases.
+
+### Phase 1
+
+Requirement analysis and system architecture design.
+
+### Phase 2
+
+AWS IoT Core configuration, including Thing creation, X.509 certificates, IoT Policy, and MQTT testing.
+
+### Phase 3
+
+Embedded firmware development for ESP32-S3, including Wi-Fi connection, MQTT over TLS communication, telemetry generation, and relay control.
+
+### Phase 4
+
+Cloud integration, testing, system validation, and documentation.
+
+---
+
+# Technical Requirements
+
+Software
+
+- Visual Studio Code
+- PlatformIO
+- AWS Management Console
+
+AWS Services
+
+- AWS IoT Core
+- DynamoDB
+- Amazon SNS
+- AWS IAM
+
+Programming Language
+
+- C++
+- Arduino Framework
+
+Communication
+
+- MQTT over TLS 1.2
+
+---
+
+# 5. Timeline
+
+| Week | Activities |
+|---|---|
+| Week 1 | Requirement analysis and AWS research |
+| Week 2 | Configure AWS IoT Core and development environment |
+| Week 3 | Develop firmware and configure cloud services |
+| Week 4 | Integrate ESP32-S3 with AWS IoT Core |
+| Week 5 | Optimize system architecture and firmware |
+| Week 6 | Perform system testing |
+| Week 7 | Complete documentation and final presentation |
+
+---
+
+# 6. Budget Estimation
+
+The project uses AWS Free Tier services whenever possible.
+
+Estimated operational cost is minimal because:
+
+- AWS IoT Core message volume is low.
+- Amazon DynamoDB stores only lightweight telemetry.
+- Amazon SNS sends only event-driven notifications.
+- CloudWatch usage is limited to monitoring and logs.
+
+Hardware costs include:
+
+- ESP32-S3 Development Board
+- DHT11 Sensor
+- LDR Sensor
+- Door Sensor
+- Relay Module
+
+---
+
+# 7. Risk Assessment
+
+## Potential Risks
+
+- Wi-Fi connection failure.
+- MQTT communication interruption.
+- Sensor malfunction.
+- Incorrect AWS configuration.
+- Email notification delays.
+
+---
+
+## Mitigation
+
+- Implement automatic Wi-Fi reconnection.
+- Implement MQTT reconnection.
+- Validate sensor readings.
+- Apply AWS IAM least-privilege permissions.
+- Test AWS IoT Rules before deployment.
+
+---
+
+# 8. Expected Outcomes
+
+The completed Smart Home IoT system will provide:
+
+- Secure communication between ESP32-S3 and AWS IoT Core.
+- Real-time monitoring of environmental conditions.
+- Remote relay control through MQTT.
+- Automatic email notifications for door-open events.
+- Centralized telemetry storage in Amazon DynamoDB.
+- A scalable architecture suitable for future Smart Home expansion.
+
+The project also provides a practical example of integrating embedded systems with AWS cloud services for IoT applications.
