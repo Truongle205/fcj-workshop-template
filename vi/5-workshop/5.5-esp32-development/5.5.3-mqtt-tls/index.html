@@ -1,0 +1,275 @@
+<!doctype html><html lang=vi class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.134.3"><meta name=description content><meta name=author content="thienlh@thienlu.com"><link rel=icon href=/fcj-workshop-template/images/favicon.png type=image/png><title>Kết nối AWS IoT Core bằng MQTT over TLS :: Báo cáo thực tập</title>
+<link href=/fcj-workshop-template/css/nucleus.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/fontawesome-all.min.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/hybrid.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/featherlight.min.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/perfect-scrollbar.min.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/auto-complete.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/atom-one-dark-reasonable.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/theme.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/hugo-theme.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/theme-workshop.css?1785606601 rel=stylesheet><script src=/fcj-workshop-template/js/jquery-3.3.1.min.js?1785606601></script><style>:root #header+#content>#left>#rlblock_left{display:none!important}</style></head><body data-url=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=/><svg id="Layer_1" data-name="Layer 1" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff}.cls-2{fill:#fff;fill-rule:evenodd}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09 10.85a4.7 4.7.0 00.19 1.48 7.73 7.73.0 00.54 1.19.77.77.0 01.12.38.64.64.0 01-.32.49l-1 .7a.83.83.0 01-.44.15.69.69.0 01-.49-.23 3.8 3.8.0 01-.6-.77q-.25-.42-.51-1a6.14 6.14.0 01-4.89 2.3 4.54 4.54.0 01-3.32-1.19 4.27 4.27.0 01-1.22-3.2 4.28 4.28.0 011.46-3.4A6.06 6.06.0 017.69 6.46a12.47 12.47.0 011.76.13q.92.13 1.91.36V5.73a3.65 3.65.0 00-.79-2.66A3.81 3.81.0 007.86 2.3a7.71 7.71.0 00-1.79.22 12.78 12.78.0 00-1.79.57 4.55 4.55.0 01-.58.22h-.26q-.35.0-.35-.52V2a1.09 1.09.0 01.12-.58 1.2 1.2.0 01.47-.35A10.88 10.88.0 015.77.32 10.19 10.19.0 018.36.0a6 6 0 014.35 1.35 5.49 5.49.0 011.38 4.09zM7.34 13.38a5.36 5.36.0 001.72-.31A3.63 3.63.0 0010.63 12 2.62 2.62.0 0011.19 11a5.63 5.63.0 00.16-1.44v-.7a14.35 14.35.0 00-1.53-.28 12.37 12.37.0 00-1.56-.1 3.84 3.84.0 00-2.47.67A2.34 2.34.0 005 11a2.35 2.35.0 00.61 1.76A2.4 2.4.0 007.34 13.38zm13.35 1.8a1 1 0 01-.64-.16 1.3 1.3.0 01-.35-.65L15.81 1.51a3 3 0 01-.15-.67.36.36.0 01.41-.41H17.7a1 1 0 01.65.16 1.4 1.4.0 01.33.65l2.79 11 2.59-11A1.17 1.17.0 0124.39.6a1.1 1.1.0 01.67-.16H26.4a1.1 1.1.0 01.67.16 1.17 1.17.0 01.32.65L30 12.39 32.88 1.25A1.39 1.39.0 0133.22.6a1 1 0 01.65-.16h1.54a.36.36.0 01.41.41 1.36 1.36.0 010 .26 3.64 3.64.0 01-.12.41l-4 12.86a1.3 1.3.0 01-.35.65 1 1 0 01-.64.16H29.25a1 1 0 01-.67-.17 1.26 1.26.0 01-.32-.67L25.67 3.64l-2.56 10.7a1.26 1.26.0 01-.32.67 1 1 0 01-.67.17zm21.36.44a11.28 11.28.0 01-2.56-.29 7.44 7.44.0 01-1.92-.67 1 1 0 01-.61-.93v-.84q0-.52.38-.52a.9.9.0 01.31.06l.42.17a8.77 8.77.0 001.83.58 9.78 9.78.0 002 .2 4.48 4.48.0 002.43-.55 1.76 1.76.0 00.86-1.57 1.61 1.61.0 00-.45-1.16A4.29 4.29.0 0043 9.22l-2.41-.76A5.15 5.15.0 0138 6.78a3.94 3.94.0 01-.83-2.41 3.7 3.7.0 01.45-1.85 4.47 4.47.0 011.19-1.37 5.27 5.27.0 011.7-.86A7.4 7.4.0 0142.6.0a8.87 8.87.0 011.12.07q.57.07 1.08.19t.95.26a4.27 4.27.0 01.7.29 1.59 1.59.0 01.49.41.94.94.0 01.15.55v.79q0 .52-.38.52a1.76 1.76.0 01-.64-.2 7.74 7.74.0 00-3.2-.64 4.37 4.37.0 00-2.21.47 1.6 1.6.0 00-.79 1.48 1.58 1.58.0 00.49 1.18 4.94 4.94.0 001.83.92L44.55 7a5.08 5.08.0 012.57 1.6A3.76 3.76.0 0147.9 11a4.21 4.21.0 01-.44 1.93 4.4 4.4.0 01-1.21 1.47 5.43 5.43.0 01-1.85.93A8.25 8.25.0 0142.05 15.62z"/><path class="cls-2" d="M45.19 23.81C39.72 27.85 31.78 30 25 30A36.64 36.64.0 01.22 20.57c-.51-.46-.06-1.09.56-.74A49.78 49.78.0 0025.53 26.4 49.23 49.23.0 0044.4 22.53C45.32 22.14 46.1 23.14 45.19 23.81z"/><path class="cls-2" d="M47.47 21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74 3.13-2.2 8.27-1.57 8.86-.83s-.16 5.89-3.09 8.35c-.45.38-.88.18-.68-.32C46.69 25.8 48.17 22.11 47.47 21.21z"/></svg></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/fcj-workshop-template/js/lunr.min.js?1785606601></script><script type=text/javascript src=/fcj-workshop-template/js/auto-complete.js?1785606601></script><script type=text/javascript>var baseurl="https://truongle205.github.io/fcj-workshop-template//vi"</script><script type=text/javascript src=/fcj-workshop-template/js/search.js?1785606601></script></div><div class=highlightable><ul class=topics><li data-nav-id=/fcj-workshop-template/vi/2-proposal/ title="Đề xuất" class=dd-item><a href=/fcj-workshop-template/vi/2-proposal/><b>2. </b>Đề xuất
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/ title="Các bài blogs đã đăng" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/><b>3. </b>Các bài blogs đã đăng
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/3.1-blog1/ title="Blog 1" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/3.1-blog1/><b>3.1. </b>Blog 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/3.2-blog2/ title="Blog 2" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/3.2-blog2/><b>3.2. </b>Blog 2
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/3.3-blog3/ title="Blog 3" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/3.3-blog3/><b>3.3. </b>Blog 3
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/4-eventparticipated/ title="Các events đã tham gia" class=dd-item><a href=/fcj-workshop-template/vi/4-eventparticipated/><b>4. </b>Các events đã tham gia
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/4-eventparticipated/4.1-event1/ title="Event 1" class=dd-item><a href=/fcj-workshop-template/vi/4-eventparticipated/4.1-event1/><b>4.1. </b>Event 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/4-eventparticipated/4.2-event2/ title="Event 2" class=dd-item><a href=/fcj-workshop-template/vi/4-eventparticipated/4.2-event2/><b>4.2. </b>Event 2
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/ title=Workshop class="dd-item
+parent"><a href=/fcj-workshop-template/vi/5-workshop/><b>5. </b>Workshop
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.1-overview/ title="Tổng quan" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.1-overview/><b>5.1 </b>Tổng quan
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.2-architecture/ title="Kiến trúc hệ thống" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.2-architecture/><b>5.2 </b>Kiến trúc hệ thống
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.3-prerequisites/ title="Điều kiện chuẩn bị" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.3-prerequisites/><b>5.3 </b>Điều kiện chuẩn bị
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/ title="Cấu hình AWS IoT" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/><b>5.4 </b>Cấu hình AWS IoT
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.1-create-thing/ title="Tạo AWS IoT Thing" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.1-create-thing/><b>5.4.1 </b>Tạo AWS IoT Thing
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.2-create-certificate/ title="Tạo Device Certificate" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.2-create-certificate/><b>5.4.2 </b>Tạo Device Certificate
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.3-attach-policy/ title="Tạo và gắn AWS IoT Policy" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.3-attach-policy/><b>5.4.3 </b>Tạo và gắn AWS IoT Policy
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.4-mqtt-test-client/ title="Kiểm tra kết nối MQTT" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.4-mqtt-test-client/><b>5.4.4 </b>Kiểm tra kết nối MQTT
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/ title="Phát triển ứng dụng ESP32" class="dd-item
+parent"><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/><b>5.5 </b>Phát triển ứng dụng ESP32
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.1-platformio/ title="Tạo dự án PlatformIO" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.1-platformio/><b>5.5.1 </b>Tạo dự án PlatformIO
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.2-wifi/ title="Kết nối Wi-Fi" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.2-wifi/><b>5.5.2 </b>Kết nối Wi-Fi
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/ title="Kết nối AWS IoT Core bằng MQTT over TLS" class="dd-item
+active"><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/><b>5.5.3 </b>Kết nối AWS IoT Core bằng MQTT over TLS
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/ title="Gửi dữ liệu Telemetry" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/><b>5.5.4 </b>Gửi dữ liệu Telemetry
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.5-relay-control/ title="Điều khiển Relay từ xa" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.5-relay-control/><b>5.5.5 </b>Điều khiển Relay từ xa
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/ title="Tích hợp dịch vụ Cloud" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/><b>5.6 </b>Tích hợp dịch vụ Cloud
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.1-iot-rules/ title="Tạo AWS IoT Rule" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.1-iot-rules/><b>5.6.1 </b>Tạo AWS IoT Rule
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.2-dynamodb/ title="Lưu Telemetry vào Amazon DynamoDB" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.2-dynamodb/><b>5.6.2 </b>Lưu Telemetry vào Amazon DynamoDB
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.3-sns/ title="Cấu hình Amazon SNS" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.3-sns/><b>5.6.3 </b>Cấu hình Amazon SNS
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.4-email-notification/ title="Cấu hình Email Notification" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.4-email-notification/><b>5.6.4 </b>Cấu hình Email Notification
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.7-testing/ title="Kiểm thử hệ thống" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.7-testing/><b>5.7 </b>Kiểm thử hệ thống
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.8-cleanup/ title="Dọn dẹp tài nguyên" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.8-cleanup/><b>5.8 </b>Dọn dẹp tài nguyên
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/6-self-evaluation/ title="Tự đánh giá" class=dd-item><a href=/fcj-workshop-template/vi/6-self-evaluation/><b>6. </b>Tự đánh giá
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/7-feedback/ title="Chia sẻ, đóng góp ý kiến" class=dd-item><a href=/fcj-workshop-template/vi/7-feedback/><b>7. </b>Chia sẻ, đóng góp ý kiến
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/ title="Nhật ký công việc Tuần 7" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/><b>1.7. </b>Nhật ký công việc Tuần 7
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.1-week1/ title="Nhật ký công việc Tuần 1" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.1-week1/><b>1.1. </b>Nhật ký công việc Tuần 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.2-week2/ title="Nhật ký công việc Tuần 2" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.2-week2/><b>1.2. </b>Nhật ký công việc Tuần 2
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.3-week3/ title="Nhật ký công việc Tuần 3" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.3-week3/><b>1.3. </b>Nhật ký công việc Tuần 3
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.4-week4/ title="Nhật ký công việc Tuần 4" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.4-week4/><b>1.4. </b>Nhật ký công việc Tuần 4
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.5-week5/ title="Nhật ký công việc Tuần 5" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.5-week5/><b>1.5. </b>Nhật ký công việc Tuần 5
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.6-week6/ title="Nhật ký công việc Tuần 6" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.6-week6/><b>1.6. </b>Nhật ký công việc Tuần 6
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.7-week7/ title="Nhật ký công việc Tuần 7" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.7-week7/><b>1.7. </b>Nhật ký công việc Tuần 7
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/8-references/ title="Tài liệu tham khảo" class=dd-item><a href=/fcj-workshop-template/vi/8-references/><b>8. </b>Tài liệu tham khảo
+<i class="fas fa-check read-icon"></i></a></li></ul><section id=shortcuts><h3>More</h3><ul><li><a class=padding href=http://awsstudygroup.com><i class='fab fa-aws'></i> AWS Study Group - Blog</a></li><li><a class=padding href=https://www.facebook.com/groups/awsstudygroupfcj><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value"><option id=en value=https://truongle205.github.io/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/>English</option><option id=vi value=https://truongle205.github.io/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/ selected>Tiếng Việt</option></select><svg id="Capa_1" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><polygon points="0,63.75 127.5,191.25 255,63.75"/></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i> Clear History</a></li></ul></section><section id=footer><left><br><br><b>Last Updated</b><br><i><font color=orange>01-08-2026</font>
+</i></left><left><br><br><b>Team</b><br><i><a href=https://www.facebook.com/groups/660548818043427 style=color:orange>First Cloud AI Journey</a>
+</i></left><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i>
+</a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span>
+<span class=links><a href=/fcj-workshop-template/vi/>Báo cáo thực tập</a> > <a href=/fcj-workshop-template/vi/5-workshop/>Workshop</a> > <a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/>Phát triển ứng dụng ESP32</a> > Kết nối AWS IoT Core bằng MQTT over TLS</span></div><div class=progress><div class=wrapper><nav id=TableOfContents></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Kết nối AWS IoT Core bằng MQTT over TLS</h1><div class="notices info"><p>Trong mục này, ESP32-S3 sẽ đồng bộ thời gian hệ thống và thiết lập kết nối MQTT bảo mật với AWS IoT Core thông qua cơ chế xác thực Mutual TLS.</p></div><h1 id=tổng-quan>Tổng quan</h1><p>AWS IoT Core yêu cầu thiết bị giao tiếp thông qua một kết nối được mã hóa và xác thực.</p><p>ESP32-S3 kết nối đến AWS IoT Endpoint bằng MQTT over TLS thông qua cổng TCP <code>8883</code>. Cơ chế Mutual TLS sử dụng ba thành phần:</p><ul><li>Amazon Root CA 1.</li><li>X.509 Device Certificate.</li><li>Device Private Key.</li></ul><p>Trước khi bắt đầu TLS handshake, ESP32-S3 phải có thời gian hệ thống hợp lệ. Quá trình kiểm tra certificate có thể thất bại nếu đồng hồ của thiết bị không chính xác.</p><p>Firmware thực hiện tuần tự như sau:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Kết nối Wi-Fi
+</span></span><span style=display:flex><span>        ↓
+</span></span><span style=display:flex><span>Đồng bộ thời gian bằng NTP
+</span></span><span style=display:flex><span>        ↓
+</span></span><span style=display:flex><span>Nạp Root CA, Certificate và Private Key
+</span></span><span style=display:flex><span>        ↓
+</span></span><span style=display:flex><span>Cấu hình MQTT Client
+</span></span><span style=display:flex><span>        ↓
+</span></span><span style=display:flex><span>Kết nối AWS IoT Core
+</span></span><span style=display:flex><span>        ↓
+</span></span><span style=display:flex><span>Subscribe command topic
+</span></span></code></pre></div><hr><h1 id=mục-tiêu>Mục tiêu</h1><p>Sau khi hoàn thành mục này, người thực hiện sẽ có thể:</p><ul><li>Đồng bộ thời gian ESP32-S3 bằng NTP.</li><li>Cấu hình <code>WiFiClientSecure</code>.</li><li>Nạp AWS Root CA và thông tin xác thực thiết bị.</li><li>Cấu hình <code>PubSubClient</code>.</li><li>Kết nối bảo mật với AWS IoT Core.</li><li>Subscribe MQTT command topic.</li><li>Xử lý việc kết nối lại MQTT.</li></ul><hr><h1 id=thời-gian-thực-hiện>Thời gian thực hiện</h1><p><strong>Khoảng 10–15 phút</strong></p><hr><h1 id=bước-1---cài-đặt-thư-viện>Bước 1 - Cài đặt thư viện</h1><p>Project sử dụng các thư viện sau:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#a6e22e>lib_deps</span> <span style=color:#f92672>=</span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    knolleary/PubSubClient@2.8
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    bblanchon/ArduinoJson
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    adafruit/DHT sensor library
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    adafruit/Adafruit Unified Sensor</span>
+</span></span></code></pre></div><p><code>PubSubClient</code> cung cấp chức năng MQTT, trong khi <code>WiFiClientSecure</code> đảm nhiệm lớp truyền tải TLS.</p><p>Buffer MQTT được tăng kích thước vì telemetry và Device Shadow payload có thể lớn hơn kích thước packet mặc định.</p><hr><h1 id=bước-2---khai-báo-cấu-hình-aws-iot>Bước 2 - Khai báo cấu hình AWS IoT</h1><p>Lưu AWS IoT Endpoint, Client ID, MQTT topic và certificate trong file <code>include/secrets.h</code>.</p><p>Trong mã nguồn chia sẻ hoặc đưa lên GitHub, sử dụng placeholder:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>#pragma once
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#define WIFI_SSID       &#34;YOUR_WIFI_SSID&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#define WIFI_PASSWORD   &#34;YOUR_WIFI_PASSWORD&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#define AWS_IOT_ENDPOINT \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;YOUR_ENDPOINT-ats.iot.us-east-1.amazonaws.com&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint16_t</span> MQTT_PORT <span style=color:#f92672>=</span> <span style=color:#ae81ff>8883</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#define AWS_CLIENT_ID &#34;esp32-home-01&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#define AWS_TOPIC_TELEMETRY \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;smarthome/esp32-home-01/telemetry&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>AWS_TOPIC_COMMAND <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;smarthome/esp32-home-01/command&#34;</span>;
+</span></span></code></pre></div><p>Các chứng chỉ được lưu dưới dạng chuỗi PEM:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> AWS_ROOT_CA[] <span style=color:#f92672>=</span> R<span style=color:#e6db74>&#34;EOF(</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>-----</span>BEGIN CERTIFICATE<span style=color:#f92672>-----</span>
+</span></span><span style=display:flex><span>YOUR_AMAZON_ROOT_CA_1
+</span></span><span style=display:flex><span><span style=color:#f92672>-----</span>END CERTIFICATE<span style=color:#f92672>-----</span>
+</span></span><span style=display:flex><span>)EOF<span style=color:#e6db74>&#34;;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> AWS_DEVICE_CERT[] <span style=color:#f92672>=</span> R<span style=color:#e6db74>&#34;KEY(</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>-----</span>BEGIN CERTIFICATE<span style=color:#f92672>-----</span>
+</span></span><span style=display:flex><span>YOUR_DEVICE_CERTIFICATE
+</span></span><span style=display:flex><span><span style=color:#f92672>-----</span>END CERTIFICATE<span style=color:#f92672>-----</span>
+</span></span><span style=display:flex><span>)KEY<span style=color:#e6db74>&#34;;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>static</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> AWS_PRIVATE_KEY[] <span style=color:#f92672>=</span> R<span style=color:#e6db74>&#34;KEY(</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>-----</span>BEGIN PRIVATE KEY<span style=color:#f92672>-----</span>
+</span></span><span style=display:flex><span>YOUR_DEVICE_PRIVATE_KEY
+</span></span><span style=display:flex><span><span style=color:#f92672>-----</span>END PRIVATE KEY<span style=color:#f92672>-----</span>
+</span></span><span style=display:flex><span>)KEY<span style=color:#e6db74>&#34;;</span>
+</span></span></code></pre></div><div class="notices warning"><p>Không công khai Wi-Fi password, Private Key hoặc Device Certificate thật. Cần đưa <code>include/secrets.h</code> và thư mục certificate vào <code>.gitignore</code>.</p></div><p>Ví dụ:</p><pre tabindex=0><code class=language-gitignore data-lang=gitignore>include/secrets.h
+certificates/
+*.pem
+*.key
+*.crt
+</code></pre><hr><h1 id=bước-3---đồng-bộ-thời-gian-bằng-ntp>Bước 3 - Đồng bộ thời gian bằng NTP</h1><p>Project tách chức năng đồng bộ thời gian vào <code>time_manager.cpp</code>.</p><p>Thiết bị lấy thời gian từ nhiều NTP server:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>syncTime</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    configTime(
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>0</span>,
+</span></span><span style=display:flex><span>        <span style=color:#ae81ff>0</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;pool.ntp.org&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;time.google.com&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;time.cloudflare.com&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.print(<span style=color:#e6db74>&#34;Waiting for NTP&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    time_t now <span style=color:#f92672>=</span> time(<span style=color:#66d9ef>nullptr</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>long</span> started <span style=color:#f92672>=</span> millis();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>while</span> (
+</span></span><span style=display:flex><span>        now <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1700000000</span> <span style=color:#f92672>&amp;&amp;</span>
+</span></span><span style=display:flex><span>        millis() <span style=color:#f92672>-</span> started <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>30000</span>
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        delay(<span style=color:#ae81ff>500</span>);
+</span></span><span style=display:flex><span>        Serial.print(<span style=color:#e6db74>&#34;.&#34;</span>);
+</span></span><span style=display:flex><span>        now <span style=color:#f92672>=</span> time(<span style=color:#66d9ef>nullptr</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.println();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (now <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1700000000</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        Serial.println(<span style=color:#e6db74>&#34;NTP FAILED&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> false;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>tm</span> timeInfo;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>getLocalTime(<span style=color:#f92672>&amp;</span>timeInfo))
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        Serial.println(<span style=color:#e6db74>&#34;getLocalTime FAILED&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> false;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.print(<span style=color:#e6db74>&#34;Current UTC: &#34;</span>);
+</span></span><span style=display:flex><span>    Serial.println(<span style=color:#f92672>&amp;</span>timeInfo, <span style=color:#e6db74>&#34;%Y-%m-%d %H:%M:%S&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> true;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Firmware chờ tối đa 30 giây để nhận Unix timestamp hợp lệ.</p><p>Thời gian chính xác giúp ESP32-S3 kiểm tra thời hạn hiệu lực của server certificate do AWS IoT Core cung cấp.</p><hr><h1 id=bước-4---tạo-tls-client-và-mqtt-client>Bước 4 - Tạo TLS Client và MQTT Client</h1><p>Project tạo hai đối tượng global trong <code>mqtt_manager.cpp</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>WiFiClientSecure secureClient;
+</span></span><span style=display:flex><span>PubSubClient <span style=color:#a6e22e>mqttClient</span>(secureClient);
+</span></span></code></pre></div><p><code>secureClient</code> chịu trách nhiệm tạo kết nối TLS được mã hóa.</p><p><code>mqttClient</code> sử dụng kết nối đó để gửi và nhận MQTT packet với AWS IoT Core.</p><p>Các đối tượng được khai báo global để duy trì trong toàn bộ vòng đời của chương trình.</p><hr><h1 id=bước-5---khởi-tạo-tls-và-mqtt>Bước 5 - Khởi tạo TLS và MQTT</h1><p>Hàm <code>initMQTT()</code> cấu hình toàn bộ kết nối:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initMQTT</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    secureClient.setCACert(AWS_ROOT_CA);
+</span></span><span style=display:flex><span>    secureClient.setCertificate(AWS_DEVICE_CERT);
+</span></span><span style=display:flex><span>    secureClient.setPrivateKey(AWS_PRIVATE_KEY);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    secureClient.setHandshakeTimeout(<span style=color:#ae81ff>15</span>);
+</span></span><span style=display:flex><span>    secureClient.setTimeout(<span style=color:#ae81ff>15000</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    mqttClient.setServer(
+</span></span><span style=display:flex><span>        AWS_IOT_ENDPOINT,
+</span></span><span style=display:flex><span>        MQTT_PORT
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    mqttClient.setCallback(mqttCallback);
+</span></span><span style=display:flex><span>    mqttClient.setSocketTimeout(<span style=color:#ae81ff>15</span>);
+</span></span><span style=display:flex><span>    mqttClient.setKeepAlive(<span style=color:#ae81ff>60</span>);
+</span></span><span style=display:flex><span>    mqttClient.setBufferSize(<span style=color:#ae81ff>1024</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Ý nghĩa của các cấu hình:</p><table><thead><tr><th style=text-align:left>Cấu hình</th><th style=text-align:left>Chức năng</th></tr></thead><tbody><tr><td style=text-align:left><code>setCACert()</code></td><td style=text-align:left>Xác thực certificate của AWS IoT Core.</td></tr><tr><td style=text-align:left><code>setCertificate()</code></td><td style=text-align:left>Cung cấp Device Certificate của ESP32-S3.</td></tr><tr><td style=text-align:left><code>setPrivateKey()</code></td><td style=text-align:left>Chứng minh quyền sở hữu Device Certificate.</td></tr><tr><td style=text-align:left><code>setServer()</code></td><td style=text-align:left>Cấu hình AWS IoT Endpoint và MQTT port.</td></tr><tr><td style=text-align:left><code>setCallback()</code></td><td style=text-align:left>Đăng ký hàm xử lý message nhận được.</td></tr><tr><td style=text-align:left><code>setKeepAlive()</code></td><td style=text-align:left>Cấu hình chu kỳ MQTT keep-alive.</td></tr><tr><td style=text-align:left><code>setBufferSize()</code></td><td style=text-align:left>Tăng MQTT packet buffer lên 1024 byte.</td></tr></tbody></table><hr><h1 id=bước-6---kết-nối-aws-iot-core>Bước 6 - Kết nối AWS IoT Core</h1><p>Logic kết nối được triển khai trong <code>connectMQTT()</code>.</p><p>Đoạn code rút gọn từ project:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>connectMQTT</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (mqttClient.connected())
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> true;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.print(<span style=color:#e6db74>&#34;Free heap before MQTT: &#34;</span>);
+</span></span><span style=display:flex><span>    Serial.println(ESP.getFreeHeap());
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.print(<span style=color:#e6db74>&#34;Client ID: &#34;</span>);
+</span></span><span style=display:flex><span>    Serial.println(AWS_CLIENT_ID);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>long</span> started <span style=color:#f92672>=</span> millis();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>bool</span> connected <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        mqttClient.connect(AWS_CLIENT_ID);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.print(<span style=color:#e6db74>&#34;MQTT connection time: &#34;</span>);
+</span></span><span style=display:flex><span>    Serial.print(millis() <span style=color:#f92672>-</span> started);
+</span></span><span style=display:flex><span>    Serial.println(<span style=color:#e6db74>&#34; ms&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.print(<span style=color:#e6db74>&#34;MQTT state: &#34;</span>);
+</span></span><span style=display:flex><span>    Serial.println(mqttClient.state());
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>connected)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        Serial.println(<span style=color:#e6db74>&#34;MQTT connection failed&#34;</span>);
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> false;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.println(<span style=color:#e6db74>&#34;AWS IoT connected&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> true;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>MQTT Client ID phải phù hợp với resource được cấp quyền trong AWS IoT Policy nếu policy giới hạn theo client ARN.</p><p>Ví dụ:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>arn:aws:iot:us-east-1:ACCOUNT_ID:client/esp32-home-01
+</span></span></code></pre></div><hr><h1 id=bước-7---subscribe-command-topic>Bước 7 - Subscribe Command Topic</h1><p>Sau khi kết nối thành công, ESP32-S3 subscribe command topic:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>bool</span> commandSubscribed <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    mqttClient.subscribe(AWS_TOPIC_COMMAND);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Command topic: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(AWS_TOPIC_COMMAND);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Command subscribe: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(
+</span></span><span style=display:flex><span>    commandSubscribed <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;OK&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;FAILED&#34;</span>
+</span></span><span style=display:flex><span>);
+</span></span></code></pre></div><p>Command topic:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>smarthome/esp32-home-01/command
+</span></span></code></pre></div><p>AWS IoT Policy phải cấp cả hai quyền:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>iot:Subscribe
+</span></span><span style=display:flex><span>iot:Receive
+</span></span></code></pre></div><p>để thiết bị có thể đăng ký và nhận message.</p><hr><h1 id=bước-8---khởi-tạo-kết-nối-trong-setup>Bước 8 - Khởi tạo kết nối trong setup()</h1><p>Project thực hiện trình tự khởi động trong <code>main.cpp</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>connectWiFi();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>while</span> (WiFi.status() <span style=color:#f92672>!=</span> WL_CONNECTED)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Serial.println(<span style=color:#e6db74>&#34;Waiting for WiFi...&#34;</span>);
+</span></span><span style=display:flex><span>    delay(<span style=color:#ae81ff>500</span>);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>syncTime())
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Serial.println(<span style=color:#e6db74>&#34;NTP synchronization failed&#34;</span>);
+</span></span><span style=display:flex><span>    Serial.println(<span style=color:#e6db74>&#34;Setup stopped&#34;</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>initMQTT();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.println(<span style=color:#e6db74>&#34;Connecting MQTT...&#34;</span>);
+</span></span><span style=display:flex><span>connectMQTT();
+</span></span></code></pre></div><p>Thứ tự này cần được giữ chính xác:</p><ol><li>Wi-Fi phải kết nối thành công.</li><li>Thời gian hệ thống phải được đồng bộ.</li><li>Thông tin TLS phải được nạp.</li><li>Sau đó mới thiết lập MQTT connection.</li></ol><hr><h1 id=bước-9---duy-trì-kết-nối-mqtt>Bước 9 - Duy trì kết nối MQTT</h1><p>MQTT client cần gọi <code>loop()</code> thường xuyên.</p><p>Chương trình kiểm tra trạng thái và kết nối lại khi cần:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>mqttClient.connected())
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (now <span style=color:#f92672>-</span> lastReconnectAttempt <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>10000</span>)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        lastReconnectAttempt <span style=color:#f92672>=</span> now;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Serial.println(
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;Attempting MQTT reconnect...&#34;</span>
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        secureClient.stop();
+</span></span><span style=display:flex><span>        delay(<span style=color:#ae81ff>200</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        connectMQTT();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    delay(<span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>mqttClient.loop();
+</span></span></code></pre></div><p>Chu kỳ reconnect được đặt là 10 giây để tránh ESP32-S3 thực hiện TLS handshake liên tục trong vòng lặp quá nhanh.</p><p><code>secureClient.stop()</code> đóng socket TLS cũ trước khi tạo kết nối mới.</p><hr><h1 id=bước-10---nạp-và-kiểm-tra-chương-trình>Bước 10 - Nạp và kiểm tra chương trình</h1><p>Biên dịch và nạp firmware:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pio run -t upload
+</span></span></code></pre></div><p>Mở Serial Monitor:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pio device monitor
+</span></span></code></pre></div><p>Kết quả mong đợi:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>ESP32 Smart Home starting
+</span></span><span style=display:flex><span>WiFi connected
+</span></span><span style=display:flex><span>Waiting for NTP...
+</span></span><span style=display:flex><span>Current UTC: 2026-07-24 09:54:43
+</span></span><span style=display:flex><span>Connecting MQTT...
+</span></span><span style=display:flex><span>AWS IoT connected
+</span></span><span style=display:flex><span>Command subscribe: OK
+</span></span><span style=display:flex><span>MQTT connected successfully
+</span></span><span style=display:flex><span>System ready
+</span></span></code></pre></div><p><img alt="ESP32-S3 kết nối MQTT over TLS" src=/images/workshop/5.5.3/mqtt-tls-connected.png></p><hr><h1 id=trạng-thái-lỗi-mqtt>Trạng thái lỗi MQTT</h1><p>Khi kết nối thất bại, <code>mqttClient.state()</code> giúp xác định nhóm lỗi.</p><table><thead><tr><th style=text-align:right>State</th><th style=text-align:left>Ý nghĩa</th></tr></thead><tbody><tr><td style=text-align:right><code>0</code></td><td style=text-align:left>Đã kết nối</td></tr><tr><td style=text-align:right><code>-1</code></td><td style=text-align:left>Đã ngắt kết nối</td></tr><tr><td style=text-align:right><code>-2</code></td><td style=text-align:left>Lỗi mạng hoặc kết nối TCP</td></tr><tr><td style=text-align:right><code>-3</code></td><td style=text-align:left>Mất kết nối</td></tr><tr><td style=text-align:right><code>-4</code></td><td style=text-align:left>Hết thời gian chờ</td></tr><tr><td style=text-align:right><code>-5</code></td><td style=text-align:left>Kết nối bị từ chối hoặc lỗi liên quan TLS</td></tr></tbody></table><p>Khi xử lý lỗi, cần kiểm tra:</p><ul><li>Trạng thái Wi-Fi.</li><li>Thời gian hệ thống.</li><li>AWS IoT Endpoint.</li><li>Trạng thái Certificate.</li><li>Device Certificate và Private Key có khớp nhau hay không.</li><li>AWS IoT Policy đã được attach chưa.</li><li>MQTT Client ID.</li><li>Cổng TCP <code>8883</code>.</li></ul><hr><h1 id=kết-quả-đạt-được>Kết quả đạt được</h1><p>Sau khi hoàn thành mục này:</p><ul><li>ESP32-S3 đồng bộ thời gian bằng NTP.</li><li>Thông tin TLS được nạp thành công.</li><li>Mutual TLS authentication hoạt động.</li><li>ESP32-S3 kết nối thành công với AWS IoT Core.</li><li>Command topic được subscribe thành công.</li><li>Firmware có khả năng kết nối lại khi MQTT bị gián đoạn.</li></ul><div class="notices tip"><p>Trong mục tiếp theo, ESP32-S3 sẽ sử dụng kết nối MQTT vừa thiết lập để gửi JSON telemetry lên AWS IoT Core.</p></div><p><strong>Tiếp theo:</strong> <a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/>5.5.4 Gửi dữ liệu Telemetry</a></p><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.2-wifi/ title="Kết nối Wi-Fi"><i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/ title="Gửi dữ liệu Telemetry" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/fcj-workshop-template/js/clipboard.min.js?1785606601></script><script src=/fcj-workshop-template/js/perfect-scrollbar.min.js?1785606601></script><script src=/fcj-workshop-template/js/perfect-scrollbar.jquery.min.js?1785606601></script><script src=/fcj-workshop-template/js/jquery.sticky.js?1785606601></script><script src=/fcj-workshop-template/js/featherlight.min.js?1785606601></script><script src=/fcj-workshop-template/js/highlight.pack.js?1785606601></script><script>hljs.initHighlightingOnLoad()</script><script src=/fcj-workshop-template/js/modernizr.custom-3.6.0.js?1785606601></script><script src=/fcj-workshop-template/js/learn.js?1785606601></script><script src=/fcj-workshop-template/js/hugo-learn.js?1785606601></script><link href=/fcj-workshop-template/mermaid/mermaid.css?1785606601 rel=stylesheet><script src=/fcj-workshop-template/mermaid/mermaid.js?1785606601></script><script>mermaid.initialize({startOnLoad:!0})</script><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,(e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date),(i=t.createElement(n),a=t.getElementsByTagName(n)[0]),i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-158079754-2","auto"),ga("send","pageview")</script></body></html>

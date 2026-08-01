@@ -1,0 +1,405 @@
+<!doctype html><html lang=vi class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.134.3"><meta name=description content><meta name=author content="thienlh@thienlu.com"><link rel=icon href=/fcj-workshop-template/images/favicon.png type=image/png><title>Điều khiển Relay từ xa :: Báo cáo thực tập</title>
+<link href=/fcj-workshop-template/css/nucleus.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/fontawesome-all.min.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/hybrid.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/featherlight.min.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/perfect-scrollbar.min.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/auto-complete.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/atom-one-dark-reasonable.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/theme.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/hugo-theme.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/theme-workshop.css?1785606601 rel=stylesheet><script src=/fcj-workshop-template/js/jquery-3.3.1.min.js?1785606601></script><style>:root #header+#content>#left>#rlblock_left{display:none!important}</style></head><body data-url=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.5-relay-control/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=/><svg id="Layer_1" data-name="Layer 1" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff}.cls-2{fill:#fff;fill-rule:evenodd}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09 10.85a4.7 4.7.0 00.19 1.48 7.73 7.73.0 00.54 1.19.77.77.0 01.12.38.64.64.0 01-.32.49l-1 .7a.83.83.0 01-.44.15.69.69.0 01-.49-.23 3.8 3.8.0 01-.6-.77q-.25-.42-.51-1a6.14 6.14.0 01-4.89 2.3 4.54 4.54.0 01-3.32-1.19 4.27 4.27.0 01-1.22-3.2 4.28 4.28.0 011.46-3.4A6.06 6.06.0 017.69 6.46a12.47 12.47.0 011.76.13q.92.13 1.91.36V5.73a3.65 3.65.0 00-.79-2.66A3.81 3.81.0 007.86 2.3a7.71 7.71.0 00-1.79.22 12.78 12.78.0 00-1.79.57 4.55 4.55.0 01-.58.22h-.26q-.35.0-.35-.52V2a1.09 1.09.0 01.12-.58 1.2 1.2.0 01.47-.35A10.88 10.88.0 015.77.32 10.19 10.19.0 018.36.0a6 6 0 014.35 1.35 5.49 5.49.0 011.38 4.09zM7.34 13.38a5.36 5.36.0 001.72-.31A3.63 3.63.0 0010.63 12 2.62 2.62.0 0011.19 11a5.63 5.63.0 00.16-1.44v-.7a14.35 14.35.0 00-1.53-.28 12.37 12.37.0 00-1.56-.1 3.84 3.84.0 00-2.47.67A2.34 2.34.0 005 11a2.35 2.35.0 00.61 1.76A2.4 2.4.0 007.34 13.38zm13.35 1.8a1 1 0 01-.64-.16 1.3 1.3.0 01-.35-.65L15.81 1.51a3 3 0 01-.15-.67.36.36.0 01.41-.41H17.7a1 1 0 01.65.16 1.4 1.4.0 01.33.65l2.79 11 2.59-11A1.17 1.17.0 0124.39.6a1.1 1.1.0 01.67-.16H26.4a1.1 1.1.0 01.67.16 1.17 1.17.0 01.32.65L30 12.39 32.88 1.25A1.39 1.39.0 0133.22.6a1 1 0 01.65-.16h1.54a.36.36.0 01.41.41 1.36 1.36.0 010 .26 3.64 3.64.0 01-.12.41l-4 12.86a1.3 1.3.0 01-.35.65 1 1 0 01-.64.16H29.25a1 1 0 01-.67-.17 1.26 1.26.0 01-.32-.67L25.67 3.64l-2.56 10.7a1.26 1.26.0 01-.32.67 1 1 0 01-.67.17zm21.36.44a11.28 11.28.0 01-2.56-.29 7.44 7.44.0 01-1.92-.67 1 1 0 01-.61-.93v-.84q0-.52.38-.52a.9.9.0 01.31.06l.42.17a8.77 8.77.0 001.83.58 9.78 9.78.0 002 .2 4.48 4.48.0 002.43-.55 1.76 1.76.0 00.86-1.57 1.61 1.61.0 00-.45-1.16A4.29 4.29.0 0043 9.22l-2.41-.76A5.15 5.15.0 0138 6.78a3.94 3.94.0 01-.83-2.41 3.7 3.7.0 01.45-1.85 4.47 4.47.0 011.19-1.37 5.27 5.27.0 011.7-.86A7.4 7.4.0 0142.6.0a8.87 8.87.0 011.12.07q.57.07 1.08.19t.95.26a4.27 4.27.0 01.7.29 1.59 1.59.0 01.49.41.94.94.0 01.15.55v.79q0 .52-.38.52a1.76 1.76.0 01-.64-.2 7.74 7.74.0 00-3.2-.64 4.37 4.37.0 00-2.21.47 1.6 1.6.0 00-.79 1.48 1.58 1.58.0 00.49 1.18 4.94 4.94.0 001.83.92L44.55 7a5.08 5.08.0 012.57 1.6A3.76 3.76.0 0147.9 11a4.21 4.21.0 01-.44 1.93 4.4 4.4.0 01-1.21 1.47 5.43 5.43.0 01-1.85.93A8.25 8.25.0 0142.05 15.62z"/><path class="cls-2" d="M45.19 23.81C39.72 27.85 31.78 30 25 30A36.64 36.64.0 01.22 20.57c-.51-.46-.06-1.09.56-.74A49.78 49.78.0 0025.53 26.4 49.23 49.23.0 0044.4 22.53C45.32 22.14 46.1 23.14 45.19 23.81z"/><path class="cls-2" d="M47.47 21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74 3.13-2.2 8.27-1.57 8.86-.83s-.16 5.89-3.09 8.35c-.45.38-.88.18-.68-.32C46.69 25.8 48.17 22.11 47.47 21.21z"/></svg></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/fcj-workshop-template/js/lunr.min.js?1785606601></script><script type=text/javascript src=/fcj-workshop-template/js/auto-complete.js?1785606601></script><script type=text/javascript>var baseurl="https://truongle205.github.io/fcj-workshop-template//vi"</script><script type=text/javascript src=/fcj-workshop-template/js/search.js?1785606601></script></div><div class=highlightable><ul class=topics><li data-nav-id=/fcj-workshop-template/vi/2-proposal/ title="Đề xuất" class=dd-item><a href=/fcj-workshop-template/vi/2-proposal/><b>2. </b>Đề xuất
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/ title="Các bài blogs đã đăng" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/><b>3. </b>Các bài blogs đã đăng
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/3.1-blog1/ title="Blog 1" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/3.1-blog1/><b>3.1. </b>Blog 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/3.2-blog2/ title="Blog 2" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/3.2-blog2/><b>3.2. </b>Blog 2
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/3.3-blog3/ title="Blog 3" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/3.3-blog3/><b>3.3. </b>Blog 3
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/4-eventparticipated/ title="Các events đã tham gia" class=dd-item><a href=/fcj-workshop-template/vi/4-eventparticipated/><b>4. </b>Các events đã tham gia
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/4-eventparticipated/4.1-event1/ title="Event 1" class=dd-item><a href=/fcj-workshop-template/vi/4-eventparticipated/4.1-event1/><b>4.1. </b>Event 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/4-eventparticipated/4.2-event2/ title="Event 2" class=dd-item><a href=/fcj-workshop-template/vi/4-eventparticipated/4.2-event2/><b>4.2. </b>Event 2
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/ title=Workshop class="dd-item
+parent"><a href=/fcj-workshop-template/vi/5-workshop/><b>5. </b>Workshop
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.1-overview/ title="Tổng quan" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.1-overview/><b>5.1 </b>Tổng quan
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.2-architecture/ title="Kiến trúc hệ thống" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.2-architecture/><b>5.2 </b>Kiến trúc hệ thống
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.3-prerequisites/ title="Điều kiện chuẩn bị" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.3-prerequisites/><b>5.3 </b>Điều kiện chuẩn bị
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/ title="Cấu hình AWS IoT" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/><b>5.4 </b>Cấu hình AWS IoT
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.1-create-thing/ title="Tạo AWS IoT Thing" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.1-create-thing/><b>5.4.1 </b>Tạo AWS IoT Thing
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.2-create-certificate/ title="Tạo Device Certificate" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.2-create-certificate/><b>5.4.2 </b>Tạo Device Certificate
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.3-attach-policy/ title="Tạo và gắn AWS IoT Policy" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.3-attach-policy/><b>5.4.3 </b>Tạo và gắn AWS IoT Policy
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.4-mqtt-test-client/ title="Kiểm tra kết nối MQTT" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.4-mqtt-test-client/><b>5.4.4 </b>Kiểm tra kết nối MQTT
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/ title="Phát triển ứng dụng ESP32" class="dd-item
+parent"><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/><b>5.5 </b>Phát triển ứng dụng ESP32
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.1-platformio/ title="Tạo dự án PlatformIO" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.1-platformio/><b>5.5.1 </b>Tạo dự án PlatformIO
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.2-wifi/ title="Kết nối Wi-Fi" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.2-wifi/><b>5.5.2 </b>Kết nối Wi-Fi
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/ title="Kết nối AWS IoT Core bằng MQTT over TLS" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/><b>5.5.3 </b>Kết nối AWS IoT Core bằng MQTT over TLS
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/ title="Gửi dữ liệu Telemetry" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/><b>5.5.4 </b>Gửi dữ liệu Telemetry
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.5-relay-control/ title="Điều khiển Relay từ xa" class="dd-item
+active"><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.5-relay-control/><b>5.5.5 </b>Điều khiển Relay từ xa
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/ title="Tích hợp dịch vụ Cloud" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/><b>5.6 </b>Tích hợp dịch vụ Cloud
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.1-iot-rules/ title="Tạo AWS IoT Rule" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.1-iot-rules/><b>5.6.1 </b>Tạo AWS IoT Rule
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.2-dynamodb/ title="Lưu Telemetry vào Amazon DynamoDB" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.2-dynamodb/><b>5.6.2 </b>Lưu Telemetry vào Amazon DynamoDB
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.3-sns/ title="Cấu hình Amazon SNS" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.3-sns/><b>5.6.3 </b>Cấu hình Amazon SNS
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.4-email-notification/ title="Cấu hình Email Notification" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.4-email-notification/><b>5.6.4 </b>Cấu hình Email Notification
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.7-testing/ title="Kiểm thử hệ thống" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.7-testing/><b>5.7 </b>Kiểm thử hệ thống
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.8-cleanup/ title="Dọn dẹp tài nguyên" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.8-cleanup/><b>5.8 </b>Dọn dẹp tài nguyên
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/6-self-evaluation/ title="Tự đánh giá" class=dd-item><a href=/fcj-workshop-template/vi/6-self-evaluation/><b>6. </b>Tự đánh giá
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/7-feedback/ title="Chia sẻ, đóng góp ý kiến" class=dd-item><a href=/fcj-workshop-template/vi/7-feedback/><b>7. </b>Chia sẻ, đóng góp ý kiến
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/ title="Nhật ký công việc Tuần 7" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/><b>1.7. </b>Nhật ký công việc Tuần 7
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.1-week1/ title="Nhật ký công việc Tuần 1" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.1-week1/><b>1.1. </b>Nhật ký công việc Tuần 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.2-week2/ title="Nhật ký công việc Tuần 2" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.2-week2/><b>1.2. </b>Nhật ký công việc Tuần 2
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.3-week3/ title="Nhật ký công việc Tuần 3" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.3-week3/><b>1.3. </b>Nhật ký công việc Tuần 3
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.4-week4/ title="Nhật ký công việc Tuần 4" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.4-week4/><b>1.4. </b>Nhật ký công việc Tuần 4
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.5-week5/ title="Nhật ký công việc Tuần 5" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.5-week5/><b>1.5. </b>Nhật ký công việc Tuần 5
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.6-week6/ title="Nhật ký công việc Tuần 6" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.6-week6/><b>1.6. </b>Nhật ký công việc Tuần 6
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.7-week7/ title="Nhật ký công việc Tuần 7" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.7-week7/><b>1.7. </b>Nhật ký công việc Tuần 7
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/8-references/ title="Tài liệu tham khảo" class=dd-item><a href=/fcj-workshop-template/vi/8-references/><b>8. </b>Tài liệu tham khảo
+<i class="fas fa-check read-icon"></i></a></li></ul><section id=shortcuts><h3>More</h3><ul><li><a class=padding href=http://awsstudygroup.com><i class='fab fa-aws'></i> AWS Study Group - Blog</a></li><li><a class=padding href=https://www.facebook.com/groups/awsstudygroupfcj><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value"><option id=en value=https://truongle205.github.io/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.5-relay-control/>English</option><option id=vi value=https://truongle205.github.io/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.5-relay-control/ selected>Tiếng Việt</option></select><svg id="Capa_1" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><polygon points="0,63.75 127.5,191.25 255,63.75"/></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i> Clear History</a></li></ul></section><section id=footer><left><br><br><b>Last Updated</b><br><i><font color=orange>01-08-2026</font>
+</i></left><left><br><br><b>Team</b><br><i><a href=https://www.facebook.com/groups/660548818043427 style=color:orange>First Cloud AI Journey</a>
+</i></left><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i>
+</a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span>
+<span class=links><a href=/fcj-workshop-template/vi/>Báo cáo thực tập</a> > <a href=/fcj-workshop-template/vi/5-workshop/>Workshop</a> > <a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/>Phát triển ứng dụng ESP32</a> > Điều khiển Relay từ xa</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><a href=#subscribe-command-thất-bại>Subscribe command thất bại</a></li><li><a href=#nhận-message-nhưng-relay-không-đổi>Nhận message nhưng Relay không đổi</a></li><li><a href=#trạng-thái-relay-bị-đảo>Trạng thái Relay bị đảo</a></li><li><a href=#shadow-update-bị-rejected>Shadow update bị rejected</a></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Điều khiển Relay từ xa</h1><div class="notices info"><p>Trong mục này, ESP32-S3 sẽ nhận MQTT command từ AWS IoT Core và điều khiển relay từ xa. Firmware đồng thời cập nhật trạng thái relay thực tế lên AWS IoT Device Shadow.</p></div><h1 id=tổng-quan>Tổng quan</h1><p>Ở mục trước, ESP32-S3 đã có khả năng gửi telemetry một chiều lên AWS IoT Core.</p><p>Mục này bổ sung giao tiếp hai chiều.</p><p>AWS IoT Core gửi command đến ESP32-S3 thông qua một MQTT topic. Sau khi nhận message, thiết bị thay đổi đầu ra relay và cập nhật trạng thái mới lên AWS IoT Device Shadow.</p><p>Luồng điều khiển:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>AWS IoT Core
+</span></span><span style=display:flex><span>      ↓
+</span></span><span style=display:flex><span>MQTT command topic
+</span></span><span style=display:flex><span>      ↓
+</span></span><span style=display:flex><span>MQTT callback trên ESP32-S3
+</span></span><span style=display:flex><span>      ↓
+</span></span><span style=display:flex><span>Cập nhật trạng thái relay
+</span></span><span style=display:flex><span>      ↓
+</span></span><span style=display:flex><span>Publish reported state
+</span></span><span style=display:flex><span>      ↓
+</span></span><span style=display:flex><span>AWS IoT Device Shadow
+</span></span></code></pre></div><p>Chức năng được triển khai qua ba module:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>mqtt_manager.cpp
+</span></span><span style=display:flex><span>        ↓
+</span></span><span style=display:flex><span>relay.cpp
+</span></span><span style=display:flex><span>        ↓
+</span></span><span style=display:flex><span>shadow_manager.cpp
+</span></span></code></pre></div><hr><h1 id=mục-tiêu>Mục tiêu</h1><p>Sau khi hoàn thành mục này, người thực hiện sẽ có thể:</p><ul><li>Khởi tạo GPIO điều khiển relay.</li><li>Xử lý relay active-low.</li><li>Subscribe MQTT command topic.</li><li>Nhận command <code>ON</code> và <code>OFF</code>.</li><li>Thay đổi trạng thái relay vật lý.</li><li>Báo trạng thái hiện tại lên AWS IoT Device Shadow.</li><li>Xử lý Shadow delta message.</li><li>Kiểm tra điều khiển từ xa bằng AWS IoT MQTT Test Client.</li></ul><hr><h1 id=thời-gian-thực-hiện>Thời gian thực hiện</h1><p><strong>Khoảng 10–15 phút</strong></p><hr><h1 id=bước-1---cấu-hình-chân-relay>Bước 1 - Cấu hình chân Relay</h1><p>GPIO relay được khai báo trong:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>include/config.h
+</span></span></code></pre></div><p>Ví dụ:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> RELAY_PIN <span style=color:#f92672>=</span> <span style=color:#ae81ff>5</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> RELAY_ON_LEVEL <span style=color:#f92672>=</span> LOW;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> RELAY_OFF_LEVEL <span style=color:#f92672>=</span> HIGH;
+</span></span></code></pre></div><p>Project sử dụng relay active-low.</p><p>Đối với relay active-low:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>GPIO LOW  → Relay ON
+</span></span><span style=display:flex><span>GPIO HIGH → Relay OFF
+</span></span></code></pre></div><div class="notices warning"><p>Relay module có thể sử dụng logic active-low hoặc active-high. Cần kiểm tra thông số phần cứng trước khi kết nối tải điện.</p></div><hr><h1 id=bước-2---khai-báo-relay-interface>Bước 2 - Khai báo Relay Interface</h1><p>Các hàm relay được khai báo trong:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>include/relay.h
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>#pragma once
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initRelay</span>();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setRelayState</span>(<span style=color:#66d9ef>bool</span> state);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>getRelayState</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setRelay</span>(<span style=color:#66d9ef>bool</span> enabled);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>toggleRelay</span>();
+</span></span><span style=display:flex><span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>isRelayOn</span>();
+</span></span></code></pre></div><p>Interface cung cấp các chức năng:</p><ul><li>Khởi tạo chân output.</li><li>Đặt trạng thái relay.</li><li>Đọc trạng thái relay hiện tại.</li><li>Đảo trạng thái relay.</li></ul><hr><h1 id=bước-3---khởi-tạo-relay>Bước 3 - Khởi tạo Relay</h1><p>Relay module được triển khai trong:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>src/relay.cpp
+</span></span></code></pre></div><p>Trạng thái relay được lưu nội bộ:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>namespace</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span><span style=color:#66d9ef>bool</span> relayState <span style=color:#f92672>=</span> false;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>bool</span> RELAY_ACTIVE_LOW <span style=color:#f92672>=</span> true;
+</span></span></code></pre></div><p>Hàm khởi tạo cấu hình GPIO và đảm bảo relay bắt đầu ở trạng thái OFF:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initRelay</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    pinMode(RELAY_PIN, OUTPUT);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    digitalWrite(
+</span></span><span style=display:flex><span>        RELAY_PIN,
+</span></span><span style=display:flex><span>        RELAY_OFF_LEVEL
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    relayState <span style=color:#f92672>=</span> false;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.println(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Relay initialized: OFF&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Khởi tạo relay ở trạng thái OFF giúp tránh thiết bị điện bị bật ngoài ý muốn khi ESP32-S3 khởi động.</p><hr><h1 id=bước-4---cập-nhật-trạng-thái-relay>Bước 4 - Cập nhật trạng thái Relay</h1><p>Hàm <code>setRelayState()</code> hỗ trợ cả relay active-low và active-high:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setRelayState</span>(<span style=color:#66d9ef>bool</span> state)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    relayState <span style=color:#f92672>=</span> state;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (RELAY_ACTIVE_LOW)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        digitalWrite(
+</span></span><span style=display:flex><span>            RELAY_PIN,
+</span></span><span style=display:flex><span>            state <span style=color:#f92672>?</span> LOW : HIGH
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        digitalWrite(
+</span></span><span style=display:flex><span>            RELAY_PIN,
+</span></span><span style=display:flex><span>            state <span style=color:#f92672>?</span> HIGH : LOW
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.print(<span style=color:#e6db74>&#34;Relay: &#34;</span>);
+</span></span><span style=display:flex><span>    Serial.println(
+</span></span><span style=display:flex><span>        state <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;ON&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;OFF&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Boolean state biểu diễn trạng thái logic:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>true  → Relay ON
+</span></span><span style=display:flex><span>false → Relay OFF
+</span></span></code></pre></div><p>Hàm chuyển trạng thái logic thành mức điện áp GPIO phù hợp với relay.</p><hr><h1 id=bước-5---cấu-hình-command-topic>Bước 5 - Cấu hình Command Topic</h1><p>Command topic được khai báo trong <code>include/secrets.h</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>AWS_TOPIC_COMMAND <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;smarthome/esp32-home-01/command&#34;</span>;
+</span></span></code></pre></div><p>Sau khi kết nối AWS IoT Core, ESP32-S3 subscribe topic này:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>bool</span> commandOk <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    mqttClient.subscribe(
+</span></span><span style=display:flex><span>        AWS_TOPIC_COMMAND
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Command topic: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(AWS_TOPIC_COMMAND);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Command subscribe: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(
+</span></span><span style=display:flex><span>    commandOk <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;OK&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;FAILED&#34;</span>
+</span></span><span style=display:flex><span>);
+</span></span></code></pre></div><p>AWS IoT Policy cần cho phép:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>iot:Subscribe
+</span></span><span style=display:flex><span>iot:Receive
+</span></span></code></pre></div><p>đối với command topic.</p><hr><h1 id=bước-6---nhận-mqtt-command>Bước 6 - Nhận MQTT Command</h1><p>MQTT message được xử lý trong <code>mqttCallback()</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>mqttCallback</span>(
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>topic,
+</span></span><span style=display:flex><span>    byte <span style=color:#f92672>*</span>payload,
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> length
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Serial.print(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Message arrived on topic: &#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.println(topic);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    String message;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> (
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>        i <span style=color:#f92672>&lt;</span> length;
+</span></span><span style=display:flex><span>        i<span style=color:#f92672>++</span>
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        message <span style=color:#f92672>+=</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>static_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>char</span><span style=color:#f92672>&gt;</span>(
+</span></span><span style=display:flex><span>                payload[i]
+</span></span><span style=display:flex><span>            );
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    message.trim();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.print(<span style=color:#e6db74>&#34;Payload: [&#34;</span>);
+</span></span><span style=display:flex><span>    Serial.print(message);
+</span></span><span style=display:flex><span>    Serial.println(<span style=color:#e6db74>&#34;]&#34;</span>);
+</span></span></code></pre></div><p>Callback chuyển raw payload thành Arduino <code>String</code>.</p><p><code>trim()</code> loại bỏ khoảng trắng và ký tự xuống dòng ở đầu hoặc cuối message.</p><hr><h1 id=bước-7---xử-lý-lệnh-on-và-off>Bước 7 - Xử lý lệnh ON và OFF</h1><p>Callback xác định message có đến từ command topic hay không:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (
+</span></span><span style=display:flex><span>    strcmp(
+</span></span><span style=display:flex><span>        topic,
+</span></span><span style=display:flex><span>        AWS_TOPIC_COMMAND
+</span></span><span style=display:flex><span>    ) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (
+</span></span><span style=display:flex><span>        message.equalsIgnoreCase(<span style=color:#e6db74>&#34;ON&#34;</span>)
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        setRelayState(true);
+</span></span><span style=display:flex><span>        publishShadowReportedState();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span> <span style=color:#a6e22e>if</span> (
+</span></span><span style=display:flex><span>        message.equalsIgnoreCase(<span style=color:#e6db74>&#34;OFF&#34;</span>)
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        setRelayState(false);
+</span></span><span style=display:flex><span>        publishShadowReportedState();
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        Serial.println(
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;Unknown relay command&#34;</span>
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><code>equalsIgnoreCase()</code> cho phép sử dụng:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>ON
+</span></span><span style=display:flex><span>on
+</span></span><span style=display:flex><span>OFF
+</span></span><span style=display:flex><span>off
+</span></span></code></pre></div><p>Sau khi thay đổi relay, firmware publish trạng thái mới lên Device Shadow.</p><hr><h1 id=bước-8---publish-reported-state>Bước 8 - Publish Reported State</h1><p>Logic cập nhật Shadow được triển khai trong:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>src/shadow_manager.cpp
+</span></span></code></pre></div><p>Payload có cấu trúc:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;state&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;reported&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;relay_on&#34;</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Code trong project:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>publishShadowReportedState</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    JsonDocument doc;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    doc[<span style=color:#e6db74>&#34;state&#34;</span>][<span style=color:#e6db74>&#34;reported&#34;</span>]
+</span></span><span style=display:flex><span>       [<span style=color:#e6db74>&#34;relay_on&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        getRelayState();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>char</span> payload[<span style=color:#ae81ff>256</span>];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    size_t payloadLength <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        serializeJson(
+</span></span><span style=display:flex><span>            doc,
+</span></span><span style=display:flex><span>            payload,
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>sizeof</span>(payload)
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>bool</span> result <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        mqttClient.publish(
+</span></span><span style=display:flex><span>            AWS_SHADOW_UPDATE_TOPIC,
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>reinterpret_cast</span><span style=color:#f92672>&lt;</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>uint8_t</span> <span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>&gt;</span>(payload),
+</span></span><span style=display:flex><span>            payloadLength,
+</span></span><span style=display:flex><span>            false
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.print(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Shadow reported payload: &#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.println(payload);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.print(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Shadow publish result: &#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.println(
+</span></span><span style=display:flex><span>        result
+</span></span><span style=display:flex><span>            <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;SUCCESS&#34;</span>
+</span></span><span style=display:flex><span>            <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;FAILED&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Shadow update topic:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>$aws/things/esp32-home-01/shadow/update
+</span></span></code></pre></div><p>Giá trị <code>reported</code> thể hiện trạng thái thực tế mà ESP32-S3 đã áp dụng.</p><hr><h1 id=bước-9---subscribe-các-shadow-topic>Bước 9 - Subscribe các Shadow Topic</h1><p>Sau khi MQTT connected, project subscribe ba Shadow topic:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>bool</span> shadowDeltaOk <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    mqttClient.subscribe(
+</span></span><span style=display:flex><span>        AWS_SHADOW_DELTA_TOPIC
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>bool</span> shadowAcceptedOk <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    mqttClient.subscribe(
+</span></span><span style=display:flex><span>        AWS_SHADOW_UPDATE_ACCEPTED_TOPIC
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>bool</span> shadowRejectedOk <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    mqttClient.subscribe(
+</span></span><span style=display:flex><span>        AWS_SHADOW_UPDATE_REJECTED_TOPIC
+</span></span><span style=display:flex><span>    );
+</span></span></code></pre></div><p>Các topic được khai báo:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>#define AWS_SHADOW_UPDATE_TOPIC \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;$aws/things/&#34; AWS_THING_NAME \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;/shadow/update&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#define AWS_SHADOW_DELTA_TOPIC \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;$aws/things/&#34; AWS_THING_NAME \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;/shadow/update/delta&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#define AWS_SHADOW_UPDATE_ACCEPTED_TOPIC \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;$aws/things/&#34; AWS_THING_NAME \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;/shadow/update/accepted&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#define AWS_SHADOW_UPDATE_REJECTED_TOPIC \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;$aws/things/&#34; AWS_THING_NAME \
+</span></span></span><span style=display:flex><span><span style=color:#75715e>    &#34;/shadow/update/rejected&#34;
+</span></span></span></code></pre></div><p>Ý nghĩa:</p><table><thead><tr><th style=text-align:left>Topic</th><th style=text-align:left>Chức năng</th></tr></thead><tbody><tr><td style=text-align:left><code>/shadow/update</code></td><td style=text-align:left>Publish desired hoặc reported state.</td></tr><tr><td style=text-align:left><code>/shadow/update/delta</code></td><td style=text-align:left>Gửi chênh lệch giữa desired và reported state.</td></tr><tr><td style=text-align:left><code>/shadow/update/accepted</code></td><td style=text-align:left>Xác nhận Shadow update thành công.</td></tr><tr><td style=text-align:left><code>/shadow/update/rejected</code></td><td style=text-align:left>Trả về lỗi Shadow update.</td></tr></tbody></table><hr><h1 id=bước-10---xử-lý-shadow-delta>Bước 10 - Xử lý Shadow Delta</h1><p>MQTT callback chuyển các message đến Shadow handler trước:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (
+</span></span><span style=display:flex><span>    handleShadowMessage(
+</span></span><span style=display:flex><span>        topic,
+</span></span><span style=display:flex><span>        payload,
+</span></span><span style=display:flex><span>        length
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Khi topic là Shadow delta, firmware parse JSON:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (
+</span></span><span style=display:flex><span>    strcmp(
+</span></span><span style=display:flex><span>        topic,
+</span></span><span style=display:flex><span>        AWS_SHADOW_DELTA_TOPIC
+</span></span><span style=display:flex><span>    ) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    JsonDocument doc;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    DeserializationError error <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        deserializeJson(
+</span></span><span style=display:flex><span>            doc,
+</span></span><span style=display:flex><span>            payload,
+</span></span><span style=display:flex><span>            length
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (error)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        Serial.print(
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;Shadow delta JSON error: &#34;</span>
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        Serial.println(
+</span></span><span style=display:flex><span>            error.c_str()
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> true;
+</span></span><span style=display:flex><span>    }
+</span></span></code></pre></div><p>Delta payload dự kiến:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;state&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;relay_on&#34;</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Firmware đọc và áp dụng desired state:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (
+</span></span><span style=display:flex><span>    doc[<span style=color:#e6db74>&#34;state&#34;</span>][<span style=color:#e6db74>&#34;relay_on&#34;</span>]
+</span></span><span style=display:flex><span>        .is<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>bool</span><span style=color:#f92672>&gt;</span>()
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>bool</span> desiredRelay <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        doc[<span style=color:#e6db74>&#34;state&#34;</span>][<span style=color:#e6db74>&#34;relay_on&#34;</span>]
+</span></span><span style=display:flex><span>            .as<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>bool</span><span style=color:#f92672>&gt;</span>();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    setRelayState(
+</span></span><span style=display:flex><span>        desiredRelay
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    publishShadowReportedState();
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Sau khi thay đổi relay, ESP32-S3 báo trạng thái thực tế lên Shadow.</p><p>Kết quả:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>desired.relay_on
+</span></span><span style=display:flex><span>        =
+</span></span><span style=display:flex><span>reported.relay_on
+</span></span></code></pre></div><hr><h1 id=bước-11---gửi-direct-mqtt-command>Bước 11 - Gửi Direct MQTT Command</h1><p>Mở:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>AWS IoT Core
+</span></span><span style=display:flex><span>→ Test
+</span></span><span style=display:flex><span>→ MQTT test client
+</span></span><span style=display:flex><span>→ Publish to a topic
+</span></span></code></pre></div><p>Topic:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>smarthome/esp32-home-01/command
+</span></span></code></pre></div><p>Bật relay:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>ON
+</span></span></code></pre></div><p>Tắt relay:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>OFF
+</span></span></code></pre></div><p><img alt="Publish lệnh điều khiển relay" src=/images/workshop/5.5.5/publish-relay-command.png></p><div class="notices note"><p>Firmware hiện tại nhận command dạng plain text <code>ON</code> hoặc <code>OFF</code>, không nhận JSON trên direct command topic.</p></div><hr><h1 id=bước-12---kiểm-tra-phản-hồi-trên-esp32-s3>Bước 12 - Kiểm tra phản hồi trên ESP32-S3</h1><p>Mở Serial Monitor:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pio device monitor
+</span></span></code></pre></div><p>Kết quả khi nhận ON:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Message arrived on topic:
+</span></span><span style=display:flex><span>smarthome/esp32-home-01/command
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Payload: [ON]
+</span></span><span style=display:flex><span>Relay: ON
+</span></span><span style=display:flex><span>Shadow reported payload:
+</span></span><span style=display:flex><span>{&#34;state&#34;:{&#34;reported&#34;:{&#34;relay_on&#34;:true}}}
+</span></span><span style=display:flex><span>Shadow publish result: SUCCESS
+</span></span></code></pre></div><p>Kết quả khi nhận OFF:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Payload: [OFF]
+</span></span><span style=display:flex><span>Relay: OFF
+</span></span><span style=display:flex><span>Shadow reported payload:
+</span></span><span style=display:flex><span>{&#34;state&#34;:{&#34;reported&#34;:{&#34;relay_on&#34;:false}}}
+</span></span><span style=display:flex><span>Shadow publish result: SUCCESS
+</span></span></code></pre></div><p><img alt="ESP32-S3 nhận lệnh Relay" src=/images/workshop/5.5.5/relay-command-received.png></p><hr><h1 id=bước-13---điều-khiển-bằng-device-shadow>Bước 13 - Điều khiển bằng Device Shadow</h1><p>Có thể điều khiển relay bằng cách thay đổi desired state.</p><p>Publish vào:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>$aws/things/esp32-home-01/shadow/update
+</span></span></code></pre></div><p>Payload:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;state&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;desired&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;relay_on&#34;</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Khi desired khác reported, AWS IoT Device Shadow gửi delta:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;state&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;relay_on&#34;</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>ESP32-S3 thực hiện:</p><ol><li>Bật relay.</li><li>Publish <code>reported.relay_on = true</code>.</li><li>Nhận update accepted.</li><li>Đồng bộ desired và reported state.</li></ol><hr><h1 id=so-sánh-direct-command-và-device-shadow>So sánh Direct Command và Device Shadow</h1><table><thead><tr><th style=text-align:left>Phương thức</th><th style=text-align:left>Payload</th><th style=text-align:left>Mục đích</th></tr></thead><tbody><tr><td style=text-align:left>MQTT command topic</td><td style=text-align:left><code>ON</code> hoặc <code>OFF</code></td><td style=text-align:left>Điều khiển tức thời khi thiết bị đang online.</td></tr><tr><td style=text-align:left>Device Shadow</td><td style=text-align:left>JSON desired state</td><td style=text-align:left>Đồng bộ trạng thái thiết bị với Cloud.</td></tr></tbody></table><p>Direct command chỉ được nhận khi ESP32-S3 đang kết nối MQTT.</p><p>Device Shadow lưu desired state trên AWS, phù hợp cho việc đồng bộ trạng thái sau khi thiết bị reconnect khi có triển khai đầy đủ quy trình lấy Shadow hiện tại.</p><hr><h1 id=quyền-bảo-mật-cần-thiết>Quyền bảo mật cần thiết</h1><p>AWS IoT Policy phải cho phép direct command topic và các Shadow topic.</p><p>Các action thường dùng:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>iot:Connect
+</span></span><span style=display:flex><span>iot:Publish
+</span></span><span style=display:flex><span>iot:Subscribe
+</span></span><span style=display:flex><span>iot:Receive
+</span></span></code></pre></div><p>Resource ARN phải sử dụng đúng loại:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>client/
+</span></span><span style=display:flex><span>topic/
+</span></span><span style=display:flex><span>topicfilter/
+</span></span></code></pre></div><p>Ví dụ:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>topic/smarthome/esp32-home-01/command
+</span></span><span style=display:flex><span>topicfilter/smarthome/esp32-home-01/command
+</span></span><span style=display:flex><span>topic/$aws/things/esp32-home-01/shadow/update
+</span></span><span style=display:flex><span>topicfilter/$aws/things/esp32-home-01/shadow/update/delta
+</span></span></code></pre></div><div class="notices warning"><p>Trong môi trường production, cần giới hạn resource ARN theo nguyên tắc Least Privilege. Policy wildcard chỉ nên dùng tạm thời trong quá trình kiểm thử.</p></div><hr><h1 id=xử-lý-lỗi>Xử lý lỗi</h1><h2 id=subscribe-command-thất-bại>Subscribe command thất bại</h2><p>Kiểm tra:</p><ul><li>MQTT đã connected.</li><li>Topic chính xác.</li><li>IoT Policy có <code>iot:Subscribe</code>.</li><li>Subscribe resource dùng <code>topicfilter/</code>.</li><li>Certificate đã attach đúng Policy.</li></ul><hr><h2 id=nhận-message-nhưng-relay-không-đổi>Nhận message nhưng Relay không đổi</h2><p>Kiểm tra:</p><ul><li>Command chính xác là <code>ON</code> hoặc <code>OFF</code>.</li><li><code>RELAY_PIN</code> khớp với mạch.</li><li>Loại relay active-low hoặc active-high.</li><li>Nguồn relay phù hợp.</li><li>ESP32-S3 và relay module dùng chung GND.</li></ul><hr><h2 id=trạng-thái-relay-bị-đảo>Trạng thái Relay bị đảo</h2><p>Kiểm tra:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>bool</span> RELAY_ACTIVE_LOW <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    true;
+</span></span></code></pre></div><p>Chỉ đổi thành <code>false</code> nếu relay sử dụng active-high.</p><hr><h2 id=shadow-update-bị-rejected>Shadow update bị rejected</h2><p>Kiểm tra:</p><ul><li>IoT Policy cấp quyền cho Shadow topic.</li><li><code>AWS_THING_NAME</code> khớp Thing thật trên AWS.</li><li>Topic Shadow đúng định dạng.</li><li>JSON payload hợp lệ.</li></ul><p>Rejected payload được in qua:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>Serial.print(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Shadow update rejected: &#34;</span>
+</span></span><span style=display:flex><span>);
+</span></span></code></pre></div><hr><h1 id=kết-quả-đạt-được>Kết quả đạt được</h1><p>Sau khi hoàn thành mục này:</p><ul><li>ESP32-S3 subscribe command topic thành công.</li><li>AWS IoT Core có thể bật và tắt relay.</li><li>Command được xử lý không phân biệt chữ hoa/thường.</li><li>Trạng thái relay được đưa vào telemetry.</li><li>Trạng thái thực tế được publish lên AWS IoT Device Shadow.</li><li>Shadow delta có thể điều khiển relay.</li><li>Firmware xử lý accepted và rejected Shadow update.</li></ul><div class="notices tip"><p>Firmware ESP32-S3 đã hoàn thành giao tiếp hai chiều với AWS IoT Core. Ở chương tiếp theo, AWS IoT Rules Engine sẽ chuyển telemetry sang Amazon DynamoDB và Amazon SNS.</p></div><p><strong>Tiếp theo:</strong> <a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/>5.6 Tích hợp dịch vụ Cloud</a></p><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/ title="Gửi dữ liệu Telemetry"><i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/ title="Tích hợp dịch vụ Cloud" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/fcj-workshop-template/js/clipboard.min.js?1785606601></script><script src=/fcj-workshop-template/js/perfect-scrollbar.min.js?1785606601></script><script src=/fcj-workshop-template/js/perfect-scrollbar.jquery.min.js?1785606601></script><script src=/fcj-workshop-template/js/jquery.sticky.js?1785606601></script><script src=/fcj-workshop-template/js/featherlight.min.js?1785606601></script><script src=/fcj-workshop-template/js/highlight.pack.js?1785606601></script><script>hljs.initHighlightingOnLoad()</script><script src=/fcj-workshop-template/js/modernizr.custom-3.6.0.js?1785606601></script><script src=/fcj-workshop-template/js/learn.js?1785606601></script><script src=/fcj-workshop-template/js/hugo-learn.js?1785606601></script><link href=/fcj-workshop-template/mermaid/mermaid.css?1785606601 rel=stylesheet><script src=/fcj-workshop-template/mermaid/mermaid.js?1785606601></script><script>mermaid.initialize({startOnLoad:!0})</script><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,(e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date),(i=t.createElement(n),a=t.getElementsByTagName(n)[0]),i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-158079754-2","auto"),ga("send","pageview")</script></body></html>

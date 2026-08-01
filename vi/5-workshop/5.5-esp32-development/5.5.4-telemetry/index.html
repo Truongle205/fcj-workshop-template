@@ -1,0 +1,283 @@
+<!doctype html><html lang=vi class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.134.3"><meta name=description content><meta name=author content="thienlh@thienlu.com"><link rel=icon href=/fcj-workshop-template/images/favicon.png type=image/png><title>Gửi dữ liệu Telemetry :: Báo cáo thực tập</title>
+<link href=/fcj-workshop-template/css/nucleus.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/fontawesome-all.min.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/hybrid.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/featherlight.min.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/perfect-scrollbar.min.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/auto-complete.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/atom-one-dark-reasonable.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/theme.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/hugo-theme.css?1785606601 rel=stylesheet><link href=/fcj-workshop-template/css/theme-workshop.css?1785606601 rel=stylesheet><script src=/fcj-workshop-template/js/jquery-3.3.1.min.js?1785606601></script><style>:root #header+#content>#left>#rlblock_left{display:none!important}</style></head><body data-url=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=/><svg id="Layer_1" data-name="Layer 1" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff}.cls-2{fill:#fff;fill-rule:evenodd}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09 10.85a4.7 4.7.0 00.19 1.48 7.73 7.73.0 00.54 1.19.77.77.0 01.12.38.64.64.0 01-.32.49l-1 .7a.83.83.0 01-.44.15.69.69.0 01-.49-.23 3.8 3.8.0 01-.6-.77q-.25-.42-.51-1a6.14 6.14.0 01-4.89 2.3 4.54 4.54.0 01-3.32-1.19 4.27 4.27.0 01-1.22-3.2 4.28 4.28.0 011.46-3.4A6.06 6.06.0 017.69 6.46a12.47 12.47.0 011.76.13q.92.13 1.91.36V5.73a3.65 3.65.0 00-.79-2.66A3.81 3.81.0 007.86 2.3a7.71 7.71.0 00-1.79.22 12.78 12.78.0 00-1.79.57 4.55 4.55.0 01-.58.22h-.26q-.35.0-.35-.52V2a1.09 1.09.0 01.12-.58 1.2 1.2.0 01.47-.35A10.88 10.88.0 015.77.32 10.19 10.19.0 018.36.0a6 6 0 014.35 1.35 5.49 5.49.0 011.38 4.09zM7.34 13.38a5.36 5.36.0 001.72-.31A3.63 3.63.0 0010.63 12 2.62 2.62.0 0011.19 11a5.63 5.63.0 00.16-1.44v-.7a14.35 14.35.0 00-1.53-.28 12.37 12.37.0 00-1.56-.1 3.84 3.84.0 00-2.47.67A2.34 2.34.0 005 11a2.35 2.35.0 00.61 1.76A2.4 2.4.0 007.34 13.38zm13.35 1.8a1 1 0 01-.64-.16 1.3 1.3.0 01-.35-.65L15.81 1.51a3 3 0 01-.15-.67.36.36.0 01.41-.41H17.7a1 1 0 01.65.16 1.4 1.4.0 01.33.65l2.79 11 2.59-11A1.17 1.17.0 0124.39.6a1.1 1.1.0 01.67-.16H26.4a1.1 1.1.0 01.67.16 1.17 1.17.0 01.32.65L30 12.39 32.88 1.25A1.39 1.39.0 0133.22.6a1 1 0 01.65-.16h1.54a.36.36.0 01.41.41 1.36 1.36.0 010 .26 3.64 3.64.0 01-.12.41l-4 12.86a1.3 1.3.0 01-.35.65 1 1 0 01-.64.16H29.25a1 1 0 01-.67-.17 1.26 1.26.0 01-.32-.67L25.67 3.64l-2.56 10.7a1.26 1.26.0 01-.32.67 1 1 0 01-.67.17zm21.36.44a11.28 11.28.0 01-2.56-.29 7.44 7.44.0 01-1.92-.67 1 1 0 01-.61-.93v-.84q0-.52.38-.52a.9.9.0 01.31.06l.42.17a8.77 8.77.0 001.83.58 9.78 9.78.0 002 .2 4.48 4.48.0 002.43-.55 1.76 1.76.0 00.86-1.57 1.61 1.61.0 00-.45-1.16A4.29 4.29.0 0043 9.22l-2.41-.76A5.15 5.15.0 0138 6.78a3.94 3.94.0 01-.83-2.41 3.7 3.7.0 01.45-1.85 4.47 4.47.0 011.19-1.37 5.27 5.27.0 011.7-.86A7.4 7.4.0 0142.6.0a8.87 8.87.0 011.12.07q.57.07 1.08.19t.95.26a4.27 4.27.0 01.7.29 1.59 1.59.0 01.49.41.94.94.0 01.15.55v.79q0 .52-.38.52a1.76 1.76.0 01-.64-.2 7.74 7.74.0 00-3.2-.64 4.37 4.37.0 00-2.21.47 1.6 1.6.0 00-.79 1.48 1.58 1.58.0 00.49 1.18 4.94 4.94.0 001.83.92L44.55 7a5.08 5.08.0 012.57 1.6A3.76 3.76.0 0147.9 11a4.21 4.21.0 01-.44 1.93 4.4 4.4.0 01-1.21 1.47 5.43 5.43.0 01-1.85.93A8.25 8.25.0 0142.05 15.62z"/><path class="cls-2" d="M45.19 23.81C39.72 27.85 31.78 30 25 30A36.64 36.64.0 01.22 20.57c-.51-.46-.06-1.09.56-.74A49.78 49.78.0 0025.53 26.4 49.23 49.23.0 0044.4 22.53C45.32 22.14 46.1 23.14 45.19 23.81z"/><path class="cls-2" d="M47.47 21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74 3.13-2.2 8.27-1.57 8.86-.83s-.16 5.89-3.09 8.35c-.45.38-.88.18-.68-.32C46.69 25.8 48.17 22.11 47.47 21.21z"/></svg></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/fcj-workshop-template/js/lunr.min.js?1785606601></script><script type=text/javascript src=/fcj-workshop-template/js/auto-complete.js?1785606601></script><script type=text/javascript>var baseurl="https://truongle205.github.io/fcj-workshop-template//vi"</script><script type=text/javascript src=/fcj-workshop-template/js/search.js?1785606601></script></div><div class=highlightable><ul class=topics><li data-nav-id=/fcj-workshop-template/vi/2-proposal/ title="Đề xuất" class=dd-item><a href=/fcj-workshop-template/vi/2-proposal/><b>2. </b>Đề xuất
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/ title="Các bài blogs đã đăng" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/><b>3. </b>Các bài blogs đã đăng
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/3.1-blog1/ title="Blog 1" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/3.1-blog1/><b>3.1. </b>Blog 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/3.2-blog2/ title="Blog 2" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/3.2-blog2/><b>3.2. </b>Blog 2
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/3-blogsposted/3.3-blog3/ title="Blog 3" class=dd-item><a href=/fcj-workshop-template/vi/3-blogsposted/3.3-blog3/><b>3.3. </b>Blog 3
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/4-eventparticipated/ title="Các events đã tham gia" class=dd-item><a href=/fcj-workshop-template/vi/4-eventparticipated/><b>4. </b>Các events đã tham gia
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/4-eventparticipated/4.1-event1/ title="Event 1" class=dd-item><a href=/fcj-workshop-template/vi/4-eventparticipated/4.1-event1/><b>4.1. </b>Event 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/4-eventparticipated/4.2-event2/ title="Event 2" class=dd-item><a href=/fcj-workshop-template/vi/4-eventparticipated/4.2-event2/><b>4.2. </b>Event 2
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/ title=Workshop class="dd-item
+parent"><a href=/fcj-workshop-template/vi/5-workshop/><b>5. </b>Workshop
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.1-overview/ title="Tổng quan" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.1-overview/><b>5.1 </b>Tổng quan
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.2-architecture/ title="Kiến trúc hệ thống" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.2-architecture/><b>5.2 </b>Kiến trúc hệ thống
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.3-prerequisites/ title="Điều kiện chuẩn bị" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.3-prerequisites/><b>5.3 </b>Điều kiện chuẩn bị
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/ title="Cấu hình AWS IoT" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/><b>5.4 </b>Cấu hình AWS IoT
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.1-create-thing/ title="Tạo AWS IoT Thing" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.1-create-thing/><b>5.4.1 </b>Tạo AWS IoT Thing
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.2-create-certificate/ title="Tạo Device Certificate" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.2-create-certificate/><b>5.4.2 </b>Tạo Device Certificate
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.3-attach-policy/ title="Tạo và gắn AWS IoT Policy" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.3-attach-policy/><b>5.4.3 </b>Tạo và gắn AWS IoT Policy
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.4-mqtt-test-client/ title="Kiểm tra kết nối MQTT" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.4-aws-iot-configuration/5.4.4-mqtt-test-client/><b>5.4.4 </b>Kiểm tra kết nối MQTT
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/ title="Phát triển ứng dụng ESP32" class="dd-item
+parent"><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/><b>5.5 </b>Phát triển ứng dụng ESP32
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.1-platformio/ title="Tạo dự án PlatformIO" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.1-platformio/><b>5.5.1 </b>Tạo dự án PlatformIO
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.2-wifi/ title="Kết nối Wi-Fi" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.2-wifi/><b>5.5.2 </b>Kết nối Wi-Fi
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/ title="Kết nối AWS IoT Core bằng MQTT over TLS" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/><b>5.5.3 </b>Kết nối AWS IoT Core bằng MQTT over TLS
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/ title="Gửi dữ liệu Telemetry" class="dd-item
+active"><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/><b>5.5.4 </b>Gửi dữ liệu Telemetry
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.5-relay-control/ title="Điều khiển Relay từ xa" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.5-relay-control/><b>5.5.5 </b>Điều khiển Relay từ xa
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/ title="Tích hợp dịch vụ Cloud" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/><b>5.6 </b>Tích hợp dịch vụ Cloud
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.1-iot-rules/ title="Tạo AWS IoT Rule" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.1-iot-rules/><b>5.6.1 </b>Tạo AWS IoT Rule
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.2-dynamodb/ title="Lưu Telemetry vào Amazon DynamoDB" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.2-dynamodb/><b>5.6.2 </b>Lưu Telemetry vào Amazon DynamoDB
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.3-sns/ title="Cấu hình Amazon SNS" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.3-sns/><b>5.6.3 </b>Cấu hình Amazon SNS
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.4-email-notification/ title="Cấu hình Email Notification" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.6-cloud-integration/5.6.4-email-notification/><b>5.6.4 </b>Cấu hình Email Notification
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.7-testing/ title="Kiểm thử hệ thống" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.7-testing/><b>5.7 </b>Kiểm thử hệ thống
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/5-workshop/5.8-cleanup/ title="Dọn dẹp tài nguyên" class=dd-item><a href=/fcj-workshop-template/vi/5-workshop/5.8-cleanup/><b>5.8 </b>Dọn dẹp tài nguyên
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/6-self-evaluation/ title="Tự đánh giá" class=dd-item><a href=/fcj-workshop-template/vi/6-self-evaluation/><b>6. </b>Tự đánh giá
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/7-feedback/ title="Chia sẻ, đóng góp ý kiến" class=dd-item><a href=/fcj-workshop-template/vi/7-feedback/><b>7. </b>Chia sẻ, đóng góp ý kiến
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/ title="Nhật ký công việc Tuần 7" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/><b>1.7. </b>Nhật ký công việc Tuần 7
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.1-week1/ title="Nhật ký công việc Tuần 1" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.1-week1/><b>1.1. </b>Nhật ký công việc Tuần 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.2-week2/ title="Nhật ký công việc Tuần 2" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.2-week2/><b>1.2. </b>Nhật ký công việc Tuần 2
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.3-week3/ title="Nhật ký công việc Tuần 3" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.3-week3/><b>1.3. </b>Nhật ký công việc Tuần 3
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.4-week4/ title="Nhật ký công việc Tuần 4" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.4-week4/><b>1.4. </b>Nhật ký công việc Tuần 4
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.5-week5/ title="Nhật ký công việc Tuần 5" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.5-week5/><b>1.5. </b>Nhật ký công việc Tuần 5
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.6-week6/ title="Nhật ký công việc Tuần 6" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.6-week6/><b>1.6. </b>Nhật ký công việc Tuần 6
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/vi/1-worklog/1.7-week7/ title="Nhật ký công việc Tuần 7" class=dd-item><a href=/fcj-workshop-template/vi/1-worklog/1.7-week7/><b>1.7. </b>Nhật ký công việc Tuần 7
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/vi/8-references/ title="Tài liệu tham khảo" class=dd-item><a href=/fcj-workshop-template/vi/8-references/><b>8. </b>Tài liệu tham khảo
+<i class="fas fa-check read-icon"></i></a></li></ul><section id=shortcuts><h3>More</h3><ul><li><a class=padding href=http://awsstudygroup.com><i class='fab fa-aws'></i> AWS Study Group - Blog</a></li><li><a class=padding href=https://www.facebook.com/groups/awsstudygroupfcj><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value"><option id=en value=https://truongle205.github.io/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.4-telemetry/>English</option><option id=vi value=https://truongle205.github.io/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/ selected>Tiếng Việt</option></select><svg id="Capa_1" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><polygon points="0,63.75 127.5,191.25 255,63.75"/></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i> Clear History</a></li></ul></section><section id=footer><left><br><br><b>Last Updated</b><br><i><font color=orange>01-08-2026</font>
+</i></left><left><br><br><b>Team</b><br><i><a href=https://www.facebook.com/groups/660548818043427 style=color:orange>First Cloud AI Journey</a>
+</i></left><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i>
+</a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span>
+<span class=links><a href=/fcj-workshop-template/vi/>Báo cáo thực tập</a> > <a href=/fcj-workshop-template/vi/5-workshop/>Workshop</a> > <a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/>Phát triển ứng dụng ESP32</a> > Gửi dữ liệu Telemetry</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><a href=#dht11-trả-về-dữ-liệu-lỗi>DHT11 trả về dữ liệu lỗi</a></li><li><a href=#không-thấy-telemetry-trên-aws>Không thấy telemetry trên AWS</a></li><li><a href=#giá-trị-ánh-sáng-không-thay-đổi>Giá trị ánh sáng không thay đổi</a></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Gửi dữ liệu Telemetry</h1><div class="notices info"><p>Trong mục này, ESP32-S3 sẽ đọc dữ liệu cảm biến, tạo JSON telemetry payload và gửi message bảo mật lên AWS IoT Core.</p></div><h1 id=tổng-quan>Tổng quan</h1><p>Sau khi thiết lập thành công MQTT connection, ESP32-S3 có thể bắt đầu gửi dữ liệu Smart Home lên AWS IoT Core.</p><p>Firmware thu thập các thông tin:</p><ul><li>Nhiệt độ.</li><li>Độ ẩm.</li><li>Cường độ ánh sáng.</li><li>Trạng thái cửa.</li><li>Trạng thái relay.</li><li>Timestamp của thiết bị.</li></ul><p>Các giá trị được đóng gói thành JSON và publish đến topic:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>smarthome/esp32-home-01/telemetry
+</span></span></code></pre></div><p>Luồng telemetry được triển khai qua ba thành phần chính:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>sensors.cpp
+</span></span><span style=display:flex><span>     ↓
+</span></span><span style=display:flex><span>telemetry.cpp
+</span></span><span style=display:flex><span>     ↓
+</span></span><span style=display:flex><span>mqtt_manager.cpp
+</span></span><span style=display:flex><span>     ↓
+</span></span><span style=display:flex><span>AWS IoT Core
+</span></span></code></pre></div><hr><h1 id=mục-tiêu>Mục tiêu</h1><p>Sau khi hoàn thành mục này, người thực hiện sẽ có thể:</p><ul><li>Khởi tạo các cảm biến Smart Home.</li><li>Đọc nhiệt độ và độ ẩm từ DHT11.</li><li>Đọc giá trị analog từ LDR.</li><li>Đọc trạng thái cảm biến cửa.</li><li>Lấy trạng thái relay hiện tại.</li><li>Tạo telemetry bằng ArduinoJson.</li><li>Publish JSON payload lên AWS IoT Core.</li><li>Xử lý trường hợp cảm biến trả về dữ liệu không hợp lệ.</li></ul><hr><h1 id=thời-gian-thực-hiện>Thời gian thực hiện</h1><p><strong>Khoảng 10–15 phút</strong></p><hr><h1 id=bước-1---khai-báo-cấu-trúc-dữ-liệu-cảm-biến>Bước 1 - Khai báo cấu trúc dữ liệu cảm biến</h1><p>Project sử dụng cấu trúc <code>SensorData</code> để nhóm toàn bộ giá trị được trả về từ sensor module.</p><p>File:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>include/sensors.h
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>#pragma once
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>SensorData</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> temperature;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> humidity;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> light;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>bool</span> doorOpen;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>bool</span> dhtValid;
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initSensors</span>();
+</span></span><span style=display:flex><span>SensorData <span style=color:#a6e22e>readSensors</span>();
+</span></span></code></pre></div><p>Cấu trúc này giúp truyền toàn bộ kết quả đo từ <code>sensors.cpp</code> sang <code>telemetry.cpp</code> một cách rõ ràng.</p><table><thead><tr><th style=text-align:left>Trường</th><th style=text-align:left>Kiểu</th><th style=text-align:left>Mô tả</th></tr></thead><tbody><tr><td style=text-align:left><code>temperature</code></td><td style=text-align:left><code>float</code></td><td style=text-align:left>Nhiệt độ đọc từ DHT11.</td></tr><tr><td style=text-align:left><code>humidity</code></td><td style=text-align:left><code>float</code></td><td style=text-align:left>Độ ẩm tương đối đọc từ DHT11.</td></tr><tr><td style=text-align:left><code>light</code></td><td style=text-align:left><code>int</code></td><td style=text-align:left>Giá trị analog từ cảm biến LDR.</td></tr><tr><td style=text-align:left><code>doorOpen</code></td><td style=text-align:left><code>bool</code></td><td style=text-align:left>Trạng thái hiện tại của cửa.</td></tr><tr><td style=text-align:left><code>dhtValid</code></td><td style=text-align:left><code>bool</code></td><td style=text-align:left>Cho biết dữ liệu DHT11 có hợp lệ hay không.</td></tr></tbody></table><hr><h1 id=bước-2---cấu-hình-chân-cảm-biến>Bước 2 - Cấu hình chân cảm biến</h1><p>Các chân GPIO được khai báo trong <code>include/config.h</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> LDR_PIN <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> DHT_PIN <span style=color:#f92672>=</span> <span style=color:#ae81ff>4</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> DHT_TYPE <span style=color:#f92672>=</span> <span style=color:#ae81ff>11</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> DOOR_SENSOR_PIN <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> RELAY_PIN <span style=color:#f92672>=</span> <span style=color:#ae81ff>5</span>;
+</span></span></code></pre></div><p>Các giá trị trên có thể được thay đổi để phù hợp với bo mạch ESP32-S3 và cách đấu nối thực tế.</p><div class="notices warning"><p>Cần kiểm tra pinout của bo mạch ESP32-S3 trước khi đấu cảm biến. Một số GPIO có thể được sử dụng cho flash, PSRAM, USB hoặc chức năng đặc biệt khác.</p></div><hr><h1 id=bước-3---khởi-tạo-cảm-biến>Bước 3 - Khởi tạo cảm biến</h1><p>Sensor module được triển khai trong <code>src/sensors.cpp</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>namespace</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>DHT <span style=color:#a6e22e>dht</span>(DHT_PIN, DHT11);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initSensors</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    dht.begin();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    pinMode(
+</span></span><span style=display:flex><span>        DOOR_SENSOR_PIN,
+</span></span><span style=display:flex><span>        INPUT_PULLUP
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.println(<span style=color:#e6db74>&#34;DHT11 initialized&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    analogReadResolution(<span style=color:#ae81ff>12</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Quá trình khởi tạo gồm:</p><table><thead><tr><th style=text-align:left>Code</th><th style=text-align:left>Chức năng</th></tr></thead><tbody><tr><td style=text-align:left><code>dht.begin()</code></td><td style=text-align:left>Khởi động giao tiếp với DHT11.</td></tr><tr><td style=text-align:left><code>INPUT_PULLUP</code></td><td style=text-align:left>Bật điện trở kéo lên nội bộ cho cảm biến cửa.</td></tr><tr><td style=text-align:left><code>analogReadResolution(12)</code></td><td style=text-align:left>Cấu hình ADC ở độ phân giải 12 bit.</td></tr></tbody></table><p>Với ADC 12 bit, giá trị LDR thường nằm trong khoảng:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>0 đến 4095
+</span></span></code></pre></div><hr><h1 id=bước-4---đọc-dữ-liệu-cảm-biến>Bước 4 - Đọc dữ liệu cảm biến</h1><p>Hàm <code>readSensors()</code> thu thập toàn bộ dữ liệu.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>SensorData <span style=color:#a6e22e>readSensors</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    SensorData data {};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    data.temperature <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        dht.readTemperature();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    data.humidity <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        dht.readHumidity();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    data.light <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        analogRead(LDR_PIN);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    data.doorOpen <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        digitalRead(DOOR_SENSOR_PIN) <span style=color:#f92672>==</span> HIGH;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    data.dhtValid <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>!</span>isnan(data.temperature) <span style=color:#f92672>&amp;&amp;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>!</span>isnan(data.humidity);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> data;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Hàm thực hiện bốn phép đọc chính:</p><ol><li>Nhiệt độ từ DHT11.</li><li>Độ ẩm từ DHT11.</li><li>Ánh sáng từ ADC.</li><li>Trạng thái cửa từ digital input.</li></ol><hr><h1 id=bước-5---kiểm-tra-dữ-liệu-dht11>Bước 5 - Kiểm tra dữ liệu DHT11</h1><p>Thư viện DHT trả về <code>NaN</code> khi quá trình đọc thất bại.</p><p>Project kiểm tra cả hai giá trị:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>data.dhtValid <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>!</span>isnan(data.temperature) <span style=color:#f92672>&amp;&amp;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>!</span>isnan(data.humidity);
+</span></span></code></pre></div><p>Điều này giúp ngăn giá trị không hợp lệ bị xem như dữ liệu nhiệt độ hoặc độ ẩm bình thường.</p><p>Các giá trị cảm biến cũng được in ra Serial Monitor:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Temperature: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(data.temperature);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Humidity: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(data.humidity);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Light: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(data.light);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Door: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(
+</span></span><span style=display:flex><span>    data.doorOpen <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;OPEN&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;CLOSED&#34;</span>
+</span></span><span style=display:flex><span>);
+</span></span></code></pre></div><p>Ví dụ:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Temperature: 29.40
+</span></span><span style=display:flex><span>Humidity: 71.00
+</span></span><span style=display:flex><span>Light: 870
+</span></span><span style=display:flex><span>Door: CLOSED
+</span></span></code></pre></div><hr><h1 id=bước-6---tạo-json-telemetry>Bước 6 - Tạo JSON Telemetry</h1><p>Logic telemetry được triển khai trong:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>src/telemetry.cpp
+</span></span></code></pre></div><p>Hàm trước tiên gọi sensor module:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>publishTelemetry</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    SensorData sensorData <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        readSensors();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    JsonDocument document;
+</span></span></code></pre></div><p>Sau đó thêm định danh thiết bị và Unix timestamp:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>document[<span style=color:#e6db74>&#34;device_id&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    AWS_THING_NAME;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>document[<span style=color:#e6db74>&#34;timestamp&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int64_t</span><span style=color:#f92672>&gt;</span>(time(<span style=color:#66d9ef>nullptr</span>));
+</span></span></code></pre></div><p>Timestamp được tạo từ thời gian hệ thống đã đồng bộ bằng NTP.</p><hr><h1 id=bước-7---thêm-dữ-liệu-cảm-biến-và-trạng-thái-thiết-bị>Bước 7 - Thêm dữ liệu cảm biến và trạng thái thiết bị</h1><p>Firmware ghi trạng thái hợp lệ của DHT11:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>document[<span style=color:#e6db74>&#34;dht_valid&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    sensorData.dhtValid;
+</span></span></code></pre></div><p>Khi dữ liệu hợp lệ:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (sensorData.dhtValid)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    document[<span style=color:#e6db74>&#34;temperature&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        sensorData.temperature;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    document[<span style=color:#e6db74>&#34;humidity&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        sensorData.humidity;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Khi DHT11 đọc thất bại, payload sử dụng giá trị JSON <code>null</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Serial.println(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Telemetry warning: invalid DHT11 data&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    document[<span style=color:#e6db74>&#34;temperature&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>nullptr</span>;
+</span></span><span style=display:flex><span>    document[<span style=color:#e6db74>&#34;humidity&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>nullptr</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Các giá trị còn lại được thêm độc lập:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>document[<span style=color:#e6db74>&#34;light&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    sensorData.light;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>document[<span style=color:#e6db74>&#34;door_open&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    sensorData.doorOpen;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>document[<span style=color:#e6db74>&#34;relay_on&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    isRelayOn();
+</span></span></code></pre></div><p>Việc dùng <code>null</code> giúp tránh lưu dữ liệu DHT11 lỗi thành một phép đo thật.</p><hr><h1 id=bước-8---chuyển-json-thành-payload>Bước 8 - Chuyển JSON thành payload</h1><p>JSON document được serialize vào một buffer cố định:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>char</span> payload[<span style=color:#ae81ff>320</span>];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>size_t length <span style=color:#f92672>=</span> serializeJson(
+</span></span><span style=display:flex><span>    document,
+</span></span><span style=display:flex><span>    payload,
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>sizeof</span>(payload)
+</span></span><span style=display:flex><span>);
+</span></span></code></pre></div><p>Chương trình kiểm tra kết quả:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (length <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Serial.println(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;JSON serialization failed&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Buffer cố định giúp hạn chế việc cấp phát chuỗi động trong mỗi chu kỳ telemetry.</p><hr><h1 id=bước-9---publish-telemetry>Bước 9 - Publish telemetry</h1><p>Payload được in ra trước khi gửi:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>Serial.print(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Publishing telemetry: &#34;</span>
+</span></span><span style=display:flex><span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.println(payload);
+</span></span></code></pre></div><p>Sau đó sử dụng MQTT manager:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>publishMessage(
+</span></span><span style=display:flex><span>        AWS_TOPIC_TELEMETRY,
+</span></span><span style=display:flex><span>        payload
+</span></span><span style=display:flex><span>    ))
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Serial.println(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Telemetry publish failed&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Hàm <code>publishMessage()</code> kiểm tra trạng thái MQTT trước khi publish:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>publishMessage</span>(
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>topic,
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>payload
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>mqttClient.connected())
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        Serial.println(
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;MQTT is not connected&#34;</span>
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> false;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>bool</span> success <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        mqttClient.publish(topic, payload);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> success;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Việc tách hàm publish giúp telemetry module không phụ thuộc trực tiếp vào cách MQTT client được cấu hình.</p><hr><h1 id=bước-10---gửi-dữ-liệu-theo-chu-kỳ>Bước 10 - Gửi dữ liệu theo chu kỳ</h1><p>Project publish telemetry từ <code>main.cpp</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (
+</span></span><span style=display:flex><span>    now <span style=color:#f92672>-</span> lastTelemetryTime <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>10000</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    lastTelemetryTime <span style=color:#f92672>=</span> now;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.println(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Publishing telemetry...&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    publishTelemetry();
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Chu kỳ hiện tại là:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>10 giây
+</span></span></code></pre></div><p>Sử dụng <code>millis()</code> giúp chương trình không block MQTT loop trong thời gian dài.</p><hr><h1 id=ví-dụ-telemetry-payload>Ví dụ Telemetry Payload</h1><p>Khi cảm biến hoạt động bình thường:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;device_id&#34;</span>: <span style=color:#e6db74>&#34;esp32-home-01&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;timestamp&#34;</span>: <span style=color:#ae81ff>1784900000</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dht_valid&#34;</span>: <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;temperature&#34;</span>: <span style=color:#ae81ff>29.4</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;humidity&#34;</span>: <span style=color:#ae81ff>71</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;light&#34;</span>: <span style=color:#ae81ff>870</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;door_open&#34;</span>: <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;relay_on&#34;</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Khi DHT11 không hợp lệ:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;device_id&#34;</span>: <span style=color:#e6db74>&#34;esp32-home-01&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;timestamp&#34;</span>: <span style=color:#ae81ff>1784900000</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dht_valid&#34;</span>: <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;temperature&#34;</span>: <span style=color:#66d9ef>null</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;humidity&#34;</span>: <span style=color:#66d9ef>null</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;light&#34;</span>: <span style=color:#ae81ff>870</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;door_open&#34;</span>: <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;relay_on&#34;</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><hr><h1 id=bước-11---nạp-và-theo-dõi-chương-trình>Bước 11 - Nạp và theo dõi chương trình</h1><p>Biên dịch và nạp firmware:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pio run -t upload
+</span></span></code></pre></div><p>Mở Serial Monitor:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pio device monitor
+</span></span></code></pre></div><p>Kết quả mong đợi:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Publishing telemetry...
+</span></span><span style=display:flex><span>Temperature: 29.40
+</span></span><span style=display:flex><span>Humidity: 71.00
+</span></span><span style=display:flex><span>Light: 870
+</span></span><span style=display:flex><span>Door: CLOSED
+</span></span><span style=display:flex><span>Publishing telemetry: {&#34;device_id&#34;:&#34;esp32-home-01&#34;,...}
+</span></span><span style=display:flex><span>Published: {&#34;device_id&#34;:&#34;esp32-home-01&#34;,...}
+</span></span></code></pre></div><p><img alt="ESP32-S3 gửi Telemetry" src=/images/workshop/5.5.4/telemetry-published.png></p><hr><h1 id=bước-12---kiểm-tra-trên-aws-iot-core>Bước 12 - Kiểm tra trên AWS IoT Core</h1><p>Mở:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>AWS IoT Core
+</span></span><span style=display:flex><span>→ Test
+</span></span><span style=display:flex><span>→ MQTT test client
+</span></span></code></pre></div><p>Subscribe topic:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>smarthome/esp32-home-01/telemetry
+</span></span></code></pre></div><p>Telemetry do ESP32-S3 publish sẽ xuất hiện trên MQTT Test Client.</p><p><img alt="AWS IoT Core nhận Telemetry" src=/images/workshop/5.5.4/telemetry-received.png></p><p>Luồng hoàn chỉnh:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Cảm biến
+</span></span><span style=display:flex><span>   ↓
+</span></span><span style=display:flex><span>ESP32-S3
+</span></span><span style=display:flex><span>   ↓
+</span></span><span style=display:flex><span>JSON serialization
+</span></span><span style=display:flex><span>   ↓
+</span></span><span style=display:flex><span>MQTT over TLS
+</span></span><span style=display:flex><span>   ↓
+</span></span><span style=display:flex><span>AWS IoT Core
+</span></span></code></pre></div><hr><h1 id=xử-lý-lỗi>Xử lý lỗi</h1><h2 id=dht11-trả-về-dữ-liệu-lỗi>DHT11 trả về dữ liệu lỗi</h2><p>Nguyên nhân có thể gồm:</p><ul><li>Chưa kết nối cảm biến.</li><li>Sai GPIO.</li><li>Data line thiếu pull-up.</li><li>Đọc cảm biến quá nhanh.</li><li>Nguồn cấp không ổn định.</li></ul><p>Telemetry vẫn gửi các trường còn lại, trong khi nhiệt độ và độ ẩm được đặt thành <code>null</code>.</p><hr><h2 id=không-thấy-telemetry-trên-aws>Không thấy telemetry trên AWS</h2><p>Kiểm tra:</p><ul><li>MQTT vẫn đang connected.</li><li>Topic telemetry trùng khớp hoàn toàn.</li><li>AWS IoT Policy có quyền <code>iot:Publish</code>.</li><li>MQTT Test Client subscribe đúng topic.</li><li>Payload không vượt quá MQTT buffer.</li></ul><hr><h2 id=giá-trị-ánh-sáng-không-thay-đổi>Giá trị ánh sáng không thay đổi</h2><p>Kiểm tra:</p><ul><li>LDR được nối vào GPIO hỗ trợ ADC.</li><li>Mạch chia áp được đấu đúng.</li><li>GPIO không bị sử dụng bởi chức năng khác của bo mạch.</li></ul><hr><h1 id=kết-quả-đạt-được>Kết quả đạt được</h1><p>Sau khi hoàn thành mục này:</p><ul><li>ESP32-S3 đọc được dữ liệu cảm biến.</li><li>JSON telemetry được tạo thành công.</li><li>Dữ liệu DHT11 lỗi được xử lý an toàn.</li><li>Telemetry được gửi theo chu kỳ.</li><li>AWS IoT Core nhận được message.</li><li>Trạng thái cửa và relay được đưa vào payload.</li></ul><div class="notices tip"><p>Trong mục tiếp theo, hệ thống sẽ bổ sung giao tiếp hai chiều để AWS IoT Core gửi command xuống ESP32-S3 và điều khiển relay từ xa.</p></div><p><strong>Tiếp theo:</strong> <a href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.5-relay-control/>5.5.5 Điều khiển Relay từ xa</a></p><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/ title="Kết nối AWS IoT Core bằng MQTT over TLS"><i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.5-relay-control/ title="Điều khiển Relay từ xa" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/fcj-workshop-template/js/clipboard.min.js?1785606601></script><script src=/fcj-workshop-template/js/perfect-scrollbar.min.js?1785606601></script><script src=/fcj-workshop-template/js/perfect-scrollbar.jquery.min.js?1785606601></script><script src=/fcj-workshop-template/js/jquery.sticky.js?1785606601></script><script src=/fcj-workshop-template/js/featherlight.min.js?1785606601></script><script src=/fcj-workshop-template/js/highlight.pack.js?1785606601></script><script>hljs.initHighlightingOnLoad()</script><script src=/fcj-workshop-template/js/modernizr.custom-3.6.0.js?1785606601></script><script src=/fcj-workshop-template/js/learn.js?1785606601></script><script src=/fcj-workshop-template/js/hugo-learn.js?1785606601></script><link href=/fcj-workshop-template/mermaid/mermaid.css?1785606601 rel=stylesheet><script src=/fcj-workshop-template/mermaid/mermaid.js?1785606601></script><script>mermaid.initialize({startOnLoad:!0})</script><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,(e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date),(i=t.createElement(n),a=t.getElementsByTagName(n)[0]),i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-158079754-2","auto"),ga("send","pageview")</script></body></html>

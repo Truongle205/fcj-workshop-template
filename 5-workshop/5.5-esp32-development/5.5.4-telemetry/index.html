@@ -1,0 +1,283 @@
+<!doctype html><html lang=en class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.134.3"><meta name=description content><meta name=author content="thienlh@thienlu.com"><link rel=icon href=/fcj-workshop-template/images/favicon.png type=image/png><title>Publish Smart Home Telemetry :: Internship Report</title>
+<link href=/fcj-workshop-template/css/nucleus.css?1785606600 rel=stylesheet><link href=/fcj-workshop-template/css/fontawesome-all.min.css?1785606600 rel=stylesheet><link href=/fcj-workshop-template/css/hybrid.css?1785606600 rel=stylesheet><link href=/fcj-workshop-template/css/featherlight.min.css?1785606600 rel=stylesheet><link href=/fcj-workshop-template/css/perfect-scrollbar.min.css?1785606600 rel=stylesheet><link href=/fcj-workshop-template/css/auto-complete.css?1785606600 rel=stylesheet><link href=/fcj-workshop-template/css/atom-one-dark-reasonable.css?1785606600 rel=stylesheet><link href=/fcj-workshop-template/css/theme.css?1785606600 rel=stylesheet><link href=/fcj-workshop-template/css/hugo-theme.css?1785606600 rel=stylesheet><link href=/fcj-workshop-template/css/theme-workshop.css?1785606600 rel=stylesheet><script src=/fcj-workshop-template/js/jquery-3.3.1.min.js?1785606600></script><style>:root #header+#content>#left>#rlblock_left{display:none!important}</style></head><body data-url=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.4-telemetry/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><a id=logo href=/><svg id="Layer_1" data-name="Layer 1" viewBox="0 0 60 30" width="30%"><defs><style>.cls-1{fill:#fff}.cls-2{fill:#fff;fill-rule:evenodd}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09 10.85a4.7 4.7.0 00.19 1.48 7.73 7.73.0 00.54 1.19.77.77.0 01.12.38.64.64.0 01-.32.49l-1 .7a.83.83.0 01-.44.15.69.69.0 01-.49-.23 3.8 3.8.0 01-.6-.77q-.25-.42-.51-1a6.14 6.14.0 01-4.89 2.3 4.54 4.54.0 01-3.32-1.19 4.27 4.27.0 01-1.22-3.2 4.28 4.28.0 011.46-3.4A6.06 6.06.0 017.69 6.46a12.47 12.47.0 011.76.13q.92.13 1.91.36V5.73a3.65 3.65.0 00-.79-2.66A3.81 3.81.0 007.86 2.3a7.71 7.71.0 00-1.79.22 12.78 12.78.0 00-1.79.57 4.55 4.55.0 01-.58.22h-.26q-.35.0-.35-.52V2a1.09 1.09.0 01.12-.58 1.2 1.2.0 01.47-.35A10.88 10.88.0 015.77.32 10.19 10.19.0 018.36.0a6 6 0 014.35 1.35 5.49 5.49.0 011.38 4.09zM7.34 13.38a5.36 5.36.0 001.72-.31A3.63 3.63.0 0010.63 12 2.62 2.62.0 0011.19 11a5.63 5.63.0 00.16-1.44v-.7a14.35 14.35.0 00-1.53-.28 12.37 12.37.0 00-1.56-.1 3.84 3.84.0 00-2.47.67A2.34 2.34.0 005 11a2.35 2.35.0 00.61 1.76A2.4 2.4.0 007.34 13.38zm13.35 1.8a1 1 0 01-.64-.16 1.3 1.3.0 01-.35-.65L15.81 1.51a3 3 0 01-.15-.67.36.36.0 01.41-.41H17.7a1 1 0 01.65.16 1.4 1.4.0 01.33.65l2.79 11 2.59-11A1.17 1.17.0 0124.39.6a1.1 1.1.0 01.67-.16H26.4a1.1 1.1.0 01.67.16 1.17 1.17.0 01.32.65L30 12.39 32.88 1.25A1.39 1.39.0 0133.22.6a1 1 0 01.65-.16h1.54a.36.36.0 01.41.41 1.36 1.36.0 010 .26 3.64 3.64.0 01-.12.41l-4 12.86a1.3 1.3.0 01-.35.65 1 1 0 01-.64.16H29.25a1 1 0 01-.67-.17 1.26 1.26.0 01-.32-.67L25.67 3.64l-2.56 10.7a1.26 1.26.0 01-.32.67 1 1 0 01-.67.17zm21.36.44a11.28 11.28.0 01-2.56-.29 7.44 7.44.0 01-1.92-.67 1 1 0 01-.61-.93v-.84q0-.52.38-.52a.9.9.0 01.31.06l.42.17a8.77 8.77.0 001.83.58 9.78 9.78.0 002 .2 4.48 4.48.0 002.43-.55 1.76 1.76.0 00.86-1.57 1.61 1.61.0 00-.45-1.16A4.29 4.29.0 0043 9.22l-2.41-.76A5.15 5.15.0 0138 6.78a3.94 3.94.0 01-.83-2.41 3.7 3.7.0 01.45-1.85 4.47 4.47.0 011.19-1.37 5.27 5.27.0 011.7-.86A7.4 7.4.0 0142.6.0a8.87 8.87.0 011.12.07q.57.07 1.08.19t.95.26a4.27 4.27.0 01.7.29 1.59 1.59.0 01.49.41.94.94.0 01.15.55v.79q0 .52-.38.52a1.76 1.76.0 01-.64-.2 7.74 7.74.0 00-3.2-.64 4.37 4.37.0 00-2.21.47 1.6 1.6.0 00-.79 1.48 1.58 1.58.0 00.49 1.18 4.94 4.94.0 001.83.92L44.55 7a5.08 5.08.0 012.57 1.6A3.76 3.76.0 0147.9 11a4.21 4.21.0 01-.44 1.93 4.4 4.4.0 01-1.21 1.47 5.43 5.43.0 01-1.85.93A8.25 8.25.0 0142.05 15.62z"/><path class="cls-2" d="M45.19 23.81C39.72 27.85 31.78 30 25 30A36.64 36.64.0 01.22 20.57c-.51-.46-.06-1.09.56-.74A49.78 49.78.0 0025.53 26.4 49.23 49.23.0 0044.4 22.53C45.32 22.14 46.1 23.14 45.19 23.81z"/><path class="cls-2" d="M47.47 21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74 3.13-2.2 8.27-1.57 8.86-.83s-.16 5.89-3.09 8.35c-.45.38-.88.18-.68-.32C46.69 25.8 48.17 22.11 47.47 21.21z"/></svg></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/fcj-workshop-template/js/lunr.min.js?1785606600></script><script type=text/javascript src=/fcj-workshop-template/js/auto-complete.js?1785606600></script><script type=text/javascript>var baseurl="https://truongle205.github.io/fcj-workshop-template/"</script><script type=text/javascript src=/fcj-workshop-template/js/search.js?1785606600></script></div><div class=highlightable><ul class=topics><li data-nav-id=/fcj-workshop-template/1-worklog/ title=Worklog class=dd-item><a href=/fcj-workshop-template/1-worklog/><b>1. </b>Worklog
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/1-worklog/1.1-week1/ title="Week 1 Worklog" class=dd-item><a href=/fcj-workshop-template/1-worklog/1.1-week1/><b>1.1. </b>Week 1 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/1-worklog/1.2-week2/ title="Week 2 Worklog" class=dd-item><a href=/fcj-workshop-template/1-worklog/1.2-week2/><b>1.2. </b>Week 2 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/1-worklog/1.3-week3/ title="Week 3 Worklog" class=dd-item><a href=/fcj-workshop-template/1-worklog/1.3-week3/><b>1.3. </b>Week 3 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/1-worklog/1.4-week4/ title="Week 4 Worklog" class=dd-item><a href=/fcj-workshop-template/1-worklog/1.4-week4/><b>1.4. </b>Week 4 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/1-worklog/1.5-week5/ title="Week 5 Worklog" class=dd-item><a href=/fcj-workshop-template/1-worklog/1.5-week5/><b>1.5. </b>Week 5 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/1-worklog/1.6-week6/ title="Week 6 Worklog" class=dd-item><a href=/fcj-workshop-template/1-worklog/1.6-week6/><b>1.6. </b>Week 6 Worklog
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/1-worklog/1.7-week7/ title="Week 7 Worklog" class=dd-item><a href=/fcj-workshop-template/1-worklog/1.7-week7/><b>1.7. </b>Week 7 Worklog
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/2-proposal/ title=Proposal class=dd-item><a href=/fcj-workshop-template/2-proposal/><b>2. </b>Proposal
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/3-blogsposted/ title="Blogs Posted" class=dd-item><a href=/fcj-workshop-template/3-blogsposted/><b>3. </b>Blogs Posted
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/3-blogsposted/3.1-blog1/ title="Blog 1" class=dd-item><a href=/fcj-workshop-template/3-blogsposted/3.1-blog1/><b>3.1. </b>Blog 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/3-blogsposted/3.2-blog2/ title="Blog 2" class=dd-item><a href=/fcj-workshop-template/3-blogsposted/3.2-blog2/><b>3.2. </b>Blog 2
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/3-blogsposted/3.3-blog3/ title="Blog 3" class=dd-item><a href=/fcj-workshop-template/3-blogsposted/3.3-blog3/><b>3.3. </b>Blog 3
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/4-eventparticipated/ title="Events Participated" class=dd-item><a href=/fcj-workshop-template/4-eventparticipated/><b>4. </b>Events Participated
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/4-eventparticipated/4.1-event1/ title="Event 1" class=dd-item><a href=/fcj-workshop-template/4-eventparticipated/4.1-event1/><b>4.1. </b>Event 1
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/4-eventparticipated/4.2-event2/ title="Event 2" class=dd-item><a href=/fcj-workshop-template/4-eventparticipated/4.2-event2/><b>4.2. </b>Event 2
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/5-workshop/ title=Workshop class="dd-item
+parent"><a href=/fcj-workshop-template/5-workshop/><b>5. </b>Workshop
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/5-workshop/5.1-overview/ title=Overview class=dd-item><a href=/fcj-workshop-template/5-workshop/5.1-overview/><b>5.1 </b>Overview
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.2-architecture/ title=Architecture class=dd-item><a href=/fcj-workshop-template/5-workshop/5.2-architecture/><b>5.2 </b>Architecture
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.3-prerequisites/ title=Prerequisites class=dd-item><a href=/fcj-workshop-template/5-workshop/5.3-prerequisites/><b>5.3 </b>Prerequisites
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.4-aws-iot-configuration/ title="AWS IoT Configuration" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.4-aws-iot-configuration/><b>5.4 </b>AWS IoT Configuration
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/5-workshop/5.4-aws-iot-configuration/5.4.1-create-thing/ title="Create AWS IoT Thing" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.4-aws-iot-configuration/5.4.1-create-thing/><b>5.4.1 </b>Create AWS IoT Thing
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.4-aws-iot-configuration/5.4.2-create-certificate/ title="Generate Device Certificate" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.4-aws-iot-configuration/5.4.2-create-certificate/><b>5.4.2 </b>Generate Device Certificate
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.4-aws-iot-configuration/5.4.3-attach-policy/ title="Create and Attach AWS IoT Policy" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.4-aws-iot-configuration/5.4.3-attach-policy/><b>5.4.3 </b>Create and Attach AWS IoT Policy
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.4-aws-iot-configuration/5.4.4-mqtt-test-client/ title="Verify MQTT Communication" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.4-aws-iot-configuration/5.4.4-mqtt-test-client/><b>5.4.4 </b>Verify MQTT Communication
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.5-esp32-development/ title="ESP32 Development" class="dd-item
+parent"><a href=/fcj-workshop-template/5-workshop/5.5-esp32-development/><b>5.5 </b>ESP32 Development
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.1-platformio/ title="Create a PlatformIO Project" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.1-platformio/><b>5.5.1 </b>Create a PlatformIO Project
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.2-wifi/ title="Connect to Wi-Fi" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.2-wifi/><b>5.5.2 </b>Connect to Wi-Fi
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/ title="Connect to AWS IoT Core using MQTT over TLS" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/><b>5.5.3 </b>Connect to AWS IoT Core using MQTT over TLS
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.4-telemetry/ title="Publish Smart Home Telemetry" class="dd-item
+active"><a href=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.4-telemetry/><b>5.5.4 </b>Publish Smart Home Telemetry
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.5-relay-control/ title="Remote Relay Control" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.5-relay-control/><b>5.5.5 </b>Remote Relay Control
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.6-cloud-integration/ title="Cloud Integration" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.6-cloud-integration/><b>5.6 </b>Cloud Integration
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/fcj-workshop-template/5-workshop/5.6-cloud-integration/5.6.1-iot-rules/ title="Create AWS IoT Rules" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.6-cloud-integration/5.6.1-iot-rules/><b>5.6.1 </b>Create AWS IoT Rules
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.6-cloud-integration/5.6.2-dynamodb/ title="Store Telemetry in Amazon DynamoDB" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.6-cloud-integration/5.6.2-dynamodb/><b>5.6.2 </b>Store Telemetry in Amazon DynamoDB
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.6-cloud-integration/5.6.3-sns/ title="Configure Amazon SNS" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.6-cloud-integration/5.6.3-sns/><b>5.6.3 </b>Configure Amazon SNS
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.6-cloud-integration/5.6.4-email-notification/ title="Configure Email Notification" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.6-cloud-integration/5.6.4-email-notification/><b>5.6.4 </b>Configure Email Notification
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.7-testing/ title="System Testing" class=dd-item><a href=/fcj-workshop-template/5-workshop/5.7-testing/><b>5.7 </b>System Testing
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/5-workshop/5.8-cleanup/ title=Cleanup class=dd-item><a href=/fcj-workshop-template/5-workshop/5.8-cleanup/><b>5.8 </b>Cleanup
+<i class="fas fa-check read-icon"></i></a></li></ul></li><li data-nav-id=/fcj-workshop-template/6-self-evaluation/ title=Self-Assessment class=dd-item><a href=/fcj-workshop-template/6-self-evaluation/><b>6. </b>Self-Assessment
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/7-feedback/ title="Sharing and Feedback" class=dd-item><a href=/fcj-workshop-template/7-feedback/><b>7. </b>Sharing and Feedback
+<i class="fas fa-check read-icon"></i></a></li><li data-nav-id=/fcj-workshop-template/8-references/ title=References class=dd-item><a href=/fcj-workshop-template/8-references/><b>8. </b>References
+<i class="fas fa-check read-icon"></i></a></li></ul><section id=shortcuts><h3>More</h3><ul><li><a class=padding href=https://awsstudygroup.com><i class='fab fa-aws'></i> AWS Study Group - Blog</a></li><li><a class=padding href=https://www.facebook.com/groups/awsstudygroupfcj><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a></li></ul></section><section id=prefooter><hr><ul><li><a class=padding><i class="fas fa-language fa-fw"></i><div class=select-style><select id=select-language onchange="location=this.value"><option id=en value=https://truongle205.github.io/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.4-telemetry/ selected>English</option><option id=vi value=https://truongle205.github.io/fcj-workshop-template/vi/5-workshop/5.5-esp32-development/5.5.4-telemetry/>Tiếng Việt</option></select><svg id="Capa_1" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="255" viewBox="0 0 255 255" style="enable-background:new 0 0 255 255"><g><g id="arrow-drop-down"><polygon points="0,63.75 127.5,191.25 255,63.75"/></g></g></svg></div></a></li><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i> Clear History</a></li></ul></section><section id=footer><left><br><br><b>Last Updated</b><br><i><font color=orange>01-08-2026</font>
+</i></left><left><br><br><b>Team</b><br><i><a href=https://www.facebook.com/groups/660548818043427 style=color:orange>First Cloud AI Journey</a>
+</i></left><script async defer src=https://buttons.github.io/buttons.js></script></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i>
+</a></span><span id=toc-menu><i class="fas fa-list-alt"></i></span>
+<span class=links><a href=/fcj-workshop-template/>Internship Report</a> > <a href=/fcj-workshop-template/5-workshop/>Workshop</a> > <a href=/fcj-workshop-template/5-workshop/5.5-esp32-development/>ESP32 Development</a> > Publish Smart Home Telemetry</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><a href=#dht11-returns-invalid-data>DHT11 returns invalid data</a></li><li><a href=#telemetry-is-not-visible-in-aws>Telemetry is not visible in AWS</a></li><li><a href=#light-value-does-not-change>Light value does not change</a></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Publish Smart Home Telemetry</h1><div class="notices info"><p>In this section, the ESP32-S3 reads sensor values, creates a JSON telemetry payload, and publishes the message securely to AWS IoT Core.</p></div><h1 id=overview>Overview</h1><p>After establishing the MQTT connection, the ESP32-S3 can begin sending Smart Home telemetry to AWS IoT Core.</p><p>The firmware collects:</p><ul><li>Temperature.</li><li>Humidity.</li><li>Ambient light.</li><li>Door state.</li><li>Relay state.</li><li>Device timestamp.</li></ul><p>The collected values are placed into a JSON document and published to:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>smarthome/esp32-home-01/telemetry
+</span></span></code></pre></div><p>The telemetry workflow is implemented by three main components:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>sensors.cpp
+</span></span><span style=display:flex><span>     ↓
+</span></span><span style=display:flex><span>telemetry.cpp
+</span></span><span style=display:flex><span>     ↓
+</span></span><span style=display:flex><span>mqtt_manager.cpp
+</span></span><span style=display:flex><span>     ↓
+</span></span><span style=display:flex><span>AWS IoT Core
+</span></span></code></pre></div><hr><h1 id=objectives>Objectives</h1><p>After completing this section, you will be able to:</p><ul><li>Initialize the Smart Home sensors.</li><li>Read temperature and humidity from the DHT11.</li><li>Read an analog light value from the LDR.</li><li>Read the digital door sensor state.</li><li>Read the current relay state.</li><li>Create a telemetry message using ArduinoJson.</li><li>Publish the JSON payload to AWS IoT Core.</li><li>Handle invalid sensor readings.</li></ul><hr><h1 id=estimated-time>Estimated Time</h1><p><strong>Approximately 10–15 minutes</strong></p><hr><h1 id=step-1--define-the-sensor-data-structure>Step 1 – Define the Sensor Data Structure</h1><p>The project uses a structure named <code>SensorData</code> to group the values returned by the sensor module.</p><p>File:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>include/sensors.h
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>#pragma once
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>SensorData</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> temperature;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> humidity;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>int</span> light;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>bool</span> doorOpen;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>bool</span> dhtValid;
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initSensors</span>();
+</span></span><span style=display:flex><span>SensorData <span style=color:#a6e22e>readSensors</span>();
+</span></span></code></pre></div><p>Using a structure keeps sensor-related values together and makes it easier to pass the complete measurement result to the telemetry module.</p><table><thead><tr><th style=text-align:left>Field</th><th style=text-align:left>Type</th><th style=text-align:left>Description</th></tr></thead><tbody><tr><td style=text-align:left><code>temperature</code></td><td style=text-align:left><code>float</code></td><td style=text-align:left>Temperature measured by the DHT11.</td></tr><tr><td style=text-align:left><code>humidity</code></td><td style=text-align:left><code>float</code></td><td style=text-align:left>Relative humidity measured by the DHT11.</td></tr><tr><td style=text-align:left><code>light</code></td><td style=text-align:left><code>int</code></td><td style=text-align:left>Analog value read from the LDR.</td></tr><tr><td style=text-align:left><code>doorOpen</code></td><td style=text-align:left><code>bool</code></td><td style=text-align:left>Current door state.</td></tr><tr><td style=text-align:left><code>dhtValid</code></td><td style=text-align:left><code>bool</code></td><td style=text-align:left>Indicates whether the DHT11 values are valid.</td></tr></tbody></table><hr><h1 id=step-2--configure-sensor-pins>Step 2 – Configure Sensor Pins</h1><p>The project defines sensor pins in <code>include/config.h</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> LDR_PIN <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> DHT_PIN <span style=color:#f92672>=</span> <span style=color:#ae81ff>4</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> DHT_TYPE <span style=color:#f92672>=</span> <span style=color:#ae81ff>11</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> DOOR_SENSOR_PIN <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>constexpr</span> <span style=color:#66d9ef>uint8_t</span> RELAY_PIN <span style=color:#f92672>=</span> <span style=color:#ae81ff>5</span>;
+</span></span></code></pre></div><p>The actual pin numbers may be changed to match the selected ESP32-S3 board and wiring configuration.</p><div class="notices warning"><p>Verify the pinout of the selected ESP32-S3 board before connecting sensors. Some pins may be reserved for flash, PSRAM, USB, or other board functions.</p></div><hr><h1 id=step-3--initialize-the-sensors>Step 3 – Initialize the Sensors</h1><p>The sensor initialization logic is implemented in <code>src/sensors.cpp</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>namespace</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>DHT <span style=color:#a6e22e>dht</span>(DHT_PIN, DHT11);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>initSensors</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    dht.begin();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    pinMode(
+</span></span><span style=display:flex><span>        DOOR_SENSOR_PIN,
+</span></span><span style=display:flex><span>        INPUT_PULLUP
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.println(<span style=color:#e6db74>&#34;DHT11 initialized&#34;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    analogReadResolution(<span style=color:#ae81ff>12</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>The initialization performs the following operations:</p><table><thead><tr><th style=text-align:left>Code</th><th style=text-align:left>Purpose</th></tr></thead><tbody><tr><td style=text-align:left><code>dht.begin()</code></td><td style=text-align:left>Starts communication with the DHT11 sensor.</td></tr><tr><td style=text-align:left><code>INPUT_PULLUP</code></td><td style=text-align:left>Enables the internal pull-up resistor for the door input.</td></tr><tr><td style=text-align:left><code>analogReadResolution(12)</code></td><td style=text-align:left>Configures the ESP32 ADC for 12-bit readings.</td></tr></tbody></table><p>With 12-bit ADC resolution, the LDR reading normally ranges from:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>0 to 4095
+</span></span></code></pre></div><hr><h1 id=step-4--read-sensor-values>Step 4 – Read Sensor Values</h1><p>The <code>readSensors()</code> function collects all measurements.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>SensorData <span style=color:#a6e22e>readSensors</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    SensorData data {};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    data.temperature <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        dht.readTemperature();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    data.humidity <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        dht.readHumidity();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    data.light <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        analogRead(LDR_PIN);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    data.doorOpen <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        digitalRead(DOOR_SENSOR_PIN) <span style=color:#f92672>==</span> HIGH;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    data.dhtValid <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>!</span>isnan(data.temperature) <span style=color:#f92672>&amp;&amp;</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>!</span>isnan(data.humidity);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> data;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>The function performs four main readings:</p><ol><li>Temperature from the DHT11.</li><li>Humidity from the DHT11.</li><li>Light level from the ADC.</li><li>Door state from the digital input.</li></ol><hr><h1 id=step-5--validate-dht11-data>Step 5 – Validate DHT11 Data</h1><p>The DHT11 library returns <code>NaN</code> when a sensor reading fails.</p><p>The project checks both values:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>data.dhtValid <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>!</span>isnan(data.temperature) <span style=color:#f92672>&amp;&amp;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>!</span>isnan(data.humidity);
+</span></span></code></pre></div><p>This validation prevents invalid floating-point data from being treated as a valid temperature or humidity measurement.</p><p>The project also prints sensor values to the Serial Monitor:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Temperature: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(data.temperature);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Humidity: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(data.humidity);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Light: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(data.light);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.print(<span style=color:#e6db74>&#34;Door: &#34;</span>);
+</span></span><span style=display:flex><span>Serial.println(
+</span></span><span style=display:flex><span>    data.doorOpen <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;OPEN&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;CLOSED&#34;</span>
+</span></span><span style=display:flex><span>);
+</span></span></code></pre></div><p>Example output:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Temperature: 29.40
+</span></span><span style=display:flex><span>Humidity: 71.00
+</span></span><span style=display:flex><span>Light: 870
+</span></span><span style=display:flex><span>Door: CLOSED
+</span></span></code></pre></div><hr><h1 id=step-6--create-the-json-telemetry-document>Step 6 – Create the JSON Telemetry Document</h1><p>The telemetry publishing logic is implemented in:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>src/telemetry.cpp
+</span></span></code></pre></div><p>The function first retrieves the current sensor values:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>publishTelemetry</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    SensorData sensorData <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        readSensors();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    JsonDocument document;
+</span></span></code></pre></div><p>The device identifier and Unix timestamp are then added:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>document[<span style=color:#e6db74>&#34;device_id&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    AWS_THING_NAME;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>document[<span style=color:#e6db74>&#34;timestamp&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static_cast</span><span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int64_t</span><span style=color:#f92672>&gt;</span>(time(<span style=color:#66d9ef>nullptr</span>));
+</span></span></code></pre></div><p>The timestamp is generated from the system time synchronized through NTP in the previous section.</p><hr><h1 id=step-7--add-sensor-and-device-state>Step 7 – Add Sensor and Device State</h1><p>The firmware records whether the DHT11 reading is valid:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>document[<span style=color:#e6db74>&#34;dht_valid&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    sensorData.dhtValid;
+</span></span></code></pre></div><p>When the reading is valid:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (sensorData.dhtValid)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    document[<span style=color:#e6db74>&#34;temperature&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        sensorData.temperature;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    document[<span style=color:#e6db74>&#34;humidity&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        sensorData.humidity;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>When the DHT11 reading fails, the payload uses JSON <code>null</code> values:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>else</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Serial.println(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Telemetry warning: invalid DHT11 data&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    document[<span style=color:#e6db74>&#34;temperature&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>nullptr</span>;
+</span></span><span style=display:flex><span>    document[<span style=color:#e6db74>&#34;humidity&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#66d9ef>nullptr</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>The remaining values are added independently:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>document[<span style=color:#e6db74>&#34;light&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    sensorData.light;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>document[<span style=color:#e6db74>&#34;door_open&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    sensorData.doorOpen;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>document[<span style=color:#e6db74>&#34;relay_on&#34;</span>] <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>    isRelayOn();
+</span></span></code></pre></div><p>The use of <code>null</code> prevents invalid DHT11 values from being stored as real measurements.</p><hr><h1 id=step-8--serialize-the-json-payload>Step 8 – Serialize the JSON Payload</h1><p>The JSON document is serialized into a fixed-size character buffer:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>char</span> payload[<span style=color:#ae81ff>320</span>];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>size_t length <span style=color:#f92672>=</span> serializeJson(
+</span></span><span style=display:flex><span>    document,
+</span></span><span style=display:flex><span>    payload,
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>sizeof</span>(payload)
+</span></span><span style=display:flex><span>);
+</span></span></code></pre></div><p>The code checks that serialization succeeded:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (length <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Serial.println(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;JSON serialization failed&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>A fixed buffer avoids dynamic string allocation during every telemetry cycle.</p><hr><h1 id=step-9--publish-the-telemetry-message>Step 9 – Publish the Telemetry Message</h1><p>Before publishing, the payload is printed to the Serial Monitor:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span>Serial.print(
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;Publishing telemetry: &#34;</span>
+</span></span><span style=display:flex><span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Serial.println(payload);
+</span></span></code></pre></div><p>The message is then published through the shared MQTT manager:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>publishMessage(
+</span></span><span style=display:flex><span>        AWS_TOPIC_TELEMETRY,
+</span></span><span style=display:flex><span>        payload
+</span></span><span style=display:flex><span>    ))
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    Serial.println(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Telemetry publish failed&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>The <code>publishMessage()</code> function first verifies that MQTT is connected:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>publishMessage</span>(
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>topic,
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>payload
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span>mqttClient.connected())
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        Serial.println(
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;MQTT is not connected&#34;</span>
+</span></span><span style=display:flex><span>        );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> false;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>bool</span> success <span style=color:#f92672>=</span>
+</span></span><span style=display:flex><span>        mqttClient.publish(topic, payload);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> success;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>This separation keeps the telemetry module independent from the internal MQTT client implementation.</p><hr><h1 id=step-10--publish-periodically>Step 10 – Publish Periodically</h1><p>The project publishes telemetry periodically from <code>main.cpp</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#66d9ef>if</span> (
+</span></span><span style=display:flex><span>    now <span style=color:#f92672>-</span> lastTelemetryTime <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>10000</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    lastTelemetryTime <span style=color:#f92672>=</span> now;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    Serial.println(
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;Publishing telemetry...&#34;</span>
+</span></span><span style=display:flex><span>    );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    publishTelemetry();
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>The current interval is:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>10 seconds
+</span></span></code></pre></div><p>Using <code>millis()</code> avoids blocking the MQTT loop for long periods.</p><hr><h1 id=example-telemetry-payload>Example Telemetry Payload</h1><p>When all sensors are available, the message may look like:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;device_id&#34;</span>: <span style=color:#e6db74>&#34;esp32-home-01&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;timestamp&#34;</span>: <span style=color:#ae81ff>1784900000</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dht_valid&#34;</span>: <span style=color:#66d9ef>true</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;temperature&#34;</span>: <span style=color:#ae81ff>29.4</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;humidity&#34;</span>: <span style=color:#ae81ff>71</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;light&#34;</span>: <span style=color:#ae81ff>870</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;door_open&#34;</span>: <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;relay_on&#34;</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>When the DHT11 reading is invalid:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;device_id&#34;</span>: <span style=color:#e6db74>&#34;esp32-home-01&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;timestamp&#34;</span>: <span style=color:#ae81ff>1784900000</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dht_valid&#34;</span>: <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;temperature&#34;</span>: <span style=color:#66d9ef>null</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;humidity&#34;</span>: <span style=color:#66d9ef>null</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;light&#34;</span>: <span style=color:#ae81ff>870</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;door_open&#34;</span>: <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;relay_on&#34;</span>: <span style=color:#66d9ef>false</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><hr><h1 id=step-11--upload-and-monitor>Step 11 – Upload and Monitor</h1><p>Build and upload the firmware:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pio run -t upload
+</span></span></code></pre></div><p>Open the Serial Monitor:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pio device monitor
+</span></span></code></pre></div><p>Expected Serial output:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Publishing telemetry...
+</span></span><span style=display:flex><span>Temperature: 29.40
+</span></span><span style=display:flex><span>Humidity: 71.00
+</span></span><span style=display:flex><span>Light: 870
+</span></span><span style=display:flex><span>Door: CLOSED
+</span></span><span style=display:flex><span>Publishing telemetry: {&#34;device_id&#34;:&#34;esp32-home-01&#34;,...}
+</span></span><span style=display:flex><span>Published: {&#34;device_id&#34;:&#34;esp32-home-01&#34;,...}
+</span></span></code></pre></div><p><img alt="Telemetry published by ESP32-S3" src=/images/workshop/5.5.4/telemetry-published.png></p><hr><h1 id=step-12--verify-telemetry-in-aws-iot-core>Step 12 – Verify Telemetry in AWS IoT Core</h1><p>Open:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>AWS IoT Core
+</span></span><span style=display:flex><span>→ Test
+</span></span><span style=display:flex><span>→ MQTT test client
+</span></span></code></pre></div><p>Subscribe to:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>smarthome/esp32-home-01/telemetry
+</span></span></code></pre></div><p>The telemetry message published by the ESP32-S3 should appear in the MQTT Test Client.</p><p><img alt="Telemetry received in AWS IoT Core" src=/images/workshop/5.5.4/telemetry-received.png></p><p>This verifies the complete path:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>Sensors
+</span></span><span style=display:flex><span>   ↓
+</span></span><span style=display:flex><span>ESP32-S3
+</span></span><span style=display:flex><span>   ↓
+</span></span><span style=display:flex><span>JSON serialization
+</span></span><span style=display:flex><span>   ↓
+</span></span><span style=display:flex><span>MQTT over TLS
+</span></span><span style=display:flex><span>   ↓
+</span></span><span style=display:flex><span>AWS IoT Core
+</span></span></code></pre></div><hr><h1 id=troubleshooting>Troubleshooting</h1><h2 id=dht11-returns-invalid-data>DHT11 returns invalid data</h2><p>Possible causes:</p><ul><li>Sensor is not connected.</li><li>Incorrect GPIO pin.</li><li>Data line has no pull-up resistor.</li><li>Sensor is read too frequently.</li><li>Power supply is unstable.</li></ul><p>The telemetry module continues publishing other values and sets temperature and humidity to <code>null</code>.</p><hr><h2 id=telemetry-is-not-visible-in-aws>Telemetry is not visible in AWS</h2><p>Verify:</p><ul><li>MQTT connection is active.</li><li>The telemetry topic matches exactly.</li><li>AWS IoT Policy allows <code>iot:Publish</code>.</li><li>The MQTT Test Client subscribes to the correct topic.</li><li>The payload size is smaller than the MQTT buffer.</li></ul><hr><h2 id=light-value-does-not-change>Light value does not change</h2><p>Verify:</p><ul><li>The LDR is connected to an ADC-capable pin.</li><li>The voltage divider is wired correctly.</li><li>The analog pin is not used by another board function.</li></ul><hr><h1 id=expected-result>Expected Result</h1><p>After completing this section:</p><ul><li>All sensor values are read by the ESP32-S3.</li><li>A JSON telemetry message is created.</li><li>Invalid DHT11 readings are represented safely.</li><li>Telemetry is published periodically.</li><li>AWS IoT Core receives the telemetry message.</li><li>Relay and door states are included in every payload.</li></ul><div class="notices tip"><p>The next section adds bidirectional communication by allowing AWS IoT Core to send commands to the ESP32-S3 and control the relay remotely.</p></div><p><strong>Next:</strong> <a href=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.5-relay-control/>5.5.5 Remote Relay Control</a></p><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.3-mqtt-tls/ title="Connect to AWS IoT Core using MQTT over TLS"><i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/fcj-workshop-template/5-workshop/5.5-esp32-development/5.5.5-relay-control/ title="Remote Relay Control" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/fcj-workshop-template/js/clipboard.min.js?1785606600></script><script src=/fcj-workshop-template/js/perfect-scrollbar.min.js?1785606600></script><script src=/fcj-workshop-template/js/perfect-scrollbar.jquery.min.js?1785606600></script><script src=/fcj-workshop-template/js/jquery.sticky.js?1785606600></script><script src=/fcj-workshop-template/js/featherlight.min.js?1785606600></script><script src=/fcj-workshop-template/js/highlight.pack.js?1785606600></script><script>hljs.initHighlightingOnLoad()</script><script src=/fcj-workshop-template/js/modernizr.custom-3.6.0.js?1785606600></script><script src=/fcj-workshop-template/js/learn.js?1785606600></script><script src=/fcj-workshop-template/js/hugo-learn.js?1785606600></script><link href=/fcj-workshop-template/mermaid/mermaid.css?1785606600 rel=stylesheet><script src=/fcj-workshop-template/mermaid/mermaid.js?1785606600></script><script>mermaid.initialize({startOnLoad:!0})</script><script>(function(e,t,n,s,o,i,a){e.GoogleAnalyticsObject=o,(e[o]=e[o]||function(){(e[o].q=e[o].q||[]).push(arguments)},e[o].l=1*new Date),(i=t.createElement(n),a=t.getElementsByTagName(n)[0]),i.async=1,i.src=s,a.parentNode.insertBefore(i,a)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-158079754-2","auto"),ga("send","pageview")</script></body></html>
