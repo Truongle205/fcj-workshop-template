@@ -87,7 +87,7 @@ Message routing
 
 Trang Rules hiển thị toàn bộ AWS IoT Rule đã cấu hình.
 
-![Trang quản lý AWS IoT Rule](/images/workshop/5.6.1/iot-rules-dashboard.png)
+![Trang quản lý AWS IoT Rule](/fcj-workshop-template/images/workshop/5.6.1/iot-rules-dashboard.png)
 
 Chọn **Create rule**.
 
@@ -163,7 +163,7 @@ Cấu hình action để sử dụng telemetry table của hệ thống.
 
 Phần cấu hình DynamoDB chi tiết sẽ được trình bày trong mục tiếp theo.
 
-![Telemetry Rule lưu dữ liệu](/images/workshop/5.6.1/telemetry-rule.png)
+![Telemetry Rule lưu dữ liệu](/fcj-workshop-template/images/workshop/5.6.1/telemetry-rule.png)
 
 ---
 
@@ -305,7 +305,7 @@ Ví dụ resource:
 arn:aws:sns:us-east-1:ACCOUNT_ID:SmartHomeDoorAlert
 ```
 
-![Door Alert Rule](/images/workshop/5.6.1/door-alert-rule.png)
+![Door Alert Rule](/fcj-workshop-template/images/workshop/5.6.1/door-alert-rule.png)
 
 ---
 

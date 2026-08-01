@@ -51,7 +51,7 @@ AWS automatically creates:
 - Public Key
 - Private Key
 
-![](/images/workshop/5.4.2/create-certificate.png)
+![](/fcj-workshop-template/images/workshop/5.4.2/create-certificate.png)
 
 Click **Create Thing** to continue.
 
@@ -63,7 +63,7 @@ After the creation process completes successfully, AWS displays the generated ce
 
 The certificate status should initially appear as **Inactive** until it is activated.
 
-![](/images/workshop/5.4.2/certificate-generated.png)
+![](/fcj-workshop-template/images/workshop/5.4.2/certificate-generated.png)
 
 ---
 
@@ -76,7 +76,7 @@ Download and securely store the following files:
 - Public Key (`public.pem.key`)
 - Amazon Root CA 1 (`AmazonRootCA1.pem`)
 
-![](/images/workshop/5.4.2/download-certificates.png)
+![](/fcj-workshop-template/images/workshop/5.4.2/download-certificates.png)
 
 {{% notice warning %}}
 The private key is only available for download once. If it is lost, a new certificate must be generated.
@@ -90,7 +90,7 @@ Activate the certificate by changing its status to **Active**.
 
 Only active certificates are allowed to authenticate with AWS IoT Core.
 
-![](/images/workshop/5.4.2/activate-certificate.png)
+![](/fcj-workshop-template/images/workshop/5.4.2/activate-certificate.png)
 
 ---
 

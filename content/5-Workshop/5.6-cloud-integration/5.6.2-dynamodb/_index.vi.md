@@ -158,7 +158,7 @@ Amazon DynamoDB
 
 Kết quả:
 
-![](/images/workshop/5.6.2/dynamodb-items.png)
+![](/fcj-workshop-template/images/workshop/5.6.2/dynamodb-items.png)
 
 Mỗi telemetry message tương ứng với một Item trong bảng.
 

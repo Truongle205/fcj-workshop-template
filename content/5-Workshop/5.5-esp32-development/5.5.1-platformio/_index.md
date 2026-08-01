@@ -58,7 +58,7 @@ Create a new PlatformIO project with the following configuration.
 
 Click **Finish** and wait for PlatformIO to generate the project.
 
-![](/images/workshop/5.5.1/platformio-project.png)
+![](/fcj-workshop-template/images/workshop/5.5.1/platformio-project.png)
 
 ---
 

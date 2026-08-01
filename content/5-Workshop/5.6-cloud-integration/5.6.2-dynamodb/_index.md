@@ -219,7 +219,7 @@ You should see records similar to:
 | esp32-home-01 | 1784900010 | 29.5 |
 | esp32-home-01 | 1784900020 | 29.4 |
 
-![](/images/workshop/5.6.2/dynamodb-items.png)
+![](/fcj-workshop-template/images/workshop/5.6.2/dynamodb-items.png)
 
 Each telemetry message becomes one DynamoDB item.
 

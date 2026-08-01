@@ -49,7 +49,7 @@ Test
 MQTT test client
 ```
 
-![](/images/workshop/5.4.4/mqtt-test-client.png)
+![](/fcj-workshop-template/images/workshop/5.4.4/mqtt-test-client.png)
 
 ---
 

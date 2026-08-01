@@ -89,7 +89,7 @@ Message routing
 
 The Rules page displays all configured AWS IoT Rules.
 
-![AWS IoT Rules dashboard](/images/workshop/5.6.1/iot-rules-dashboard.png)
+![AWS IoT Rules dashboard](/fcj-workshop-template/images/workshop/5.6.1/iot-rules-dashboard.png)
 
 Choose **Create rule**.
 
@@ -165,7 +165,7 @@ Configure the action using the DynamoDB table created for telemetry storage.
 
 The exact action configuration is completed in the next section.
 
-![Telemetry storage rule](/images/workshop/5.6.1/telemetry-rule.png)
+![Telemetry storage rule](/fcj-workshop-template/images/workshop/5.6.1/telemetry-rule.png)
 
 ---
 
@@ -307,7 +307,7 @@ Example resource:
 arn:aws:sns:us-east-1:ACCOUNT_ID:SmartHomeDoorAlert
 ```
 
-![Door alert rule](/images/workshop/5.6.1/door-alert-rule.png)
+![Door alert rule](/fcj-workshop-template/images/workshop/5.6.1/door-alert-rule.png)
 
 ---
 

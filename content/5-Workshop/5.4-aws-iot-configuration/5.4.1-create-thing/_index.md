@@ -45,7 +45,7 @@ Sign in to the AWS Management Console.
 
 From the AWS Console home page, search for **IoT Core**.
 
-![AWS Console](/images/workshop/5.4.1/aws-console-home.png)
+![AWS Console](/fcj-workshop-template/images/workshop/5.4.1/aws-console-home.png)
 
 Open the AWS IoT Core service.
 
@@ -57,7 +57,7 @@ After opening AWS IoT Core, select **Manage** from the left navigation pane.
 
 Choose **All devices** → **Things**.
 
-![IoT Dashboard](/images/workshop/5.4.1/iot-core-dashboard.png)
+![IoT Dashboard](/fcj-workshop-template/images/workshop/5.4.1/iot-core-dashboard.png)
 
 Click **Create Thing**.
 
@@ -71,7 +71,7 @@ Choose:
 
 Click **Next**.
 
-![Create Thing](/images/workshop/5.4.1/create-thing.png)
+![Create Thing](/fcj-workshop-template/images/workshop/5.4.1/create-thing.png)
 
 ---
 
@@ -87,7 +87,7 @@ esp32-home-01
 
 Leave all remaining settings as default.
 
-![Thing Name](/images/workshop/5.4.1/thing-name.png)
+![Thing Name](/fcj-workshop-template/images/workshop/5.4.1/thing-name.png)
 
 Click **Next**.
 
@@ -109,7 +109,7 @@ AWS will automatically create:
 
 Click **Create Thing**.
 
-![Create Certificate](/images/workshop/5.4.1/create-certificate.png)
+![Create Certificate](/fcj-workshop-template/images/workshop/5.4.1/create-certificate.png)
 
 ---
 
@@ -126,7 +126,7 @@ Download the following files.
 
 These files will later be copied into the PlatformIO project.
 
-![Download Certificates](/images/workshop/5.4.1/download-certificates.png)
+![Download Certificates](/fcj-workshop-template/images/workshop/5.4.1/download-certificates.png)
 
 {{% notice warning %}}
 The private key can only be downloaded once. Store it securely before leaving this page.
@@ -144,7 +144,7 @@ Verify that the certificate status changes to:
 Active
 ```
 
-![Activate Certificate](/images/workshop/5.4.1/activate-certificate.png)
+![Activate Certificate](/fcj-workshop-template/images/workshop/5.4.1/activate-certificate.png)
 
 ---
 
@@ -152,7 +152,7 @@ Active
 
 Attach the certificate to the newly created Thing.
 
-![Attach Thing](/images/workshop/5.4.1/attach-thing.png)
+![Attach Thing](/fcj-workshop-template/images/workshop/5.4.1/attach-thing.png)
 
 After the attachment is complete, the certificate becomes associated with the ESP32-S3 device.
 
@@ -168,7 +168,7 @@ Verify that:
 - Certificate is attached.
 - Certificate status is **Active**.
 
-![Thing Summary](/images/workshop/5.4.1/thing-summary.png)
+![Thing Summary](/fcj-workshop-template/images/workshop/5.4.1/thing-summary.png)
 
 ---
 

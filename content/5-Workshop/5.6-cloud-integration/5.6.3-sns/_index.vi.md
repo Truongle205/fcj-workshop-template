@@ -166,7 +166,7 @@ Kiểm tra:
 - Region.
 - Số lượng subscription.
 
-![Amazon SNS Topic](/images/workshop/5.6.3/sns-topic.png)
+![Amazon SNS Topic](/fcj-workshop-template/images/workshop/5.6.3/sns-topic.png)
 
 Topic ARN có cấu trúc:
 

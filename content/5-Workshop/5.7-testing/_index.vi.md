@@ -250,9 +250,9 @@ Xác nhận:
 Có thể tái sử dụng ảnh:
 
 ```md
-![ESP32-S3 gửi telemetry](/images/workshop/5.5.4/telemetry-published.png)
+![ESP32-S3 gửi telemetry](/fcj-workshop-template/images/workshop/5.5.4/telemetry-published.png)
 
-![AWS IoT Core nhận telemetry](/images/workshop/5.5.4/telemetry-received.png)
+![AWS IoT Core nhận telemetry](/fcj-workshop-template/images/workshop/5.5.4/telemetry-received.png)
 ```
 
 ---
@@ -276,7 +276,7 @@ Xác nhận:
 - Sensor field khớp MQTT payload.
 - Door và relay state được lưu đúng.
 
-![Telemetry trong Amazon DynamoDB](/images/workshop/5.6.2/dynamodb-items.png)
+![Telemetry trong Amazon DynamoDB](/fcj-workshop-template/images/workshop/5.6.2/dynamodb-items.png)
 
 Luồng mong đợi:
 
@@ -311,7 +311,7 @@ Xác nhận:
 - Email Subscriber nhận email.
 - Email chứa dữ liệu mong đợi.
 
-![Email cảnh báo mở cửa](/images/workshop/5.6.4/sns-email-notification.png)
+![Email cảnh báo mở cửa](/fcj-workshop-template/images/workshop/5.6.4/sns-email-notification.png)
 
 Sau đó publish:
 
@@ -383,9 +383,9 @@ Xác nhận:
 Có thể dùng lại ảnh:
 
 ```md
-![Publish command điều khiển relay](/images/workshop/5.5.5/publish-relay-command.png)
+![Publish command điều khiển relay](/fcj-workshop-template/images/workshop/5.5.5/publish-relay-command.png)
 
-![ESP32-S3 nhận command](/images/workshop/5.5.5/relay-command-received.png)
+![ESP32-S3 nhận command](/fcj-workshop-template/images/workshop/5.5.5/relay-command-received.png)
 ```
 
 ---

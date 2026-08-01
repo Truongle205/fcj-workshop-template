@@ -51,7 +51,7 @@ MQTT test client
 
 The MQTT Test Client provides an interactive interface for testing MQTT communication.
 
-![](/images/workshop/5.4.4/mqtt-test-client.png)
+![](/fcj-workshop-template/images/workshop/5.4.4/mqtt-test-client.png)
 
 ---
 

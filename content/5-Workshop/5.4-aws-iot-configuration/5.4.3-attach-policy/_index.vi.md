@@ -96,7 +96,7 @@ Quay trở lại Device Certificate đã tạo ở mục trước.
 
 Chọn **Attach Policy**.
 
-![](/images/workshop/5.4.3/attach-iot-policy.png)
+![](/fcj-workshop-template/images/workshop/5.4.3/attach-iot-policy.png)
 
 Chọn Policy vừa tạo và xác nhận.
 

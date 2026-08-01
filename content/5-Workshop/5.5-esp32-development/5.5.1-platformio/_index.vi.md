@@ -58,7 +58,7 @@ Tạo một dự án PlatformIO với các thông số sau.
 
 Sau đó nhấn **Finish** và chờ PlatformIO tạo dự án.
 
-![](/images/workshop/5.5.1/platformio-project.png)
+![](/fcj-workshop-template/images/workshop/5.5.1/platformio-project.png)
 
 ---
 

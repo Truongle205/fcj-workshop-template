@@ -294,7 +294,7 @@ Ví dụ:
 }
 ```
 
-![Email cảnh báo mở cửa](/images/workshop/5.6.4/sns-email-notification.png)
+![Email cảnh báo mở cửa](/fcj-workshop-template/images/workshop/5.6.4/sns-email-notification.png)
 
 Email này xác nhận toàn bộ luồng cảnh báo Smart Home đã hoạt động thành công.
 

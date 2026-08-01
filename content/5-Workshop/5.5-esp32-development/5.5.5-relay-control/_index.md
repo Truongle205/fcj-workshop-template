@@ -593,7 +593,7 @@ To turn it off, publish:
 OFF
 ```
 
-![Publish relay command from AWS IoT Core](/images/workshop/5.5.5/publish-relay-command.png)
+![Publish relay command from AWS IoT Core](/fcj-workshop-template/images/workshop/5.5.5/publish-relay-command.png)
 
 {{% notice note %}}
 The current firmware expects a plain text command, not a JSON payload, on the direct command topic.
@@ -632,7 +632,7 @@ Shadow reported payload:
 Shadow publish result: SUCCESS
 ```
 
-![ESP32-S3 receives relay command](/images/workshop/5.5.5/relay-command-received.png)
+![ESP32-S3 receives relay command](/fcj-workshop-template/images/workshop/5.5.5/relay-command-received.png)
 
 ---
 

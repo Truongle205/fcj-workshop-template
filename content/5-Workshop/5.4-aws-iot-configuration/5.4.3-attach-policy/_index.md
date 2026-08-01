@@ -98,7 +98,7 @@ Return to the certificate created in the previous section.
 
 Choose **Attach Policy**.
 
-![](/images/workshop/5.4.3/attach-iot-policy.png)
+![](/fcj-workshop-template/images/workshop/5.4.3/attach-iot-policy.png)
 
 Select the newly created policy and confirm the attachment.
 

@@ -253,9 +253,9 @@ Verify:
 The existing telemetry screenshots may be reused here:
 
 ```md
-![ESP32-S3 publishes telemetry](/images/workshop/5.5.4/telemetry-published.png)
+![ESP32-S3 publishes telemetry](/fcj-workshop-template/images/workshop/5.5.4/telemetry-published.png)
 
-![AWS IoT Core receives telemetry](/images/workshop/5.5.4/telemetry-received.png)
+![AWS IoT Core receives telemetry](/fcj-workshop-template/images/workshop/5.5.4/telemetry-received.png)
 ```
 
 ---
@@ -281,7 +281,7 @@ Verify:
 - Sensor fields match the MQTT payload.
 - Door and relay states are stored correctly.
 
-![Telemetry records in Amazon DynamoDB](/images/workshop/5.6.2/dynamodb-items.png)
+![Telemetry records in Amazon DynamoDB](/fcj-workshop-template/images/workshop/5.6.2/dynamodb-items.png)
 
 The expected path is:
 
@@ -316,7 +316,7 @@ Verify:
 - The confirmed subscriber receives an email.
 - The email contains the expected telemetry information.
 
-![Door-open email notification](/images/workshop/5.6.4/sns-email-notification.png)
+![Door-open email notification](/fcj-workshop-template/images/workshop/5.6.4/sns-email-notification.png)
 
 Then publish:
 
@@ -388,9 +388,9 @@ Verify:
 The existing command screenshots may be reused:
 
 ```md
-![Publish a relay command](/images/workshop/5.5.5/publish-relay-command.png)
+![Publish a relay command](/fcj-workshop-template/images/workshop/5.5.5/publish-relay-command.png)
 
-![ESP32-S3 receives the relay command](/images/workshop/5.5.5/relay-command-received.png)
+![ESP32-S3 receives the relay command](/fcj-workshop-template/images/workshop/5.5.5/relay-command-received.png)
 ```
 
 ---

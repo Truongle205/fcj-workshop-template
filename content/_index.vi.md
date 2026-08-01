@@ -39,7 +39,7 @@ Báo cáo này tổng hợp toàn bộ quá trình thực tập, các công vi�
 
 &emsp; **Thời gian thực tập:** Từ **08/06/2026** đến **31/07/2026**
 
-![Ảnh đại diện](/images/avatar.png)
+![Ảnh đại diện](/fcj-workshop-template/images/avatar.png)
 
 ---
 

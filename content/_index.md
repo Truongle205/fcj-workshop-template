@@ -39,7 +39,7 @@ This internship report summarizes the activities, technical work, workshop imple
 
 &emsp; **Internship Duration:** From **08/06/2026** to **31/07/2026**
 
-![Profile Picture](/images/avatar.png)
+![Profile Picture](/fcj-workshop-template/images/avatar.png)
 
 ---
 

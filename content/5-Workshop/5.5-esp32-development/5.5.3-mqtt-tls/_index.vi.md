@@ -447,7 +447,7 @@ MQTT connected successfully
 System ready
 ```
 
-![ESP32-S3 kết nối MQTT over TLS](/images/workshop/5.5.3/mqtt-tls-connected.png)
+![ESP32-S3 kết nối MQTT over TLS](/fcj-workshop-template/images/workshop/5.5.3/mqtt-tls-connected.png)
 
 ---
 

@@ -504,7 +504,7 @@ Publishing telemetry: {"device_id":"esp32-home-01",...}
 Published: {"device_id":"esp32-home-01",...}
 ```
 
-![Telemetry published by ESP32-S3](/images/workshop/5.5.4/telemetry-published.png)
+![Telemetry published by ESP32-S3](/fcj-workshop-template/images/workshop/5.5.4/telemetry-published.png)
 
 ---
 
@@ -526,7 +526,7 @@ smarthome/esp32-home-01/telemetry
 
 The telemetry message published by the ESP32-S3 should appear in the MQTT Test Client.
 
-![Telemetry received in AWS IoT Core](/images/workshop/5.5.4/telemetry-received.png)
+![Telemetry received in AWS IoT Core](/fcj-workshop-template/images/workshop/5.5.4/telemetry-received.png)
 
 This verifies the complete path:
 

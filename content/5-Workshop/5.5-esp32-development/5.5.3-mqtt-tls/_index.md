@@ -447,7 +447,7 @@ MQTT connected successfully
 System ready
 ```
 
-![MQTT over TLS connected](/images/workshop/5.5.3/mqtt-tls-connected.png)
+![MQTT over TLS connected](/fcj-workshop-template/images/workshop/5.5.3/mqtt-tls-connected.png)
 
 ---
 

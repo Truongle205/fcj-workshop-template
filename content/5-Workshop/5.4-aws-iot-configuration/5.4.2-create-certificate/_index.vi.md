@@ -49,7 +49,7 @@ AWS sẽ tự động tạo:
 - Public Key
 - Private Key
 
-![](/images/workshop/5.4.2/create-certificate.png)
+![](/fcj-workshop-template/images/workshop/5.4.2/create-certificate.png)
 
 Nhấn **Create Thing** để tiếp tục.
 
@@ -59,7 +59,7 @@ Nhấn **Create Thing** để tiếp tục.
 
 Sau khi tạo thành công, AWS sẽ hiển thị thông tin của Device Certificate.
 
-![](/images/workshop/5.4.2/certificate-generated.png)
+![](/fcj-workshop-template/images/workshop/5.4.2/certificate-generated.png)
 
 ---
 
@@ -72,7 +72,7 @@ Tải xuống các tệp sau:
 - Public Key (`public.pem.key`)
 - Amazon Root CA 1 (`AmazonRootCA1.pem`)
 
-![](/images/workshop/5.4.2/download-certificates.png)
+![](/fcj-workshop-template/images/workshop/5.4.2/download-certificates.png)
 
 {{% notice warning %}}
 Private Key chỉ được tải xuống một lần duy nhất. Nếu làm mất, cần tạo Device Certificate mới.
@@ -86,7 +86,7 @@ Private Key chỉ được tải xuống một lần duy nhất. Nếu làm mấ
 
 Chỉ những chứng chỉ ở trạng thái **Active** mới được phép xác thực với AWS IoT Core.
 
-![](/images/workshop/5.4.2/activate-certificate.png)
+![](/fcj-workshop-template/images/workshop/5.4.2/activate-certificate.png)
 
 ---
 

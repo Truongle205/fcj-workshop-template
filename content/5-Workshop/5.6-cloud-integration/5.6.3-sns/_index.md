@@ -166,7 +166,7 @@ Verify:
 - Region.
 - Subscription count.
 
-![Amazon SNS topic](/images/workshop/5.6.3/sns-topic.png)
+![Amazon SNS topic](/fcj-workshop-template/images/workshop/5.6.3/sns-topic.png)
 
 The topic ARN has the following structure:
 

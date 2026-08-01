@@ -45,7 +45,7 @@ Sau khi hoàn thành mục này, người thực hiện sẽ có thể:
 
 Tại trang chủ AWS, tìm kiếm dịch vụ **IoT Core** bằng thanh tìm kiếm.
 
-![](/images/workshop/5.4.1/aws-console-home.png)
+![](/fcj-workshop-template/images/workshop/5.4.1/aws-console-home.png)
 
 Sau đó mở dịch vụ **AWS IoT Core**.
 
@@ -57,7 +57,7 @@ Trong giao diện AWS IoT Core, chọn:
 
 **Manage → All devices → Things**
 
-![](/images/workshop/5.4.1/iot-core-dashboard.png)
+![](/fcj-workshop-template/images/workshop/5.4.1/iot-core-dashboard.png)
 
 Nhấn **Create Thing** để tạo thiết bị mới.
 
@@ -73,7 +73,7 @@ Create a single Thing
 
 Sau đó nhấn **Next**.
 
-![](/images/workshop/5.4.1/create-thing.png)
+![](/fcj-workshop-template/images/workshop/5.4.1/create-thing.png)
 
 ---
 
@@ -89,7 +89,7 @@ esp32-home-01
 
 Các thông số khác giữ nguyên mặc định.
 
-![](/images/workshop/5.4.1/thing-name.png)
+![](/fcj-workshop-template/images/workshop/5.4.1/thing-name.png)
 
 Sau khi hoàn tất, nhấn **Next**.
 
@@ -111,7 +111,7 @@ AWS sẽ tự động tạo:
 
 Nhấn **Create Thing** để tiếp tục.
 
-![](/images/workshop/5.4.1/create-certificate.png)
+![](/fcj-workshop-template/images/workshop/5.4.1/create-certificate.png)
 
 ---
 
@@ -128,7 +128,7 @@ Tải xuống các tệp sau:
 
 Các tệp này sẽ được sử dụng ở các chương sau khi cấu hình chương trình trên ESP32-S3.
 
-![](/images/workshop/5.4.1/download-certificates.png)
+![](/fcj-workshop-template/images/workshop/5.4.1/download-certificates.png)
 
 {{% notice warning %}}
 Private Key chỉ có thể tải xuống **một lần duy nhất**. Hãy lưu trữ tệp này ở nơi an toàn trước khi rời khỏi trang.
@@ -146,7 +146,7 @@ Sau khi tải chứng chỉ, cần kích hoạt Device Certificate.
 Active
 ```
 
-![](/images/workshop/5.4.1/activate-certificate.png)
+![](/fcj-workshop-template/images/workshop/5.4.1/activate-certificate.png)
 
 ---
 
@@ -154,7 +154,7 @@ Active
 
 Tiếp theo, thực hiện liên kết Device Certificate với AWS IoT Thing vừa tạo.
 
-![](/images/workshop/5.4.1/attach-thing.png)
+![](/fcj-workshop-template/images/workshop/5.4.1/attach-thing.png)
 
 Sau khi hoàn tất, Device Certificate sẽ trở thành thông tin xác thực chính thức của ESP32-S3.
 
@@ -168,7 +168,7 @@ Mở trang thông tin của Thing và kiểm tra các nội dung sau:
 - Device Certificate đã được liên kết.
 - Trạng thái Certificate là **Active**.
 
-![](/images/workshop/5.4.1/thing-summary.png)
+![](/fcj-workshop-template/images/workshop/5.4.1/thing-summary.png)
 
 ---
 

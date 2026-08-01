@@ -504,7 +504,7 @@ Publishing telemetry: {"device_id":"esp32-home-01",...}
 Published: {"device_id":"esp32-home-01",...}
 ```
 
-![ESP32-S3 gửi Telemetry](/images/workshop/5.5.4/telemetry-published.png)
+![ESP32-S3 gửi Telemetry](/fcj-workshop-template/images/workshop/5.5.4/telemetry-published.png)
 
 ---
 
@@ -526,7 +526,7 @@ smarthome/esp32-home-01/telemetry
 
 Telemetry do ESP32-S3 publish sẽ xuất hiện trên MQTT Test Client.
 
-![AWS IoT Core nhận Telemetry](/images/workshop/5.5.4/telemetry-received.png)
+![AWS IoT Core nhận Telemetry](/fcj-workshop-template/images/workshop/5.5.4/telemetry-received.png)
 
 Luồng hoàn chỉnh:
 

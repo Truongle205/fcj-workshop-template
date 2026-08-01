@@ -294,7 +294,7 @@ Example:
 }
 ```
 
-![Door-open email notification](/images/workshop/5.6.4/sns-email-notification.png)
+![Door-open email notification](/fcj-workshop-template/images/workshop/5.6.4/sns-email-notification.png)
 
 The notification confirms that the complete Smart Home alert workflow operates successfully.
 

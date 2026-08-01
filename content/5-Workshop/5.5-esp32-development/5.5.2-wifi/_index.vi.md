@@ -60,7 +60,7 @@ Khởi tạo giao diện Wi-Fi và bắt đầu kết nối đến Access Point.
 
 Trong thời gian kết nối, trạng thái sẽ được hiển thị trên Serial Monitor.
 
-![](/images/workshop/5.5.2/wifi-connecting.png)
+![](/fcj-workshop-template/images/workshop/5.5.2/wifi-connecting.png)
 
 ---
 
@@ -75,7 +75,7 @@ WiFi Connected
 IP: 192.168.1.100
 ```
 
-![](/images/workshop/5.5.2/wifi-connected.png)
+![](/fcj-workshop-template/images/workshop/5.5.2/wifi-connected.png)
 
 Địa chỉ IP này cho thấy ESP32-S3 đã kết nối thành công với mạng và có thể truy cập Internet.
 

@@ -593,7 +593,7 @@ Tắt relay:
 OFF
 ```
 
-![Publish lệnh điều khiển relay](/images/workshop/5.5.5/publish-relay-command.png)
+![Publish lệnh điều khiển relay](/fcj-workshop-template/images/workshop/5.5.5/publish-relay-command.png)
 
 {{% notice note %}}
 Firmware hiện tại nhận command dạng plain text `ON` hoặc `OFF`, không nhận JSON trên direct command topic.
@@ -632,7 +632,7 @@ Shadow reported payload:
 Shadow publish result: SUCCESS
 ```
 
-![ESP32-S3 nhận lệnh Relay](/images/workshop/5.5.5/relay-command-received.png)
+![ESP32-S3 nhận lệnh Relay](/fcj-workshop-template/images/workshop/5.5.5/relay-command-received.png)
 
 ---
 
