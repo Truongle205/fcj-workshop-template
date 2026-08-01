@@ -6,120 +6,114 @@ chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+# Bài thu hoạch “Agentic AI Build Week (AABW) & Hackathon”
 
 ### Mục Đích Của Sự Kiện
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+- Trải nghiệm quy trình xây dựng sản phẩm công nghệ trong thời gian ngắn với áp lực cao.
+- Ứng dụng **Agentic AI**, Large Language Models (LLMs), Amazon Bedrock và các dịch vụ AWS để giải quyết các bài toán thực tế.
+- Nâng cao kỹ năng làm việc nhóm, phân chia vai trò, phát triển sản phẩm và thuyết trình dự án.
 
-### Danh Sách Diễn Giả
+### Danh Sách Thành Viên / Nhóm
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+- **Nhóm Signal Scout**: Le Tan Luc, Do Hoang Hieu, Trieu Quoc Hao, Nguyen Van Duy Khiem, Nguyen Cong Minh, Nguyen Tran Minh Quan.
+- **Nhóm 3KA (S.H.E.P.H.E.R.D)**: Huynh An Khuong, Nguyen Quoc Huy, Ngo Quang Khoi, Hoang Le Thanh Duc, Dang Nguyen Phuoc Loc, Dang Truong Hung.
+- **Nhóm Plan V (SA Professional Native App)**: Pham Tien Thuan Phat, Huynh Hoang Long, Le Minh Nghia, Tran Dai Vi, Nguyen An.
 
 ### Nội Dung Nổi Bật
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+#### Thách thức xây dựng sản phẩm trong 24 giờ
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+- **Áp lực thời gian**: Các đội phải phát triển sản phẩm trong vòng 24 giờ, liên tục xử lý lỗi, hoàn thiện tính năng và giải quyết các vấn đề phát sinh.
+- **Vượt qua giới hạn bản thân**: Dù gặp nhiều khó khăn về kiến thức AI, AWS và thời gian triển khai, các nhóm vẫn hoàn thành được MVP (Minimum Viable Product) có khả năng hoạt động.
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+#### Các dự án nổi bật tại sự kiện
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+- **Signal Scout**: Nền tảng giúp phát hiện sớm các tín hiệu thay đổi trong chiến lược kinh doanh của doanh nghiệp bằng cách thu thập dữ liệu, xử lý thông tin với Amazon Bedrock và hiển thị kết quả qua dashboard.
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+- **S.H.E.P.H.E.R.D**: Hệ thống phân tích mật độ dòng người thông minh, phát hiện nguy cơ và hỗ trợ điều phối theo thời gian thực sử dụng Computer Vision, YOLO, Amazon SageMaker và Amazon Bedrock AgentCore.
 
-#### Domain-Driven Design (DDD)
+- **SA Professional Native App**: Ứng dụng AI hỗ trợ Solution Architect phân tích tài liệu BRD/PRD, tự động tạo kiến trúc hệ thống, sinh sơ đồ Draw.io và ước tính chi phí sử dụng AWS.
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+#### Ứng dụng Agentic AI trong phát triển sản phẩm
 
-#### Event-Driven Architecture
+- **AI Agent workflow**: Kết hợp giữa Large Language Models (LLMs), Agent memory và các công cụ hỗ trợ để xây dựng hệ thống thông minh.
+- **Automation capability**: Tự động hóa các tác vụ xử lý dữ liệu, phân tích thông tin và hỗ trợ ra quyết định.
+- **AI-powered solution**: Áp dụng AI để giải quyết các bài toán thực tế thay vì chỉ xây dựng mô hình thử nghiệm.
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+#### Kiến trúc hệ thống và tối ưu chi phí
 
-#### Compute Evolution
-
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
-
-#### Amazon Q Developer
-
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+- **Cloud architecture**: Lựa chọn các dịch vụ AWS phù hợp để triển khai ứng dụng.
+- **Cost optimization**: Cân bằng giữa hiệu năng hệ thống và chi phí vận hành cloud.
+- **Scalable solution**: Thiết kế hệ thống có khả năng mở rộng khi số lượng người dùng tăng lên.
 
 ### Những Gì Học Được
 
-#### Tư Duy Thiết Kế
+#### Kỹ Năng Kỹ Thuật
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+- **Ứng dụng Agentic AI**: Hiểu cách kết hợp LLM, Amazon Bedrock, AI Agent và các công cụ tự động hóa để xây dựng ứng dụng thông minh.
+- **Thiết kế kiến trúc cloud**: Biết cách lựa chọn dịch vụ AWS phù hợp cho từng bài toán thực tế.
+- **Phát triển MVP nhanh chóng**: Học cách tập trung vào chức năng quan trọng nhất để tạo ra sản phẩm có thể hoạt động trong thời gian giới hạn.
 
-#### Kiến Trúc Kỹ Thuật
+#### Tư Duy và Kỹ Năng Mềm
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
+- **Xác định mục tiêu rõ ràng**: Biết cách thu nhỏ phạm vi dự án để tập trung hoàn thiện tính năng quan trọng.
+- **Làm việc nhóm hiệu quả**: Hiểu được vai trò của việc phân chia công việc, giao tiếp và hỗ trợ lẫn nhau.
+- **Khả năng thích nghi**: Học cách xử lý những vấn đề mới trong môi trường áp lực cao.
 
-#### Chiến Lược Hiện Đại Hóa
+#### Phát Triển Sản Phẩm
 
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+- **Tư duy MVP**: Một sản phẩm nhỏ nhưng hoạt động tốt có giá trị hơn một ý tưởng lớn nhưng chưa hoàn thiện.
+- **Problem-solving mindset**: Tập trung giải quyết vấn đề thực tế thay vì chỉ sử dụng công nghệ mới.
+- **Continuous improvement**: Luôn cải thiện sản phẩm dựa trên phản hồi và trải nghiệm thực tế.
 
 ### Ứng Dụng Vào Công Việc
 
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+- **Tự động hóa quy trình**: Áp dụng tư duy Agentic AI để tối ưu các công việc lặp lại trong quá trình phát triển phần mềm.
+- **Xây dựng giải pháp AI**: Vận dụng Amazon Bedrock và các dịch vụ AWS để phát triển các ứng dụng thông minh.
+- **Quản lý dự án hiệu quả**: Xác định rõ vai trò thành viên, chia nhỏ nhiệm vụ và xây dựng kế hoạch triển khai phù hợp.
+- **Phát triển sản phẩm theo MVP**: Tập trung tạo ra giá trị thực tế trước khi mở rộng thêm tính năng.
 
 ### Trải nghiệm trong event
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
+Tham gia **Agentic AI Build Week (AABW) & Hackathon** là một trải nghiệm thực tế rất đáng giá, giúp tôi hiểu rõ hơn về quy trình phát triển sản phẩm công nghệ, cách làm việc trong môi trường áp lực cao và khả năng ứng dụng AI vào các bài toán thực tế.
 
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
+#### Đối mặt với thử thách thực tế
+
+- Trải nghiệm quá trình phát triển sản phẩm liên tục trong thời gian giới hạn.
+- Đối mặt với các vấn đề về code, tích hợp hệ thống, kiến trúc cloud và xử lý lỗi trong quá trình triển khai.
+- Học được cách bình tĩnh giải quyết vấn đề và phối hợp cùng đồng đội.
+
+#### Học hỏi từ quá trình xây dựng sản phẩm
+
+- Hiểu rằng việc hoàn thành một sản phẩm có thể hoạt động quan trọng hơn việc theo đuổi một ý tưởng quá lớn.
+- Nhận ra tầm quan trọng của việc xác định phạm vi dự án ngay từ đầu.
+- Học được cách biến ý tưởng thành sản phẩm thực tế thông qua từng bước phát triển.
 
 #### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
 
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
+- Tìm hiểu cách ứng dụng AI Agent và Amazon Bedrock trong việc xây dựng các hệ thống thông minh.
+- Hiểu hơn về quá trình thiết kế kiến trúc cloud và lựa chọn dịch vụ AWS.
+- Nhận thức được vai trò của việc tối ưu chi phí khi phát triển ứng dụng AI.
 
 #### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
+
+- Sự kiện tạo cơ hội làm việc cùng các thành viên có nhiều nền tảng kỹ thuật khác nhau.
+- Học hỏi kinh nghiệm từ cộng đồng công nghệ và những người tham gia khác.
+- Mở rộng góc nhìn về cách xây dựng sản phẩm trong môi trường thực tế.
 
 #### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
+
+- Thành công trong công nghệ không chỉ đến từ việc sử dụng công cụ mới mà còn nằm ở khả năng giải quyết vấn đề.
+- Agentic AI mở ra nhiều cơ hội để tự động hóa và nâng cao hiệu quả làm việc.
+- Tinh thần học hỏi, khả năng thích nghi và làm việc nhóm là những yếu tố quan trọng để phát triển trong ngành công nghệ.
 
 #### Một số hình ảnh khi tham gia sự kiện
+
 * Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+
+<div class="image-gallery">
+  <img src="/images/ev2.jpg" alt="Hình ảnh tham gia Event 2" />
+</div>
+
+> Tổng thể, sự kiện không chỉ giúp tôi nâng cao kiến thức về AI, AWS và phát triển sản phẩm mà còn rèn luyện khả năng làm việc dưới áp lực, tư duy giải quyết vấn đề và biến những ý tưởng công nghệ thành các sản phẩm có giá trị thực tế.

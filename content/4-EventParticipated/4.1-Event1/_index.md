@@ -1,126 +1,154 @@
 ---
 title: "Event 1"
-date: 2024-01-01
+date: 2026-06-16
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+# Summary Report: “FCAJ & First Cloud AI Journey Meetup”
 
 ### Event Objectives
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Share the **career development journey** from students to technology professionals and AWS Partners.
+- Provide practical insights into the roles of **DevOps Engineers** and **Data Analytics Engineers** in real-world enterprises.
+- Introduce career development models and professional working standards in multinational corporations (MNCs).
 
 ### Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **Trong Truong** – DevOps Engineer @ Endava Vietnam
+- **Danh Hoang Hieu Nghi** – AI Engineer – AWS Community Builder – AWS Student Builder Group Leader
+- **Dat Pham** – Data Analytics Engineer
+- **Cuong Nguyen** – Process Engineer
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### Real-world DevOps Engineer Perspective
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+- DevOps is not only about writing CI/CD pipelines, using Docker/Kubernetes, or fixing production problems.
+- The responsibilities of DevOps Engineers depend on company size, team structure, product complexity, infrastructure maturity, and operational models.
+- Important technical foundations include:
+  - Linux
+  - Networking fundamentals
+  - Programming languages such as Python and Golang
+  - Git
+  - CI/CD pipelines
+  - Practical system operation skills
 
-#### Transitioning to modern application architecture – Microservices
+#### Data Analytics Engineer Journey and Reality
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+- The career development journey includes multiple stages:
+  Student curiosity → First Cloud Journey → Community workshops → Hands-on labs → Projects → Portfolio development → AWS Partner → Knowledge sharing.
+- Data Analytics Engineers work on:
+  - Building operational reports
+  - Designing dashboards
+  - Analyzing business changes
+  - Finding root causes of problems
+  - Working with IoT and enterprise data projects
+- Essential skills include:
+  - Critical thinking
+  - Communication skills
+  - Data storytelling
+  - Problem-solving ability
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+#### Business Operation Data Analysis
 
-#### Domain-Driven Design (DDD)
+- Monitoring important business metrics:
+  - GMV
+  - AOV
+  - Fulfillment Cost
+  - Last Mile Cost
+- Using data analysis to identify root causes instead of only presenting raw numbers.
+- Improving operational efficiency through better decision-making based on data.
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+#### Career Development Mindset
 
-#### Event-Driven Architecture
+- The five development stages:
+  **Follower → Learner → Problem Solver → System Thinker → Super Star**
+- Always ask **"why" before "how"** to understand the real problem.
+- Communication and collaboration are essential skills in technology careers.
+- Using tools without understanding the fundamentals is not enough.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+#### Recruitment Standards in Multinational Corporations (MNCs)
 
-#### Compute Evolution
-
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
-
-#### Amazon Q Developer
-
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+- Standard recruitment process:
+  - Resume screening
+  - Capability assessment
+  - Technical interview using STAR methodology
+  - Cultural fit evaluation
+- Companies focus on:
+  - Problem-solving ability
+  - Communication skills
+  - Team collaboration
+  - Continuous learning mindset
+- Importance of **No-Blame Post-Mortem** culture and a **Caring & Inclusive** working environment.
 
 ### Key Takeaways
 
-#### Design Mindset
+#### Technical Knowledge
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+- Strong fundamentals are the foundation of a successful technology career.
+- Understanding Linux, networking, programming, and CI/CD is important before implementing advanced automation.
+- DevOps and Data Analytics require both technical knowledge and problem-solving skills.
 
-#### Technical Architecture
+#### Professional Development
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+- Career growth requires a clear roadmap and continuous improvement.
+- Moving from an executor mindset to a system-thinking mindset creates more value.
+- Sharing knowledge with the community helps strengthen personal capability.
 
-#### Modernization Strategy
+#### Working Mindset
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+- Focus on solving problems instead of only completing tasks.
+- Understand the business context behind technical solutions.
+- Develop both technical skills and soft skills to work effectively in professional environments.
 
 ### Applying to Work
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+- **Strengthen technical foundations**: Improve knowledge of Linux, networking, Git, and CI/CD before developing automation solutions.
+- **Apply data-driven thinking**: Use data analysis and storytelling techniques to support better decisions.
+- **Develop system thinking**: Understand how different components work together in large-scale systems.
+- **Improve communication skills**: Practice explaining technical concepts clearly to different audiences.
 
 ### Event Experience
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+Attending the **“FCAJ & First Cloud AI Journey Meetup”** workshop was a valuable experience that provided me with practical knowledge about technology careers, enterprise requirements, and professional development paths.
 
 #### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+
+- Speakers from technology companies and AWS communities shared **real-world experiences and best practices**.
+- Their stories helped me understand the working environment of multinational companies and the expectations for technology professionals.
 
 #### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+- Learned about the real responsibilities of DevOps Engineers in enterprise environments.
+- Understood how Data Analytics Engineers use data to analyze business operations and solve problems.
+- Gained awareness of the importance of technical fundamentals and practical experience.
+
+#### Developing professional skills
+
+- Improved my understanding of critical thinking, communication, and problem-solving skills.
+- Learned that successful engineers need both technical expertise and the ability to collaborate with others.
+- Recognized the importance of continuous learning in the rapidly changing technology industry.
 
 #### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+
+- The event provided opportunities to connect with technology communities and experienced professionals.
+- Learned from different career journeys and gained more motivation for personal development.
+- Expanded my understanding of industry expectations and future career directions.
 
 #### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+
+- Technology success comes from understanding fundamentals, not only using tools.
+- A clear career roadmap and continuous improvement are essential for long-term growth.
+- Asking the right questions and understanding problems are important skills for every engineer.
 
 #### Some event photos
-*Add your event photos here*  
 
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+<div class="image-gallery">
+  <img src="/images/ev1.jpg" alt="Image of participating in FCAJ event 1" />
+  <img src="/images/ev12.jpg" alt="Image of participating in FCAJ event 1" />
+</div>
+
+> Overall, the event provided not only technical knowledge but also changed my perspective on career development, professional mindset, and the importance of combining technical skills with communication and problem-solving abilities in an international technology environment.

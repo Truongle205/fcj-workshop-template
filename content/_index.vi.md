@@ -7,17 +7,16 @@ chapter: false
 
 # Báo cáo thực tập
 ### Thông tin sinh viên:
-&emsp; **Họ và tên:** Nguyễn Văn A
+&emsp; **Họ và tên:** Vòng Lương Thái Tuấn 
 
-&emsp; **Số điện thoại:** 0989888999
+&emsp; **Số điện thoại:** 0866229261
+&emsp; **Email:** tuan.vong2313767@hcmut.edu.vn
 
-&emsp; **Email:** Anguyenvan@gmail.com
+&emsp; **Trường:** Đại học Bách Khoa TP.HCM
 
-&emsp; **Trường:** Đại học Sư phạm Kỹ thuật TP.HCM
+&emsp; **Ngành:** Kỹ thuật máy tính
 
-&emsp; **Ngành:** Công nghệ thông tin
-
-&emsp; **Lớp:** AWS082025
+&emsp; **Lớp:** MT23KTM1
 
 &emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Viet Nam
 

@@ -6,121 +6,73 @@ chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
-
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+# Summary Report: “Agentic AI Build Week (AABW) & Hackathon”
 
 ### Event Objectives
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Experience the process of building a technology product within 24 hours under high pressure.
+- Apply AI Agents, Large Language Models (LLMs), Amazon Bedrock, and AWS services to solve real-world problems.
+- Improve teamwork skills, role assignment, project development, and presentation abilities.
 
-### Speakers
+### Team Members / Groups
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **Signal Scout Team**: Le Tan Luc, Do Hoang Hieu, Trieu Quoc Hao, Nguyen Van Duy Khiem, Nguyen Cong Minh, Nguyen Tran Minh Quan.
+- **3KA Team (S.H.E.P.H.E.R.D)**: Huynh An Khuong, Nguyen Quoc Huy, Ngo Quang Khoi, Hoang Le Thanh Duc, Dang Nguyen Phuoc Loc, Dang Truong Hung.
+- **Plan V Team (SA Professional Native App)**: Pham Tien Thuan Phat, Huynh Hoang Long, Le Minh Nghia, Tran Dai Vi, Nguyen An.
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### 24-hour Product Development Challenge
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+- **Time pressure**: Participants experienced 24 hours of continuous development, dealing with limited sleep, debugging issues late at night, and solving unexpected technical problems.
+- **Overcoming challenges**: Although many participants had limited experience with AI and AWS initially, teams successfully built complete MVP (Minimum Viable Product) solutions within a short period.
 
-#### Transitioning to modern application architecture – Microservices
+#### Featured Projects at the Event
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+- **Signal Scout**: A platform that detects early business strategy changes by collecting data through Apify/TinyFish, processing information with Amazon Bedrock, and presenting insights through dashboards.
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+- **S.H.E.P.H.E.R.D**: An intelligent crowd monitoring system that detects potential risks and supports real-time decision-making using YOLO, Amazon SageMaker, and Amazon Bedrock AgentCore.
 
-#### Domain-Driven Design (DDD)
-
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
-
-#### Event-Driven Architecture
-
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
-
-#### Compute Evolution
-
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
-
-#### Amazon Q Developer
-
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+- **SA Professional Native App**: An AI-powered application that supports Solution Architects by extracting requirements from BRD/PRD documents, generating system architectures, creating Draw.io diagrams, and estimating AWS costs.
 
 ### Key Takeaways
 
-#### Design Mindset
+#### Technical Skills
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+- **Applying Agentic AI**: Learned how to combine LLMs, Amazon Bedrock, Agent memory, and automation tools to build intelligent applications.
+- **Architecture and cost optimization**: Understanding the importance of balancing cloud infrastructure costs and technical requirements when developing AI-powered solutions.
 
-#### Technical Architecture
+#### Mindset and Soft Skills
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
-
-#### Modernization Strategy
-
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+- **Clear goal definition**: Learned the importance of reducing project scope and focusing on building a small but functional core feature within limited time.
+- **Team collaboration**: Realized that teamwork, communication, and supporting each other are essential factors for overcoming difficult challenges.
 
 ### Applying to Work
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+- **Process automation**: Apply Agentic AI concepts to automate repetitive tasks in software development and daily workflows.
+- **Effective project management**: Clearly define team member responsibilities and prepare necessary tools and frameworks before starting new projects.
+- **Rapid prototyping mindset**: Apply MVP development methods to quickly validate ideas and improve solutions.
 
 ### Event Experience
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+Participating in the **Agentic AI Build Week & Hackathon** was a valuable hands-on experience that helped me understand the high-pressure working environment in the technology industry. Some memorable experiences include:
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+#### Facing Real-world Challenges
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+- Experienced the excitement and pressure of solving complex coding problems and system integration challenges.
+- Worked closely with teammates through late-night debugging sessions and continuous problem-solving activities.
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+#### Lessons Learned from Challenges and Effort
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+- Taking the first step and participating is already a valuable achievement.
+- A small but working product is often more valuable than a large idea that cannot be completed.
+- Persistence, teamwork, and adaptability are important qualities when working on technology projects.
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+#### Some Event Photos
 
-#### Some event photos
-*Add your event photos here*  
+<div class="image-gallery">
+  <img src="/images/ev2.jpg" alt="Participating in the event 2 image " />
 
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+</div>
+
+> Overall, the event not only provided valuable knowledge about AWS and AI technologies but also improved my ability to handle pressure, collaborate with teammates, and transform innovative ideas into practical solutions within a limited timeframe.
